@@ -4,6 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import styles from "../../styles";
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 function LoginPage(){
     const navigation = useNavigation();
@@ -23,6 +24,9 @@ function LoginPage(){
         console.log(res.data)
         if (res.data.status === 'SUCCESS') {
             Alert.alert( 'Success', 'You have successfully logged in.', [{ text: 'OK' }]);
+            AsyncStorage.setItem('token', res.data.data);
+            AsyncStorage.setItem('isLoggedIn', JSON.stringify(true));
+            // navigation.navigate('Home');
         }
     }).catch((err) => {
         if(err.response.data.message === "Email has not been verified yet."){

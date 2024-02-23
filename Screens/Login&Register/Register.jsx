@@ -8,6 +8,7 @@ import Error from 'react-native-vector-icons/MaterialIcons';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import axios, {isCancel, AxiosError} from 'axios';
 import { format } from 'date-fns';
+import { RadioButton } from 'react-native-paper';
 
 function RegisterPage({props}) {
   const navigation = useNavigation();

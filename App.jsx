@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
 import { NavigationContainer, useNavigation, DrawerActions } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -11,6 +11,8 @@ import DrawerContent from './DrawerContent';
 import SplashScreen from 'react-native-splash-screen';
 import LoginPage from './Screens/Login&Register/Login';
 import RegisterPage from './Screens/Login&Register/Register';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { set } from 'date-fns';
 
 
 const StackNav = ()=>{
@@ -38,6 +40,7 @@ const StackNav = ()=>{
             <Stack.Screen name = 'User' component = {UserScreen} screenOptions = {{
                 headerShown: false
             }} />
+            <Stack.Screen name = 'Login' component = {LoginNav} />
         </Stack.Navigator>
     );
 }
@@ -53,20 +56,35 @@ const DrawerNav = ()=>{
     
 }
 
+const LoginNav = ()=>{
+    const Stack = createNativeStackNavigator();
+    <Stack.Navigator screenOptions={{headerShown: false}}>
+        <Stack.Screen name = 'Login' component = {LoginPage} />
+        <Stack.Screen name = 'Register' component = {RegisterPage} />
+        {/* <Stack.Screen name = 'Home' component = {DrawerNav} /> */}
+    </Stack.Navigator>
+}
+
 function App() {
-useEffect(() => {
-    setTimeout(() => {
-        SplashScreen.hide()
-    }, 500)
-}, []);
+
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    
+    async function checkIfLoggedIn(){
+        const data = await AsyncStorage.getItem('isLoggedIn');
+        setIsLoggedIn(data);
+    }
+
+    useEffect(() => {
+        checkIfLoggedIn();
+        setTimeout(() => {
+            SplashScreen.hide()
+        }, 500)
+    }, []);
+
     const Stack = createNativeStackNavigator();
     return(
         <NavigationContainer>
-            <Stack.Navigator screenOptions={{headerShown: false}}>
-                <Stack.Screen name = 'Login' component = {LoginPage} />
-                <Stack.Screen name = 'Register' component = {RegisterPage} />
-                {/* <Stack.Screen name = 'Home' component = {DrawerNav} /> */}
-            </Stack.Navigator>
+            {isLoggedIn ? <DrawerNav /> : <LoginNav />}
         </NavigationContainer>
 
     );
