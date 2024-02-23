@@ -74,7 +74,7 @@ function LoginPage(){
                         style={[styles.inBut, !validateFields() && styles.disabledButton]}
                         onPress={() => validateFields() && handleSubmit()}>
                         <View>
-                            <Text style={styles.textSign}>Register</Text>
+                            <Text style={styles.textSign}>Login</Text>
                         </View>
                     </TouchableOpacity>
                     <View style={{padding: 15}}>

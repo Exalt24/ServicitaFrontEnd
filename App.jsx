@@ -58,11 +58,13 @@ const DrawerNav = ()=>{
 
 const LoginNav = ()=>{
     const Stack = createNativeStackNavigator();
+    return(
     <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name = 'Login' component = {LoginPage} />
         <Stack.Screen name = 'Register' component = {RegisterPage} />
         {/* <Stack.Screen name = 'Home' component = {DrawerNav} /> */}
-    </Stack.Navigator>
+    </Stack.Navigator>)
+    
 }
 
 function App() {
