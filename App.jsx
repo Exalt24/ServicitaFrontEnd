@@ -12,8 +12,45 @@ import SplashScreen from 'react-native-splash-screen';
 import LoginPage from './Screens/Login&Register/Login';
 import RegisterPage from './Screens/Login&Register/Register';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { set } from 'date-fns';
+import Toast, { BaseToast, ErrorToast } from 'react-native-toast-message';
 
+const toastConfig = {
+  success: (props) => (
+    <BaseToast
+      {...props}
+      style={{ borderLeftColor: 'green', borderLeftWidth: 7, width: '90%', height: 70, borderRadius: 15, borderRightColor: 'green', borderRightWidth: 7, borderBottomColor: 'green', borderBottomWidth: 7, borderTopColor: 'green', borderTopWidth: 7}}
+      contentContainerStyle={{ paddingHorizontal: 15 }}
+      text1Style={{
+        fontSize: 17,
+        fontWeight: '700'
+      }}
+      text2Style={{
+        fontSize: 15
+      }}
+    />
+  ),
+  error: (props) => (
+    <ErrorToast
+      {...props}
+      text2NumberOfLines={3}
+      style={{ borderLeftColor: 'red', borderLeftWidth: 7, width: '90%', height: 70, borderRadius: 15, borderRightColor: 'red', borderRightWidth: 7, borderBottomColor: 'red', borderBottomWidth: 7, borderTopColor: 'red', borderTopWidth: 7}}
+      contentContainerStyle={{ paddingHorizontal: 15 }}
+      text1Style={{
+        fontSize: 17,
+        fontWeight: '700'
+      }}
+      text2Style={{
+        fontSize: 15
+      }}
+    />
+  ),
+  tomatoToast: ({ text1, props }) => (
+    <View style={{ height: 60, width: '100%', backgroundColor: 'tomato' }}>
+      <Text>{text1}</Text>
+      <Text>{props.uuid}</Text>
+    </View>
+  )
+};
 
 const StackNav = ()=>{
     const Stack = createNativeStackNavigator();
@@ -87,6 +124,7 @@ function App() {
     return(
         <NavigationContainer>
             {isLoggedIn ? <DrawerNav /> : <LoginNav />}
+            <Toast config = {toastConfig}/>
         </NavigationContainer>
 
     );

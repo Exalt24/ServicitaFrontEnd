@@ -9,6 +9,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import axios, {isCancel, AxiosError} from 'axios';
 import { format } from 'date-fns';
 import { RadioButton } from 'react-native-paper';
+import Toast from 'react-native-toast-message';
 
 function RegisterPage({props}) {
   const navigation = useNavigation();
@@ -49,6 +50,7 @@ function RegisterPage({props}) {
   
 
   const handleSubmit = () => {
+    
     const userData = {
       name: firstName + ' ' + lastName,
       email: email,
@@ -56,18 +58,45 @@ function RegisterPage({props}) {
       password: password,
       dateOfBirth: dateOfBirth,
     }
-    axios.post("http://192.168.1.2:5000/user/signup", userData).then((res) => {
-      console.log(res.data)
+    axios.post("http://192.168.1.3:5000/user/signup", userData).then((res) => {
+      
+    console.log(res.data)
     if (res.data.status === 'PENDING') {
-      Alert.alert('Verification', 'Please check your email for the verification link.', [{ text: 'OK', onPress: () => navigation.navigate('Login') }]);
+      // Alert.alert('Verification', 'Please check your email for the verification link.', [{ text: 'OK', onPress: () => navigation.navigate('Login') }]);
+      Toast.show({
+        type: 'success',
+        text1: 'Verification',
+        text2: 'Please check your email for the OTP.',
+        visibilityTime: 5000,
+      })
+      navigation.navigate('Login')
       // Insert Verification Page
     } else {
-      Alert.alert('Error', 'An error occurred while processing your request. Please try again later.', [{ text: 'OK' }]);
+      // Alert.alert('Error', 'An error occurred while processing your request. Please try again later.', [{ text: 'OK' }]);
+      Toast.show({
+        type: 'error',
+        text1: 'Error',
+        text2: 'An error occurred while processing your request. Please try again later.',
+        visibilityTime: 5000,
+      })
     }}).catch((err) => {
+      console.log(err);
       if(err.response.data.message === "Email is being used by another user."){
-        Alert.alert('Error', 'Email is already being used by another user.', [{ text: 'OK', onPress: () => navigation.navigate('Login') }]);
+        // Alert.alert('Error', 'Email is already being used by another user.', [{ text: 'OK', onPress: () => navigation.navigate('Login') }]);
+        Toast.show({
+          type: 'error',
+          text1: 'Error',
+          text2: 'Email is already being used by another user.',
+          visibilityTime: 5000,
+        })
       } else {
-        Alert.alert('Error', 'An error occurred while processing your request. Please try again later.', [{ text: 'OK' }]);
+        // Alert.alert('Error', 'An error occurred while processing your request. Please try again later.', [{ text: 'OK' }]);
+        Toast.show({
+          type: 'error',
+          text1: 'Error',
+          text2: 'An error occurred while processing your request. Please try again later.',
+          visibilityTime: 5000,
+        })
       }
     });
   }
@@ -190,13 +219,22 @@ function RegisterPage({props}) {
           </View>
         </View>
         <View style={styles.button}>
-        <TouchableOpacity
-          style={[styles.inBut, !validateFields() && styles.disabledButton]}
-          onPress={() => validateFields() && handleSubmit()}>
-          <View>
-            <Text style={styles.textSign}>Register</Text>
+        {validateFields() ? (
+          <TouchableOpacity
+            style={[styles.inBut]}
+            onPress={handleSubmit}
+          >
+            <View>
+              <Text style={styles.textSign}>Register</Text>
+            </View>
+          </TouchableOpacity>
+        ) : (
+          <View style={[styles.inBut, styles.disabledButton]}>
+            <View>
+              <Text style={styles.textSign}>Register</Text>
+            </View>
           </View>
-        </TouchableOpacity>
+        )}
           <View style={{ padding: 15 }}>
             <Text style={{ ...styles.click_footer_two, color: '#919191' }}>---Or Register Using---</Text>
           </View>
@@ -213,11 +251,11 @@ function RegisterPage({props}) {
               </TouchableOpacity>
               <Text style={styles.bottomText}>Google</Text>
             </View>
-            <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-              <TouchableOpacity style={styles.inBut2}>
-                <FontAwesome name="twitter" color="#fff" style={styles.smallIcon2} />
-              </TouchableOpacity>
-              <Text style={styles.bottomText}>Twitter</Text>
+            <View style={{alignItems: 'center', justifyContent: 'center'}}>
+                <TouchableOpacity style={styles.inBut2}>
+                  <FontAwesome name="mobile" color='#fff' style={styles.smallIcon2} />
+                </TouchableOpacity>
+              <Text style={styles.bottomText}>Mobile</Text>                    
             </View>
           </View>
           <View style={{ alignItems: 'center', justifyContent: 'center', marginTop: 10 }}>
