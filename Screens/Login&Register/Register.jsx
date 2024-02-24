@@ -6,7 +6,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 import Error from 'react-native-vector-icons/MaterialIcons';
 import DateTimePicker from '@react-native-community/datetimepicker';
-import axios, {isCancel, AxiosError} from 'axios';
+import axios from 'axios';
 import { format } from 'date-fns';
 import { RadioButton } from 'react-native-paper';
 import Toast from 'react-native-toast-message';

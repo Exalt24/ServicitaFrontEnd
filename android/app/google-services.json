@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1075875541581",
+    "project_id": "servicita-sign-in",
+    "storage_bucket": "servicita-sign-in.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1075875541581:android:12a1e806af22917c382204",
+        "android_client_info": {
+          "package_name": "com.front"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWt_n47f0_bSG41hO5-dewbSJjwIVOYC4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
