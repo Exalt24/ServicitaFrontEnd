@@ -2,11 +2,11 @@ import { Text, View } from "react-native";
 import { Button } from "react-native-paper";
 import styles from "../styles";
 
-function HomeScreen({ props}) {
+function MessageScreen(props) {
     return (
       <View style={ styles.viewStyle }>
         <View>
-          <Text style={ styles.textStyle }>This is the Home Screen</Text>
+          <Text style={ styles.textStyle }>This is the Message Screen</Text>
         </View>
         <View style={ styles.buttonViewStyle }>
           <Button
@@ -28,4 +28,4 @@ function HomeScreen({ props}) {
     );
   }
   
-  export default HomeScreen;
+  export default MessageScreen;
