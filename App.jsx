@@ -16,6 +16,7 @@ import RegisterPage from './Screens/Login&Register/Register';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Constants from 'expo-constants';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import ProviderProfileScreen from './Screens/ProviderProfileScreen';
 
 console.log(Constants.systemFonts);
 
@@ -49,6 +50,7 @@ const StackNav = ()=>{
                 headerShown: false
             }} />
             <Stack.Screen name = 'Login' component = {LoginNav} />
+           
         </Stack.Navigator>
     );
 }
@@ -67,9 +69,11 @@ const DrawerNav = ()=>{
 const LoginNav = ()=>{
     const Stack = createNativeStackNavigator();
     return(
-    <Stack.Navigator screenOptions={{headerShown: false}}>
+    <Stack.Navigator initialRouteName ='ProviderProfileScreen' screenOptions={{headerShown: false}}>
         <Stack.Screen name = 'Login' component = {LoginPage} />
         <Stack.Screen name = 'Register' component = {RegisterPage} />
+        <Stack.Screen name = 'Profile' component = {ProfileScreen} />
+        <Stack.Screen name = 'ProviderProfileScreen' component = {ProviderProfileScreen} />
         {/* <Stack.Screen name = 'Home' component = {DrawerNav} /> */}
     </Stack.Navigator>)
     
