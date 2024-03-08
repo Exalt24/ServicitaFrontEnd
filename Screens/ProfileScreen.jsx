@@ -87,14 +87,6 @@ function ProfileScreen(props) {
           source={require("../assets/image-127.png")}
         />
       </View>
-      <View style={[styles.languageParent, styles.parentLayout1]}>
-        <Text style={[styles.termsConditions, styles.logOutTypo]}>Language</Text>
-        <Image
-          style={[styles.image128Icon, styles.iconLayout]}
-          resizeMode="cover"
-          source={require("../assets/image-127.png")}
-        />
-      </View>
       <View style={[styles.shareFeedbackParent, styles.parentLayout1]}>
         <Text style={[styles.termsConditions, styles.logOutTypo]}>Share Feedback</Text>
         <Image
@@ -224,7 +216,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   logOut: {
-    top: 818,
+    top: 777,
     left: 45,
   },
   profileScreenInner: {
@@ -292,11 +284,8 @@ const styles = StyleSheet.create({
   image128Icon: {
     top: 4,
   },
-  languageParent: {
-    top: 736,
-  },
   shareFeedbackParent: {
-    top: 777,
+    top: 736,
   },
 });
 
