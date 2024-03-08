@@ -12,19 +12,11 @@ function SeekerEditProfileScreen(props){
   const [email, setEmail] = useState("carl@example.com");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [birthdate, setBirthdate] = useState(new Date(1990, 0, 1)); // Initial birthdate value
+  const [birthdate, setBirthdate] = useState("01/01/1990");
   const [address, setAddress] = useState("123 Main St");
-  const [showDatePicker, setShowDatePicker] = useState(false); // State to control the visibility of the date picker modal
 
   const handleSave = () => {
     // Implement save functionality here
-  };
-
-  const handleDateChange = (event, selectedDate) => {
-    setShowDatePicker(false); // Hide the date picker modal
-    if (selectedDate) {
-      setBirthdate(selectedDate); // Set the selected date as the birthdate
-    }
   };
 
   return (
@@ -79,18 +71,13 @@ function SeekerEditProfileScreen(props){
             onChangeText={setEmail}
             placeholder="Email"
           />
-          <TouchableOpacity onPress={() => setShowDatePicker(true)}>
-            <Text style={styles.inputLabel}>Birthdate</Text>
-            <Text style={styles.input}>{birthdate.toLocaleDateString()}</Text>
-          </TouchableOpacity>
-          {showDatePicker && (
-            <DateTimePicker
-              value={birthdate}
-              mode="date"
-              display="default"
-              onChange={handleDateChange}
-            />
-          )}
+          <Text style={styles.inputLabel}>Birthdate</Text>
+          <TextInput
+            style={styles.input}
+            value={birthdate}
+            onChangeText={setBirthdate}
+            placeholder="Birthdate"
+          />
           <Text style={styles.inputLabel}>Address</Text>
           <TextInput
             style={styles.input}
@@ -217,6 +204,7 @@ const styles = StyleSheet.create({
   saveButton: {
     marginTop: 20, // Adjust the marginTop to lower the button
     marginBottom: 100,
+
   },
   gradientButton: {
     paddingVertical: 10,

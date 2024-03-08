@@ -6,6 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './Screens/HomeScreen';
 import ProfileScreen from './Screens/ProfileScreen';
 import UserScreen from './Screens/UserScreen';
+import SeekerEditProfileScreen from './Screens/SeekerEditProfileScreen';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import Entypo from '@expo/vector-icons/Entypo';
 import * as SplashScreen from 'expo-splash-screen';
@@ -67,10 +68,11 @@ const DrawerNav = ()=>{
 const LoginNav = ()=>{
     const Stack = createNativeStackNavigator();
     return(
-    <Stack.Navigator initialRouteName = 'Profile' screenOptions={{headerShown:false}}>
+    <Stack.Navigator initialRouteName = 'SeekerEditProfileScreen' screenOptions={{headerShown:false}}>
         <Stack.Screen name = 'Login' component = {LoginPage} />
         <Stack.Screen name = 'Register' component = {RegisterPage} />
         <Stack.Screen name = 'Profile' component = {ProfileScreen} />
+        <Stack.Screen name = 'SeekerEditProfileScreen' component = {SeekerEditProfileScreen} />
         {/* <Stack.Screen name = 'Home' component = {DrawerNav} /> */}
     </Stack.Navigator>)
     
