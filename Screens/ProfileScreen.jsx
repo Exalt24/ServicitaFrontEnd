@@ -1,135 +1,116 @@
-import * as React from "react";
-import { useState } from "react";
-import { StyleSheet, View, Text, Image, TextInput, TouchableOpacity, ScrollView } from "react-native";
+import React from "react";
+import { View, Text, ImageBackground, Image, ScrollView, StyleSheet, Pressable } from "react-native";
 import { Color, FontSize, FontFamily } from "../GlobalStyles";
-import { LinearGradient } from 'expo-linear-gradient';
-import DateTimePicker from '@react-native-community/datetimepicker';
+import { useNavigation } from "@react-navigation/native";
 
-function SeekerEditProfileScreen(props){
-  const [firstName, setFirstName] = useState("Carl");
-  const [lastName, setLastName] = useState("Asoy");
-  const [contactNumber, setContactNumber] = useState("1234567890");
-  const [email, setEmail] = useState("carl@example.com");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [birthdate, setBirthdate] = useState(new Date(1990, 0, 1)); // Initial birthdate value
-  const [address, setAddress] = useState("123 Main St");
-  const [showDatePicker, setShowDatePicker] = useState(false); // State to control the visibility of the date picker modal
+function ProfileScreen(props) {
+  const navigation = useNavigation();
 
-  const handleSave = () => {
-    // Implement save functionality here
+  const GoTo = () => {
+    // Handle navigation logic here
+    navigation.navigate("SeekerEditProfileScreen"); // Replace "NextScreen" with the name of the screen you want to navigate to
   };
-
-  const handleDateChange = (event, selectedDate) => {
-    setShowDatePicker(false); // Hide the date picker modal
-    if (selectedDate) {
-      setBirthdate(selectedDate); // Set the selected date as the birthdate
-    }
-  };
-
+  
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
-      <View style={styles.seekereditprofile}>
-        <View style={styles.seekereditprofileChild} />
+      <View style={styles.profileScreen}>
+      <View style={styles.profileScreenChild} />
+      <View style={[styles.profileScreenItem, styles.myAccountPosition]} />
+      <ImageBackground
+        style={styles.image14Icon}
+        resizeMode="cover"
+        source={require("../assets/image-14.png")}
+      />
+      <Text style={styles.carlWyndelAsoy}>Carl Wyndel Asoy</Text>
+      <Text style={[styles.rewards, styles.rewardsTypo]}>Rewards</Text>
+      <Text style={styles.general}>General</Text>
+      <Text style={[styles.logOut, styles.logOutTypo]}>Log out</Text>
+      <Image
+        style={styles.profileScreenInner}
+        resizeMode="cover"
+        source={require("../assets/rectangle-468.png")}
+      />
+      <View style={[styles.lineView, styles.lineViewLayout]} />
+      <View style={[styles.profileScreenChild1, styles.lineViewLayout]} />
+      <View style={[styles.termsConditionsParent, styles.parentLayout1]}>
+        <Text style={[styles.termsConditions, styles.logOutTypo]}>Terms & Conditions</Text>
         <Image
-          style={styles.image14Icon}
-          contentFit="cover"
-          source={require("../assets/image-14.png")}
+          style={[styles.image127Icon, styles.iconLayout]}
+          resizeMode="cover"
+          source={require("../assets/image-127.png")}
         />
-        <Text style={styles.carlWyndelAsoy}>Carl Wyndel Asoy</Text>
-        <View style={[styles.vectorParent, styles.frameChildLayout]}>
-          <Image
-            style={[styles.frameChild, styles.frameChildLayout]}
-            contentFit="cover"
-            source={require("../assets/rectangle-517.png")}
-          />
-          <Image
-            style={styles.cameraIcon}
-            contentFit="cover"
-            source={require("../assets/camera.png")}
-          />
-        </View>
-
-        <View style={styles.inputContainer}>
-          <Text style={styles.inputLabel}>First Name</Text>
-          <TextInput
-            style={styles.input}
-            value={firstName}
-            onChangeText={setFirstName}
-            placeholder="First Name"
-          />
-          <Text style={styles.inputLabel}>Last Name</Text>
-          <TextInput
-            style={styles.input}
-            value={lastName}
-            onChangeText={setLastName}
-            placeholder="Last Name"
-          />
-          <Text style={styles.inputLabel}>Contact Number</Text>
-          <TextInput
-            style={styles.input}
-            value={contactNumber}
-            onChangeText={setContactNumber}
-            placeholder="Contact Number"
-          />
-          <Text style={styles.inputLabel}>Email</Text>
-          <TextInput
-            style={styles.input}
-            value={email}
-            onChangeText={setEmail}
-            placeholder="Email"
-          />
-          <TouchableOpacity onPress={() => setShowDatePicker(true)}>
-            <Text style={styles.inputLabel}>Birthdate</Text>
-            <Text style={styles.input}>{birthdate.toLocaleDateString()}</Text>
-          </TouchableOpacity>
-          {showDatePicker && (
-            <DateTimePicker
-              value={birthdate}
-              mode="date"
-              display="default"
-              onChange={handleDateChange}
-            />
-          )}
-          <Text style={styles.inputLabel}>Address</Text>
-          <TextInput
-            style={styles.input}
-            value={address}
-            onChangeText={setAddress}
-            placeholder="Address"
-          />
-          <Text style={styles.inputLabel}>New Password</Text>
-          <TextInput
-            style={styles.input}
-            value={password}
-            onChangeText={setPassword}
-            secureTextEntry={true}
-            placeholder="New Password"
-          />
-          <Text style={styles.inputLabel}>Confirm Password</Text>
-          <TextInput
-            style={styles.input}
-            value={confirmPassword}
-            onChangeText={setConfirmPassword}
-            secureTextEntry={true}
-            placeholder="Confirm Password"
-          />
-        </View>
-        <TouchableOpacity
-          style={styles.saveButton}
-          onPress={handleSave}
-        >
-          <LinearGradient
-            colors={['#7CC2E3', '#3b5998', '#002F45']}
-            style={styles.gradientButton}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 0 }}
-          >
-            <Text style={styles.saveButtonText}>Save Changes</Text>
-          </LinearGradient>
-        </TouchableOpacity>
       </View>
+      <View style={[styles.settingsParent, styles.parentLayout1]}>
+        <Text style={[styles.termsConditions, styles.logOutTypo]}>Settings</Text>
+        <Image
+          style={[styles.image130Icon, styles.iconPosition]}
+          resizeMode="cover"
+          source={require("../assets/image-127.png")}
+        />
+      </View>
+      <View style={[styles.helpCenterParent, styles.parentLayout]}>
+        <Text style={[styles.termsConditions, styles.logOutTypo]}>Help Center</Text>
+        <Image
+          style={[styles.image131Icon, styles.iconPosition]}
+          resizeMode="cover"
+          source={require("../assets/image-127.png")}
+        />
+      </View>
+      <View style={[styles.emergencyContactsParent, styles.parentLayout1]}>
+        <Text style={[styles.termsConditions, styles.logOutTypo]}>Emergency Contacts</Text>
+        <Image
+          style={[styles.image130Icon, styles.iconPosition]}
+          resizeMode="cover"
+          source={require("../assets/image-127.png")}
+        />
+      </View>
+      <View style={[styles.bookingScheduledParent, styles.parentLayout1]}>
+        <Text style={[styles.termsConditions, styles.logOutTypo]}>Booking Scheduled</Text>
+        <Image
+          style={[styles.image133Icon, styles.iconLayout]}
+          resizeMode="cover"
+          source={require("../assets/image-127.png")}
+        />
+      </View>
+      <View style={[styles.paymentMethodParent, styles.parentLayout1]}>
+        <Text style={[styles.termsConditions, styles.logOutTypo]}>Payment Method</Text>
+        <Image
+          style={[styles.image130Icon, styles.iconPosition]}
+          resizeMode="cover"
+          source={require("../assets/image-127.png")}
+        />
+      </View>
+      <View style={[styles.favouritesParent, styles.parentLayout1]}>
+        <Text style={[styles.termsConditions, styles.logOutTypo]}>Favourites</Text>
+        <Image
+          style={[styles.image127Icon, styles.iconLayout]}
+          resizeMode="cover"
+          source={require("../assets/image-127.png")}
+        />
+      </View>
+      <Pressable onPress={GoTo}>
+      <View style={[styles.myAccountParent, styles.parentLayout]}>
+        <Pressable onPress={GoTo} style={styles.innerPressable}>
+          <Text style={[styles.myAccount, styles.rewardsTypo]}>My Account</Text>
+          <Image
+            style={[styles.image131Icon, styles.iconPosition]}
+            resizeMode="cover"
+            source={require("../assets/image-127.png")}
+          />
+        </Pressable>
+      </View>
+    </Pressable>
+      <View style={[styles.shareFeedbackParent, styles.parentLayout1]}>
+        <Text style={[styles.termsConditions, styles.logOutTypo]}>Share Feedback</Text>
+        <Image
+          style={[styles.image128Icon, styles.iconLayout]}
+          resizeMode="cover"
+          source={require("../assets/image-127.png")}
+        />
+      </View>
+    </View>
     </ScrollView>
+    
   );
 };
 
@@ -139,96 +120,198 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  seekereditprofileChild: {
-    top: 0,
+  profileScreen: {
+    flex: 1,
+    width: "100%",
+    height: 932,
+    overflow: "hidden",
+    backgroundColor: Color.colorWhite,
+  },
+  myAccountPosition: {
     left: 0,
-    backgroundColor: Color.colorDarkslategray_100,
+    top: 0,
+  },
+  rewardsTypo: {
+    textAlign: "left",
+    color: Color.colorBlack,
+    fontSize: FontSize.size_sm,
+    fontFamily: FontFamily.quicksandSemiBold,
+    fontWeight: "600",
+    position: "absolute",
+  },
+  logOutTypo: {
+    color: Color.colorDarkgray,
+    fontFamily: FontFamily.quicksandRegular,
+    textAlign: "left",
+    fontSize: FontSize.size_sm,
+    position: "absolute",
+  },
+  lineViewLayout: {
+    height: 1,
+    width: 378,
+    borderTopWidth: 1,
+    borderColor: Color.colorSilver,
+    borderStyle: "solid",
+    position: "absolute",
+  },
+  parentLayout1: {
+    height: 18,
+    width: 358,
+    left: 44,
+    position: "absolute",
+  },
+  iconLayout: {
+    height: 14,
+    width: 4,
+    left: 354,
+    position: "absolute",
+  },
+  iconPosition: {
+    top: 2,
+    height: 14,
+    width: 4,
+    position: "absolute",
+  },
+  parentLayout: {
+    width: 359,
+    height: 18,
+    left: 43,
+    position: "absolute",
+  },
+  profileScreenChild: {
+    top: 151,
+    left: -3,
+    shadowColor: "rgba(0, 0, 0, 0.25)",
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowRadius: 4,
+    elevation: 4,
+    shadowOpacity: 1,
+    width: 432,
+    height: 160,
+    position: "absolute",
+    backgroundColor: Color.colorWhite,
+  },
+  profileScreenItem: {
+    backgroundColor: "#05364c",
     width: 430,
     height: 151,
     position: "absolute",
   },
   image14Icon: {
     top: 76,
-    left: 27,
     width: 145,
     height: 141,
+    left: 27,
     position: "absolute",
   },
   carlWyndelAsoy: {
     top: 106,
     left: 169,
-    fontSize: FontSize.size_6xl,
-    fontWeight: "600",
-    fontFamily: FontFamily.quicksandSemiBold,
+    fontSize: 25,
     color: Color.colorWhite,
     textAlign: "center",
     width: 261,
+    fontFamily: FontFamily.quicksandSemiBold,
+    fontWeight: "600",
     position: "absolute",
   },
-  frameChild: {
+  rewards: {
+    left: 43,
+    textAlign: "left",
+    color: Color.colorBlack,
+    fontSize: FontSize.size_sm,
+    top: 247,
+  },
+  general: {
+    top: 572,
+    left: 44,
+    textAlign: "left",
+    color: Color.colorBlack,
+    fontSize: FontSize.size_sm,
+    fontFamily: FontFamily.quicksandSemiBold,
+    fontWeight: "600",
+    position: "absolute",
+  },
+  logOut: {
+    top: 777,
+    left: 45,
+  },
+  profileScreenInner: {
+    left: 368,
+    width: 34,
+    height: 20,
+    top: 247,
+    position: "absolute",
+  },
+  lineView: {
+    top: 351,
+    left: 27,
+  },
+  profileScreenChild1: {
+    top: 540,
+    left: 25,
+  },
+  termsConditions: {
     left: 0,
     top: 0,
   },
-  cameraIcon: {
-    top: 13,
-    left: 16,
-    width: 19,
-    height: 24,
-    position: "absolute",
+  image127Icon: {
+    top: 0,
+    height: 14,
+    width: 4,
   },
-  vectorParent: {
-    top: 176,
-    left: 131,
+  termsConditionsParent: {
+    top: 695,
   },
-  frameChildLayout: {
-    height: 41,
-    width: 41,
-    position: "absolute",
+  image130Icon: {
+    left: 354,
+    top: 2,
   },
-
-  seekereditprofile: {
-    backgroundColor: Color.colorWhite,
-    width: "100%",
-    minHeight: 932,
-    overflow: "hidden",
-    justifyContent: "center",
+  settingsParent: {
+    top: 654,
+  },
+  image131Icon: {
+    left: 355,
+  },
+  helpCenterParent: {
+    top: 613,
+  },
+  emergencyContactsParent: {
+    top: 492,
+  },
+  image133Icon: {
+    top: 1,
+  },
+  bookingScheduledParent: {
+    top: 451,
+  },
+  paymentMethodParent: {
+    top: 410,
+  },
+  favouritesParent: {
+    top: 369,
+  },
+  myAccount: {
+    left: 0,
+    top: 0,
+  },
+  myAccountParent: {
+    top: 319,
+  },
+  image128Icon: {
+    top: 4,
+  },
+  shareFeedbackParent: {
+    top: 736,
+  },
+  innerPressable: {
+    flexDirection: "row",
     alignItems: "center",
-    paddingBottom: 20,
-    flex: 1,
-  },
-  inputContainer: {
-    marginTop: 230, // Adjust the margin here to lower the text fields
-  },
-  inputLabel: {
-    marginBottom: 5,
-    fontSize: 16,
-    fontWeight: "bold",
-    textAlign: "left",
-    width: 300,
-  },
-  input: {
-    height: 40,
-    width: 300,
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginVertical: 8,
-    paddingHorizontal: 10,
-  },
-  saveButton: {
-    marginTop: 20, // Adjust the marginTop to lower the button
-    marginBottom: 100,
-  },
-  gradientButton: {
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    borderRadius: 5,
-  },
-  saveButtonText: {
-    color: 'white',
-    fontSize: 16,
-    fontWeight: 'bold',
-    textAlign: 'center',
+    justifyContent: "center",
   },
 });
 
-export default SeekerEditProfileScreen;
+export default ProfileScreen;

@@ -68,7 +68,7 @@ const DrawerNav = ()=>{
 const LoginNav = ()=>{
     const Stack = createNativeStackNavigator();
     return(
-    <Stack.Navigator initialRouteName = 'SeekerEditProfileScreen' screenOptions={{headerShown:false}}>
+    <Stack.Navigator initialRouteName = 'Profile' screenOptions={{headerShown:false}}>
         <Stack.Screen name = 'Login' component = {LoginPage} />
         <Stack.Screen name = 'Register' component = {RegisterPage} />
         <Stack.Screen name = 'Profile' component = {ProfileScreen} />

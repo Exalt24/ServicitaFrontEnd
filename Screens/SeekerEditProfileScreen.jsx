@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
-import { StyleSheet, View, Text, Image, TextInput, TouchableOpacity, ScrollView } from "react-native";
+import { StyleSheet, View, Text, Image, TextInput, TouchableOpacity, ScrollView, Pressable } from "react-native";
 import { Color, FontSize, FontFamily } from "../GlobalStyles";
 import { LinearGradient } from 'expo-linear-gradient';
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -12,17 +12,31 @@ function SeekerEditProfileScreen(props){
   const [email, setEmail] = useState("carl@example.com");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [birthdate, setBirthdate] = useState("01/01/1990");
+  const [birthdate, setBirthdate] = useState(new Date(1990, 0, 1)); // Initial birthdate value
   const [address, setAddress] = useState("123 Main St");
+  const [showDatePicker, setShowDatePicker] = useState(false); // State to control the visibility of the date picker modal
 
+  const updateImage = () => {
+    // Implement save functionality here
+    console.log("changeeee");
+  };
+
+  const handleDateChange = (event, selectedDate) => {
+    setShowDatePicker(false); // Hide the date picker modal
+    if (selectedDate) {
+      setBirthdate(selectedDate); // Set the selected date as the birthdate
+    }
+  };
   const handleSave = () => {
     // Implement save functionality here
+    console.log("saveeeee");
   };
 
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
       <View style={styles.seekereditprofile}>
-        <View style={styles.seekereditprofileChild} />
+        <Pressable onPress={updateImage} style={styles.seekereditprofileChild}>
+        <View  />
         <Image
           style={styles.image14Icon}
           contentFit="cover"
@@ -41,6 +55,7 @@ function SeekerEditProfileScreen(props){
             source={require("../assets/camera.png")}
           />
         </View>
+        </Pressable>
 
         <View style={styles.inputContainer}>
           <Text style={styles.inputLabel}>First Name</Text>
@@ -71,13 +86,22 @@ function SeekerEditProfileScreen(props){
             onChangeText={setEmail}
             placeholder="Email"
           />
-          <Text style={styles.inputLabel}>Birthdate</Text>
-          <TextInput
-            style={styles.input}
-            value={birthdate}
-            onChangeText={setBirthdate}
-            placeholder="Birthdate"
-          />
+          <Pressable onPress={() => setShowDatePicker(true)}>
+            <Text style={styles.inputLabel}>Birthdate</Text>
+            <TextInput
+              style={[styles.input, styles.birthdateText]} // Added birthdateText style
+              value={birthdate.toLocaleDateString()}
+              editable={false}
+            />
+          </Pressable>
+          {showDatePicker && (
+            <DateTimePicker
+              value={birthdate}
+              mode="date"
+              display="spinner"
+              onChange={handleDateChange}
+            />
+          )}
           <Text style={styles.inputLabel}>Address</Text>
           <TextInput
             style={styles.input}
@@ -184,27 +208,30 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   inputContainer: {
-    marginTop: 230, // Adjust the margin here to lower the text fields
+    marginTop: 240, // Adjust the margin here to lower the text fields
   },
   inputLabel: {
-    marginBottom: 5,
+    marginBottom: 0,
     fontSize: 16,
     fontWeight: "bold",
     textAlign: "left",
-    width: 300,
+    width: 300, // Adjust the width as needed
+    color: '#002F45', // Change the text color here
   },
   input: {
     height: 40,
     width: 300,
-    borderColor: 'gray',
+    borderColor: '#002F45',
     borderWidth: 1,
     marginVertical: 8,
     paddingHorizontal: 10,
   },
+  birthdateText: {
+    color: '#002F45', // Same text color as other fields
+  },
   saveButton: {
     marginTop: 20, // Adjust the marginTop to lower the button
     marginBottom: 100,
-
   },
   gradientButton: {
     paddingVertical: 10,
