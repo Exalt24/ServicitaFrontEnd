@@ -1,25 +1,32 @@
 import 'react-native-gesture-handler';
 import React, { useEffect, useState } from 'react';
-import { View } from 'react-native';
+import { View, Image } from 'react-native';
 import { NavigationContainer, useNavigation, DrawerActions } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import Entypo from '@expo/vector-icons/Entypo';
 import * as SplashScreen from 'expo-splash-screen';
 import * as Font from 'expo-font';
 import DrawerContent from './DrawerContent';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import Constants from 'expo-constants';
-import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
+import UserRoleScreen from './Screens/UserRoleScreen';
 import LoginPage from './Screens/Login&Register/Login';
 import RegisterPage from './Screens/Login&Register/Register';
 import HomeScreen from './Screens/HomeScreen';
+import BookingScreen from './Screens/BookingScreen';
+import MessageScreen from './Screens/MessageScreen';
 import ProfileScreen from './Screens/ProfileScreen';
 import UserScreen from './Screens/UserScreen';
 import SeekerEditProfileScreen from './Screens/SeekerEditProfileScreen';
 import ProviderProfileScreen from './Screens/ProviderProfileScreen';
 import ProviderEditProfileScreen from './Screens/ProviderEditProfileScreen';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import Constants from 'expo-constants';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {Color} from "./GlobalStyles";
 
 console.log(Constants.systemFonts);
 
@@ -32,6 +39,7 @@ const StackNav = ()=>{
     const Navigation = useNavigation();
     return (
         <Stack.Navigator screenOptions={{
+            //headerShown: false,
             statusBarColor: 'blue',
             headerStyle: {
                 backgroundColor: 'blue'
@@ -48,10 +56,10 @@ const StackNav = ()=>{
                 )
             }}}>
             <Stack.Screen name = 'Home' component = {HomeScreen} />
+            <Stack.Screen name = 'Booking' component = {BookingScreen} />
+            <Stack.Screen name = 'Message' component = {MessageScreen} />
             <Stack.Screen name = 'Profile' component = {ProfileScreen} />
-            <Stack.Screen name = 'User' component = {UserScreen} screenOptions = {{
-                headerShown: false
-            }} />
+            <Stack.Screen name = 'User' component = {UserScreen} />
             <Stack.Screen name = 'Login' component = {LoginNav} />
         </Stack.Navigator>
     );
@@ -71,17 +79,66 @@ const DrawerNav = ()=>{
 const LoginNav = ()=>{
     const Stack = createNativeStackNavigator();
     return(
-    <Stack.Navigator initialRouteName = 'ProviderProfileScreen' screenOptions={{headerShown:false}}>
+    <Stack.Navigator initial initialRouteName = 'UserRole' screenOptions={{headerShown: false}}>
+        <Stack.Screen name = 'UserRole' component = {UserRoleScreen} />
         <Stack.Screen name = 'Login' component = {LoginPage} />
         <Stack.Screen name = 'Register' component = {RegisterPage} />
-        <Stack.Screen name = 'Profile' component = {ProfileScreen} />
+        <Stack.Screen name = 'Home' component = {TabNavigator} />
         <Stack.Screen name = 'ProviderProfileScreen' component = {ProviderProfileScreen} />
         <Stack.Screen name = 'SeekerEditProfileScreen' component = {SeekerEditProfileScreen} />
         <Stack.Screen name = 'ProviderEditProfileScreen' component = {ProviderEditProfileScreen} />
+
         {/* <Stack.Screen name = 'Home' component = {DrawerNav} /> */}
     </Stack.Navigator>)
     
 }
+const TabNavigator = () => {
+    const Stack = createNativeStackNavigator();
+    const Tab = createBottomTabNavigator();
+
+    const tabBarIcon = (imageSource) => ({ focused }) => (
+        <View style={{ alignItems: 'center' }}>
+            {focused && (
+                <View
+                    style={{position: 'absolute', width: 65, height: 73, backgroundColor: '#47ACC8', borderRadius: 7, top: -10, zIndex: -1,}}
+                />
+            )}
+            <Image
+                source={imageSource}
+                style={{height: 40, width: 40, tintColor: focused ? Color.WHITE : undefined,}}
+            />
+        </View>
+    );
+
+    return (
+        <Tab.Navigator
+            initialRouteName='Home' screenOptions={{ headerShown: false, tabBarStyle: { display: 'flex', backgroundColor: 'white', height: 70 }, tabBarItemStyle: { paddingBottom: 10, paddingTop: 18 }}}
+        >
+            <Tab.Screen name='Home' component={HomeScreen} options={{
+                title: '',
+                tabBarIcon: tabBarIcon(require("./assets/home.png")),
+                tabBarActiveTintColor: Color.ORANGE,
+            }} />
+            <Tab.Screen name='Booking' component={BookingScreen} options={{
+                title: '',
+                tabBarIcon: tabBarIcon(require("./assets/booking.png")),
+                tabBarActiveTintColor: Color.ORANGE,
+            }} />
+            <Tab.Screen name='Message' component={MessageScreen} options={{
+                title: '',
+                tabBarIcon: tabBarIcon(require("./assets/message.png")),
+                tabBarActiveTintColor: Color.ORANGE,
+            }} />
+            <Tab.Screen name='Profile' component={ProfileScreen} options={{
+                title: '',
+                tabBarIcon: tabBarIcon(require("./assets/profile.png")),
+                tabBarActiveTintColor: Color.ORANGE,
+            }} />
+        </Tab.Navigator>
+    );
+};
+
+
 
 function App() {
 
@@ -122,10 +179,17 @@ function App() {
 
     
     const Stack = createNativeStackNavigator();
+
+
+
+    
     return(
-        <NavigationContainer>
-            {isLoggedIn ? <DrawerNav /> : <LoginNav />}
-        </NavigationContainer>
+        <>
+            <NavigationContainer>
+                {isLoggedIn ? <DrawerNav /> : <LoginNav />}
+            </NavigationContainer>
+          
+        </>
 
     );
 }
