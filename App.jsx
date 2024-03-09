@@ -3,20 +3,23 @@ import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import { NavigationContainer, useNavigation, DrawerActions } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import HomeScreen from './Screens/HomeScreen';
-import ProfileScreen from './Screens/ProfileScreen';
-import UserScreen from './Screens/UserScreen';
-import SeekerEditProfileScreen from './Screens/SeekerEditProfileScreen';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import Entypo from '@expo/vector-icons/Entypo';
 import * as SplashScreen from 'expo-splash-screen';
 import * as Font from 'expo-font';
 import DrawerContent from './DrawerContent';
-import LoginPage from './Screens/Login&Register/Login';
-import RegisterPage from './Screens/Login&Register/Register';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Constants from 'expo-constants';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
+
+import LoginPage from './Screens/Login&Register/Login';
+import RegisterPage from './Screens/Login&Register/Register';
+import HomeScreen from './Screens/HomeScreen';
+import ProfileScreen from './Screens/ProfileScreen';
+import UserScreen from './Screens/UserScreen';
+import SeekerEditProfileScreen from './Screens/SeekerEditProfileScreen';
+import ProviderProfileScreen from './Screens/ProviderProfileScreen';
+import ProviderEditProfileScreen from './Screens/ProviderEditProfileScreen';
 
 console.log(Constants.systemFonts);
 
@@ -68,11 +71,13 @@ const DrawerNav = ()=>{
 const LoginNav = ()=>{
     const Stack = createNativeStackNavigator();
     return(
-    <Stack.Navigator initialRouteName = 'Profile' screenOptions={{headerShown:false}}>
+    <Stack.Navigator initialRouteName = 'ProviderProfileScreen' screenOptions={{headerShown:false}}>
         <Stack.Screen name = 'Login' component = {LoginPage} />
         <Stack.Screen name = 'Register' component = {RegisterPage} />
         <Stack.Screen name = 'Profile' component = {ProfileScreen} />
+        <Stack.Screen name = 'ProviderProfileScreen' component = {ProviderProfileScreen} />
         <Stack.Screen name = 'SeekerEditProfileScreen' component = {SeekerEditProfileScreen} />
+        <Stack.Screen name = 'ProviderEditProfileScreen' component = {ProviderEditProfileScreen} />
         {/* <Stack.Screen name = 'Home' component = {DrawerNav} /> */}
     </Stack.Navigator>)
     

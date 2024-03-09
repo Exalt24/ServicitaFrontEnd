@@ -5,11 +5,14 @@ import { Color, FontSize, FontFamily } from "../GlobalStyles";
 import { LinearGradient } from 'expo-linear-gradient';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
-function SeekerEditProfileScreen(props){
-  const [firstName, setFirstName] = useState("Carl");
-  const [lastName, setLastName] = useState("Asoy");
+
+function ProviderEditProfileScreen(props){
+  const [firstName, setFirstName] = useState("John");
+  const [lastName, setLastName] = useState("Doe");
+  const [shopName, setShopName] = useState("Eunice Enrera Makeup Artistry - Cebu Makeup Artist");
+  const [service, setService] = useState("Hair and Make Up Service")
   const [contactNumber, setContactNumber] = useState("1234567890");
-  const [email, setEmail] = useState("carl@example.com");
+  const [email, setEmail] = useState("john@example.com");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [birthdate, setBirthdate] = useState(new Date(1990, 0, 1)); // Initial birthdate value
@@ -34,28 +37,35 @@ function SeekerEditProfileScreen(props){
 
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
-      <View style={styles.seekereditprofile}>
-        <Pressable onPress={updateImage} style={styles.seekereditprofileChild}>
-        <View  />
-        <Image
-          style={styles.image14Icon}
-          contentFit="cover"
-          source={require("../assets/image-14.png")}
-        />
-        <Text style={styles.carlWyndelAsoy}>Carl Wyndel Asoy</Text>
-        <View style={[styles.vectorParent, styles.frameChildLayout]}>
-          <Image
-            style={[styles.frameChild, styles.frameChildLayout]}
-            contentFit="cover"
-            source={require("../assets/rectangle-517.png")}
-          />
-          <Image
-            style={styles.cameraIcon}
-            contentFit="cover"
-            source={require("../assets/camera.png")}
-          />
+      <View style={styles.providereditprofile}>
+        
+        <View style={[styles.provideeditprofileChild, styles.childPosition]}>
+            <Text style={[styles.euniceEnreraMakeup, styles.hairAndMakeTypo]}>
+                Eunice Enrera Makeup Artistry - Cebu Makeup Artist
+            </Text>
+            <Text style={[styles.hairAndMake, styles.hairAndMakeTypo]}>
+                Hair and Make Up Service
+            </Text>
+            <Pressable onPress={updateImage} style={styles.seekereditprofileChild}>
+                <Image
+                    style={styles.provideeditprofileItem}
+                    contentFit="cover"
+                    source={require("../assets/rectangle-373.png")}
+                />
+                <View style={[styles.vectorParent, styles.frameChildLayout]}>
+                    <Image
+                        style={[styles.frameChild, styles.frameChildLayout]}
+                        contentFit="cover"
+                        source={require("../assets/rectangle-517.png")}
+                    />
+                    <Image
+                        style={styles.cameraIcon}
+                        contentFit="cover"
+                        source={require("../assets/camera.png")}
+                    />
+                </View>
+            </Pressable>
         </View>
-        </Pressable>
 
         <View style={styles.inputContainer}>
           <Text style={styles.inputLabel}>First Name</Text>
@@ -71,6 +81,20 @@ function SeekerEditProfileScreen(props){
             value={lastName}
             onChangeText={setLastName}
             placeholder="Last Name"
+          />
+          <Text style={styles.inputLabel}>Shop</Text>
+          <TextInput
+            style={styles.input}
+            value={shopName}
+            onChangeText={setShopName}
+            placeholder="Shop"
+          />
+          <Text style={styles.inputLabel}>Service</Text>
+          <TextInput
+            style={styles.input}
+            value={service}
+            onChangeText={setService}
+            placeholder="Service"
           />
           <Text style={styles.inputLabel}>Email</Text>
           <TextInput
@@ -150,7 +174,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  seekereditprofileChild: {
+  providereditprofileChild: {
     top: 0,
     left: 0,
     backgroundColor: Color.colorDarkslategray_100,
@@ -158,14 +182,14 @@ const styles = StyleSheet.create({
     height: 151,
     position: "absolute",
   },
-  image14Icon: {
+  imageIcon: {
     top: 76,
     left: 27,
     width: 145,
     height: 141,
     position: "absolute",
   },
-  carlWyndelAsoy: {
+  providerName: {
     top: 106,
     left: 169,
     fontSize: FontSize.size_6xl,
@@ -197,7 +221,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
 
-  seekereditprofile: {
+  providereditprofile: {
     backgroundColor: Color.colorWhite,
     width: "100%",
     minHeight: 932,
@@ -244,6 +268,79 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
+  childPosition: {
+    left: 0,
+    top: 0,
+},
+hairAndMakeTypo: {
+    textAlign: "left",
+    fontFamily: FontFamily.quicksandBold,
+    fontWeight: "700",
+    lineHeight: 15,
+    left: 179,
+    position: "absolute",
+},
+frameChildLayout: {
+    height: 41,
+    width: 41,
+    position: "absolute",
+},
+provideeditprofileChild: {
+    backgroundColor: Color.colorDarkslategray_100,
+    width: 430,
+    height: 151,
+    position: "absolute",
+},
+provideeditprofileItem: {
+    top: 78,
+    left: 27,
+    width: 143,
+    height: 146,
+    position: "absolute",
+},
+euniceEnreraMakeup: {
+    top: 112,
+    fontSize: FontSize.size_mini,
+    letterSpacing: 0.8,
+    color: Color.colorWhite,
+    width: 239,
+},
+hairAndMake: {
+    top: 159,
+    fontSize: FontSize.size_xs,
+    letterSpacing: 0.6,
+    color: Color.colorDarkslategray_200,
+    width: 261,
+},
+frameChild: {
+    left: 0,
+    top: 0,
+},
+cameraIcon: {
+    top: 13,
+    left: 16,
+    width: 19,
+    height: 24,
+    position: "absolute",
+},
+vectorParent: {
+    top: 183,
+    left: 129,
+},
+provideeditprofile: {
+    backgroundColor: Color.colorWhite,
+    flex: 1,
+    width: "100%",
+    height: 932,
+    overflow: "hidden",
+},
+scrollContainer: {
+    flexGrow: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+},
+
+
 });
 
-export default SeekerEditProfileScreen;
+export default ProviderEditProfileScreen;
