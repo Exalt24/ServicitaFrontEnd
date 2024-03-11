@@ -21,6 +21,7 @@ import UserScreen from './Screens/UserScreen';
 import SeekerEditProfileScreen from './Screens/SeekerEditProfileScreen';
 import ProviderProfileScreen from './Screens/ProviderProfileScreen';
 import ProviderEditProfileScreen from './Screens/ProviderEditProfileScreen';
+import VerificationScreen from './Screens/VerificationScreen';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Constants from 'expo-constants';
@@ -79,7 +80,7 @@ const DrawerNav = ()=>{
 const LoginNav = ()=>{
     const Stack = createNativeStackNavigator();
     return(
-    <Stack.Navigator initial initialRouteName = 'UserRole' screenOptions={{headerShown: false}}>
+    <Stack.Navigator initial initialRouteName = 'VerificationScreen' screenOptions={{headerShown: false}}>
         <Stack.Screen name = 'UserRole' component = {UserRoleScreen} />
         <Stack.Screen name = 'Login' component = {LoginPage} />
         <Stack.Screen name = 'Register' component = {RegisterPage} />
@@ -87,6 +88,7 @@ const LoginNav = ()=>{
         <Stack.Screen name = 'ProviderProfileScreen' component = {ProviderProfileScreen} />
         <Stack.Screen name = 'SeekerEditProfileScreen' component = {SeekerEditProfileScreen} />
         <Stack.Screen name = 'ProviderEditProfileScreen' component = {ProviderEditProfileScreen} />
+        <Stack.Screen name = 'VerificationScreen' component = {VerificationScreen} />
 
         {/* <Stack.Screen name = 'Home' component = {DrawerNav} /> */}
     </Stack.Navigator>)

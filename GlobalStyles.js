@@ -4,6 +4,7 @@ export const FontFamily = {
   quicksandSemiBold: "Quicksand-SemiBold",
   quicksandBold: "Quicksand-Bold",
   didactGothicRegular: "DidactGothic-Regular",
+  quicksandLight: "Quicksand-Light",
 };
 /* font sizes */
 export const FontSize = {
@@ -15,6 +16,8 @@ export const FontSize = {
   size_mini: 15,
   size_3xs: 10,
   size_6xs: 7,
+  size_xl: 20,
+  size_5xl: 24,
 };
 /* Colors */
 export const Color = {
@@ -28,6 +31,7 @@ export const Color = {
   colorSkyblue: "#5fa7c9",
   colorGray: "#7c7878",
   colorSteelblue: "#1c729b",
+  colorGainsboro: "rgba(217, 217, 217, 0)",
   WHITE: '#FFF',
   BLACK: '#000',
   PLACEHOLDER_COLOR: '#8B8B8B',
