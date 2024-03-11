@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
         top: 8,
     },
     verifyWrapper: {
-        top: 530,
+        top: 540,
         borderColor: "#0e4c69",
         backgroundColor: "transparent",
     },
