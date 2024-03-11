@@ -1,9 +1,25 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import { Text, StyleSheet, View, TextInput, TouchableOpacity } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Color, FontFamily, FontSize, Border } from "../GlobalStyles";
 
 function VerificationScreen(props) {
+    const [timer, setTimer] = useState(300); // 5 minutes in seconds
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setTimer(prevTimer => prevTimer - 1);
+        }, 1000);
+
+        return () => clearInterval(interval);
+    }, []);
+
+    const formatTime = (timeInSeconds) => {
+        const minutes = Math.floor(timeInSeconds / 60);
+        const seconds = timeInSeconds % 60;
+        return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    };
+
     return (
         <View style={styles.verificationscreen}>
             <View style={[styles.frame1, styles.frameLayout2]}>
@@ -17,7 +33,7 @@ function VerificationScreen(props) {
                 </View>
             </View>
             <View style={styles.frame}>
-                <Text style={styles.codeExpiresIn}>Code expires in: 3:12</Text>
+                <Text style={styles.codeExpiresIn}>Code expires in: {formatTime(timer)}</Text>
             </View>
             <TouchableOpacity onPress={handleVerifyPress}>
                 <LinearGradient

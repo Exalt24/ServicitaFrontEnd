@@ -1,9 +1,10 @@
 import * as React from "react";
-import { StyleSheet, Text, View, Image  } from "react-native";
+import { StyleSheet, Text, View, Image,  ScrollView  } from "react-native";
 import { Color, FontFamily, FontSize, Border} from "../GlobalStyles";
 
 function HomeScreen(props) {
   return (
+    <ScrollView contentContainerStyle={styles.scrollContainer}>
     <View style={styles.homescreen}>
       <Image
         style={styles.image20Icon}
@@ -198,6 +199,7 @@ function HomeScreen(props) {
         />
       </View>
     </View>
+    </ScrollView>
   );
 };
 
@@ -779,6 +781,11 @@ const styles = StyleSheet.create({
     height: 932,
     overflow: "hidden",
     backgroundColor: Color.colorWhite,
+  },
+  scrollContainer: {
+    flexGrow: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
