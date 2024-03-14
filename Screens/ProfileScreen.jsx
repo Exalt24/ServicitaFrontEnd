@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
   iconLayout: {
     height: 14,
     width: 4,
-    left: 354,
+    left: 325,
     position: "absolute",
   },
   iconPosition: {
@@ -240,7 +240,7 @@ const styles = StyleSheet.create({
     left: 45,
   },
   profileScreenInner: {
-    left: 368,
+    left: 350,
     width: 34,
     height: 20,
     top: 247,
@@ -267,14 +267,14 @@ const styles = StyleSheet.create({
     top: 695,
   },
   image130Icon: {
-    left: 354,
+    left: 325,
     top: 2,
   },
   settingsParent: {
     top: 654,
   },
   image131Icon: {
-    left: 355,
+    left: 325,
   },
   helpCenterParent: {
     top: 613,

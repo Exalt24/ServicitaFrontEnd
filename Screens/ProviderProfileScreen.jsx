@@ -87,7 +87,7 @@ function ProviderProfileScreen(props) {
         <View style={[styles.reviewsParent, styles.parentLayout1]}>
             <Text style={[styles.settings, styles.logOutTypo]}>{`Reviews `}</Text>
             <Image
-            style={[styles.image135Icon, styles.iconLayout]}
+            style={[styles.image130Icon, styles.iconLayout]}
             contentFit="cover"
             source={require("../assets/image-127.png")}
             />
@@ -222,7 +222,7 @@ const styles = StyleSheet.create({
     left: 44,
   },
   providerProfileScreenInner: {
-    left: 368,
+    left: 350,
     width: 34,
     height: 20,
     top: 263,
@@ -245,7 +245,7 @@ const styles = StyleSheet.create({
     top: 0,
   },
   image130Icon: {
-    left: 354,
+    left: 325,
     height: 14,
     width: 4,
     top: 2,
@@ -254,7 +254,7 @@ const styles = StyleSheet.create({
     top: 654,
   },
   image131Icon: {
-    left: 355,
+    left: 325,
     top: 2,
   },
   helpCenterParent: {
@@ -265,7 +265,7 @@ const styles = StyleSheet.create({
   },
   image133Icon: {
     top: 1,
-    left: 354,
+    left: 325,
     height: 14,
     width: 4,
   },

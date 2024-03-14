@@ -60,7 +60,7 @@ function MessageScreen(props) {
 const styles = StyleSheet.create({
   frameChildPosition: {
     height: 170,
-    width: 430,
+    width: 415,
     left: 0,
     top: 0,
     position: "absolute",
@@ -85,9 +85,7 @@ const styles = StyleSheet.create({
     height: 25,
     position: "absolute",
   },
-  frameChild: {
-    borderBottomRightRadius: Border.br_mini,
-    borderBottomLeftRadius: Border.br_mini,
+  frameChild: {  
     shadowColor: "rgba(0, 0, 0, 0.25)",
     shadowOffset: {
       width: 3,
@@ -124,7 +122,7 @@ const styles = StyleSheet.create({
     left: 52,
     color: "#9b9797",
     height: 24,
-    width: 298,
+    width: 250,
     fontFamily: FontFamily.quicksandRegular,
     lineHeight: 20,
     letterSpacing: 0.6,

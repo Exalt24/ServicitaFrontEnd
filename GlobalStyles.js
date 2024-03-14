@@ -40,10 +40,12 @@ export const Color = {
 };
 /* border radiuses */
 export const Border = {
-  br_xl: 20,
   br_8xs: 5,
+  br_7xs: 6,
   br_5xs: 8,
+  br_3xs: 10,
   br_mini: 15,
+  br_xl: 20,
 };
 
 

@@ -3,12 +3,28 @@ import { Text, StyleSheet, View, TextInput, TouchableOpacity } from "react-nativ
 import { LinearGradient } from "expo-linear-gradient";
 import { Color, FontFamily, FontSize, Border } from "../GlobalStyles";
 
+
+
 function VerificationScreen(props) {
+
     const [timer, setTimer] = useState(300); // 5 minutes in seconds
+    const handleVerifyPress = () => {
+        console.log("verify");;
+    };
+    
+    const handleSendAgainPress = () => {
+        console.log("send again");
+    };
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setTimer(prevTimer => prevTimer - 1);
+            setTimer(prevTimer => {
+                if (prevTimer === 0) {
+                    clearInterval(interval);
+                    return 0;
+                }
+                return prevTimer - 1;
+            });
         }, 1000);
 
         return () => clearInterval(interval);
@@ -78,13 +94,7 @@ function VerificationScreen(props) {
     );
 };
 
-const handleVerifyPress = () => {
-    console.log("verify");
-};
 
-const handleSendAgainPress = () => {
-    console.log("send again");
-};
 
 const styles = StyleSheet.create({
     verificationscreen: {

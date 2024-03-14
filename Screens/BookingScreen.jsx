@@ -35,7 +35,7 @@ function BookingScreen(props) {
 const styles = StyleSheet.create({
   frameChildPosition: {
     height: 170,
-    width: 430,
+    width: 415,
     left: 0,
     top: 0,
     position: "absolute",

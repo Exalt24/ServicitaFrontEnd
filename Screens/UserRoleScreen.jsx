@@ -1,187 +1,162 @@
-import React from "react";
-import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, View, Text, TouchableOpacity, Platform, Pressable, Image } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { FontFamily, FontSize, Color } from "../GlobalStyles";
+import { RFValue } from "react-native-responsive-fontsize"; // Import responsive font size from the library
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen"; // Import responsive screen dimensions
 
 const UserRoleScreen = () => {
+  const [selectedRole, setSelectedRole] = useState(null);
+
+  const handlePress = (role) => {
+    setSelectedRole(role);
+  };
+
   return (
     <View style={styles.userRoleScreen}>
+      <Image
+        style={styles.userroleChild}
+        contentFit="cover"
+        source={require("../assets/arrow-1.png")}
+      />
+
       <Text style={[styles.signingUpAs, styles.continueTypo]}>
         Signing Up as a...
       </Text>
 
-      <TouchableOpacity onPress={handlePress}>
-        <View style={[styles.serviceProviderWrapper, styles.serviceWrapperShadowBox]}>
-        <LinearGradient
-          colors={["#70B4D3", "#002F45"]}
-          start={{ x: 0, y: 0 }}
-          end={{ x: 1, y: 1 }}
+      <Pressable
+        style={[styles.button, styles.serviceSeekerButton, selectedRole === "SERVICE SEEKER" && styles.selectedButton]}
+        onPress={() => handlePress("SERVICE SEEKER")}
+      >
+        <Text style={[styles.serviceText,selectedRole === "SERVICE SEEKER" && styles.selectedButtonText, {fontSize: RFValue(25), marginVertical: RFValue(-5)}]}>SERVICE</Text>
+        <Text style={[styles.buttonText, selectedRole === "SERVICE SEEKER" && styles.selectedButtonText, {fontSize: RFValue(40), marginVertical: RFValue(-6)}]}>SEEKER</Text>
+      </Pressable>
+
+      <Pressable
+        style={[styles.button, styles.serviceProviderButton, selectedRole === "SERVICE PROVIDER" && styles.selectedButton]}
+        onPress={() => handlePress("SERVICE PROVIDER")}
+      >
+        <Text style={[styles.serviceText,selectedRole === "SERVICE PROVIDER" && styles.selectedButtonText, {fontSize: RFValue(25), marginVertical: RFValue(-5)}]}>SERVICE</Text>
+        <Text style={[styles.buttonText, selectedRole === "SERVICE PROVIDER" && styles.selectedButtonText, {fontSize: RFValue(40), marginVertical: RFValue(-6)}]}>PROVIDER</Text>
+      </Pressable>
+
+      <LinearGradient
+        style={styles.continueButton}
+        locations={[0, 1]}
+        colors={["#4e8daa", "#023349"]}
+      >
+        <TouchableOpacity
+          style={styles.continueButtonInner}
+          onPress={() => handlePress("CONTINUE")}
         >
-          <Text style={[styles.serviceProvider, styles.serviceTypo]}>
-            <Text style={[styles.service ]}>{`Service
-`}</Text>
-            <Text style={[styles.seeker]}>PROVIDER</Text>
-          </Text>
-        </LinearGradient>
-        </View>
-      </TouchableOpacity>
-
-      <TouchableOpacity onPress={handlePress}>
-        <View style={[styles.serviceSeekerWrapper, styles.serviceWrapperShadowBox]}>
-          <LinearGradient
-            style={styles.linearGradient}
-            locations={[0, 1]}
-            colors={["#83caeb", "#002f45"]}
-          >
-            <Text style={[styles.serviceSeeker, styles.serviceTypo]}>
-              <Text style={styles.service}>{`Service
-`}</Text>
-              <Text style={styles.seeker}>SEEKER</Text>
-            </Text>
-          </LinearGradient>
-        </View>
-      </TouchableOpacity>
-
-      <TouchableOpacity onPress={handlePress}>
-        <View style={styles.frameParent}>
-          <LinearGradient
-            style={[styles.frameChild, styles.frameChildBorder]}
-            locations={[0, 1]}
-            colors={["#4e8daa", "#023349"]}
-          />
-          <Text style={[styles.continue, styles.continueTypo]}>CONTINUE</Text>
-        </View>
-      </TouchableOpacity>
+          <Text style={styles.contText}>CONTINUE</Text>
+        </TouchableOpacity>
+      </LinearGradient>
     </View>
   );
 };
 
-const handlePress = () => {
-  // Handle button press logic here
-  console.log('Button pressed');
-};
-
 const styles = StyleSheet.create({
-  continueTypo: {
-    textAlign: "left",
-    fontFamily: FontFamily.quicksandBold,
-    fontWeight: "700",
-    lineHeight: 10,
-    fontSize: FontSize.size_11xl,
-    position: "absolute",
-  },
-  serviceWrapperShadowBox: {
-    height: 145,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-    borderRadius: 0,
-    width: 286,
-    left: 72,
-    position: "absolute",
-  },
-  serviceTypo: {
-    textAlign: "center",
-    lineHeight: 34,
-    fontFamily: FontFamily.quicksandBold,
-    fontWeight: "700",
-    position: "absolute",
-  },
-  frameChild: {
-    top: 0,
-    left: 0,
-    borderRadius: 6,
-    shadowRadius: 3,
-    elevation: 3,
-    borderColor: "#0e4c69",
-    backgroundColor: "transparent",
-    shadowOpacity: 1,
-    shadowOffset: {
-      width: 3,
-      height: 5,
-    },
-    
-    shadowColor: "#afc7d2",
-    borderWidth: 0.2,
-    borderStyle: "solid",
-    height: 64,
-    width: 286,
-    position: "absolute",
-  },
-  continue: {
-    top: 22,
-    left: 67,
-    color: Color.colorWhite,
-    paddingTop:18,
-  },
-  frameParent: {
-    top: 780,
-    height: 54,
-    width: 286,
-    left: 72,
-    position: "absolute",
-  },
-  service: {
-    fontSize: FontSize.size_6xl,
-  },
-  seeker: {
-    fontSize: FontSize.size_21xl,
-    textAlign: "center",
-  },
-  serviceSeeker: {
-    top: 46,
-    left: 28,
-    width: 230,
-    height: 59,
-    color: Color.colorWhite,
-  },
-  serviceSeekerWrapper: {
-    top: 466,
-    backgroundColor: "transparent",
-    borderRadius: 0,
-  },
-  serviceProvider: {
-    top: 44,
-    left: 11,
-    width: 263,
-    height: 58,
-  },
-  serviceProviderWrapper: {
-    top: 285,
-    borderColor: Color.colorBlack,
-    borderRadius: 0,
-    borderWidth: 0.2,
-    borderStyle: "solid",
-    backgroundColor: Color.colorWhite,
-  },
-  signingUpAs: {
-    top: 170, 
-    left: 88,
-    color: "#1f546d",
-    fontWeight: "700",
-    fontSize: FontSize.size_11xl,
-    lineHeight: 23, 
-    paddingTop:50,
-    textAlign: "center",
-  },
   userRoleScreen: {
     flex: 1,
-    width: "100%",
-    height: 932,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#fff",
+  },
+  continueTypo: {
+    textAlign: "left",
+    fontWeight: "700",
+    fontSize: RFValue(30),
+    position: "absolute",
+  },
+  signingUpAs: {
+    top: hp('15%'),
+    color: "#1f546d",
+    fontWeight: "700",
+    fontSize: RFValue(30),
+    textAlign: "center",
+  },
+  button: {
+    width: wp('80%'),
+    height: hp('17%'),
+    backgroundColor: "white",
+    justifyContent: "center",
+    alignItems: "center",
+    borderWidth: 0.8,
+    borderRadius: 3,
+    borderColor: "gray",
+    ...Platform.select({
+      ios: {
+        shadowColor: "rgba(0, 0, 0, 0.1)",
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.8,
+        shadowRadius: 4,
+      },
+      android: {
+        elevation: 4,
+      },
+    }),
+  },
+  buttonText: {
+    color: "#1f546d",
+    textAlign: "center",
+    fontWeight: "700",
+  },
+  serviceText: {
+    color: "#1f546d",
+    textAlign: "center",
+    fontWeight: "700",
+  },
+  contText: {
+    color: "white",
+    fontSize: RFValue(30),
+    fontWeight: "700",
+  },
+  selectedButton: {
+    backgroundColor: "#1f546d",
+  },
+  selectedButtonText: {
+    color: "white",
+  },
+  serviceSeekerButton: {
+    position: "absolute",
+    top: hp('32%'),
+  },
+  serviceProviderButton: {
+    position: "absolute",
+    top: hp('52%'),
+  },
+  continueButton: {
+    width: wp('80%'),
+    height: hp('8%'),
+    borderRadius: 6,
     overflow: "hidden",
-    backgroundColor: Color.colorWhite,
+    position: "absolute",
+    top: hp('80%'),
+    ...Platform.select({
+      ios: {
+        shadowColor: "rgba(0, 0, 0, 0.1)",
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.8,
+        shadowRadius: 4,
+      },
+      android: {
+        elevation: 4,
+      },
+    }),
   },
-  gradientText: {
-    color: "red", // You can set your desired gradient colors here
-  },
-  linearGradient: {
+  continueButtonInner: {
     flex: 1,
-    borderRadius: 0,
+    justifyContent: "center",
+    alignItems: "center",
+    width: "100%",
+    height: "100%",
+  },
+  userroleChild: {
+    top: hp('7%'),
+    left: wp('8%'),
+    maxHeight: "100%",
+    width: wp('7%'),
+    position: "absolute",
   },
 });
 
