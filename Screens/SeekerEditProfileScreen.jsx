@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
-import { StyleSheet, View, Text, Image, TextInput, TouchableOpacity, ScrollView, Pressable, Alert } from "react-native";
+import { StyleSheet, View, Text, Image, TextInput, TouchableOpacity, Dimensions, ScrollView, Pressable, Alert, Modal, TouchableWithoutFeedback  } from "react-native";
 import { Color, FontSize, FontFamily } from "../GlobalStyles";
 import { LinearGradient } from 'expo-linear-gradient';
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -11,6 +11,11 @@ import { FontAwesome } from '@expo/vector-icons';
 import firestore from "@react-native-firebase/firestore";
 import * as ImagePicker from 'expo-image-picker';
 import { format } from 'date-fns';
+
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
+
 
 function SeekerEditProfileScreen(props){
   const [userData, setUserData] = useState("");
@@ -28,6 +33,54 @@ function SeekerEditProfileScreen(props){
   const [addressError, setAddressError] = useState("");
   const [image, setImage] = useState(null);
   const [isChanged, setIsChanged] = useState(false);
+  const [addressLine2, setAddressLine2] = useState(""); // New state variable for Address Line 2
+  const [addressLine3, setAddressLine3] = useState(""); // New state variable for Address Line 3
+  const [addressLine4, setAddressLine4] = useState(""); // New state variable for Address Line 4
+  const [addressLine5, setAddressLine5] = useState(""); // New state variable for Address Line 5
+  const [barangayModalVisible, setBarangayModalVisible] = useState(false);
+  const [cityModalVisible, setCityModalVisible] = useState(false);
+  const [regionModalVisible, setRegionModalVisible] = useState(false);
+  const [overlayVisible, setOverlayVisible] = useState(false);
+  const [chosenBarangay, setChosenBarangay] = useState(false);
+  const [chosenCity, setChosenCity] = useState(false);
+  const [chosenRegion, setChosenRegion] = useState(false);
+  
+
+  // Define functions to toggle modal visibility
+  const toggleBarangayModal = () => setBarangayModalVisible(!barangayModalVisible);
+  const toggleCityModal = () => setCityModalVisible(!cityModalVisible);
+  const toggleRegionModal = () => setRegionModalVisible(!regionModalVisible);
+  
+  
+
+  const toggleOverlay = () => {
+    setOverlayVisible(!overlayVisible);
+  };
+  
+
+  const handleBarangaySelection = (barangay) => {
+    setAddressLine2(barangay); // Update the text input value
+    setChosenBarangay(true); // Set chosenBarangay to true
+    setBarangayModalVisible(false); // Close the modal
+  };
+
+  const handleCitySelection = (city) => {
+    setAddressLine3(city); // Update the text input value
+    setChosenCity(true); // Set chosenCity to true
+    setCityModalVisible(false); // Close the modal
+  };
+
+  const handleRegionSelection = (region) => {
+    setAddressLine4(region); // Update the text input value
+    setChosenRegion(true); // Set chosenRegion to true
+    setRegionModalVisible(false); // Close the modal
+  };
+
+
+
+  
+
+
 
   async function getUserData() {
     const token = await AsyncStorage.getItem('token');
@@ -177,6 +230,9 @@ function SeekerEditProfileScreen(props){
         <TouchableOpacity onPress={() => navigation.goBack()}>
             <FontAwesome name="arrow-left" color='#FFFFFF' style={styles.backIcon} />
         </TouchableOpacity>
+
+        
+        <View style={styles.imageContainer}>
         <Pressable onPress={pickImage}> 
         {image ? (
   <Image style={styles.image14Icon} source={{ uri: image }} />
@@ -200,6 +256,7 @@ function SeekerEditProfileScreen(props){
             contentFit="cover"
             source={require("../assets/camera.png")}
           />
+        </View>
         </View>
         </Pressable>
 
@@ -249,18 +306,174 @@ function SeekerEditProfileScreen(props){
 )}
 
 <Text style={styles.inputLabel}>Address</Text>
+
 <TextInput
   style={styles.input}
   value={address}
   onChangeText={(text) => {
     setAddress(text);
-    setAddressError(text.trim().length >= 1 ? "" : "Address must not be blank.");
+    // Check if the length of the input exceeds 25 characters
+    if (text.length > 25) {
+      setAddressError("Street address must not exceed 25 characters.");
+    } else if (text.trim().length < 1) {
+      setAddressError("Street address must not be blank.");
+    } else {
+      setAddressError(""); // Clear the error message if input is valid
+    }
   }}
-  placeholder="Address"
+  placeholder="Street Address"
 />
+
 {addressError ? <Text style={styles.errorMsg}>{addressError}</Text> : null}
 
-        </View>
+
+<Pressable onPress={toggleBarangayModal}>
+  <TextInput
+    style={[styles.input, chosenBarangay && styles.chosenInput]}
+    value={addressLine2}
+    editable={false} // Set editable to false
+    placeholder="Barangay"
+  />
+</Pressable>
+
+<Modal
+  animationType="fade"
+  transparent={true}
+  visible={barangayModalVisible}
+  onRequestClose={() => {
+    setBarangayModalVisible(!barangayModalVisible);
+  }}
+>
+  {/* Overlay */}
+  {barangayModalVisible && (
+    <TouchableWithoutFeedback onPress={() => setBarangayModalVisible(false)}>
+      <View style={styles.overlay} />
+    </TouchableWithoutFeedback>
+  )}
+
+  {/* Modal Content */}
+  <View style={styles.modalContainer}>
+    <TouchableOpacity
+      style={styles.option}
+      onPress={() => handleBarangaySelection("Basak")}
+    >
+      <Text style={styles.optionText}>Basak</Text>
+    </TouchableOpacity>
+    <TouchableOpacity
+      style={styles.option}
+      onPress={() => handleBarangaySelection("Labangon")}
+    >
+      <Text style={styles.optionText}>Labangon</Text>
+    </TouchableOpacity>
+    {/* Add more options as needed */}
+  </View>
+</Modal>
+
+<Pressable onPress={toggleCityModal}>
+  <TextInput
+    style={[styles.input, chosenCity && styles.chosenInput]}
+    value={addressLine3}
+    editable={false} // Set editable to false
+    placeholder="City/Town"
+  />
+</Pressable>
+<Modal
+  animationType="fade"
+  transparent={true}
+  visible={cityModalVisible}
+  onRequestClose={() => {
+    setCityModalVisible(!cityModalVisible);
+  }}
+>
+  {/* Overlay */}
+  {cityModalVisible && (
+    <TouchableWithoutFeedback onPress={() => setCityModalVisible(false)}>
+      <View style={styles.overlay} />
+    </TouchableWithoutFeedback>
+  )}
+
+  {/* Modal Content */}
+  <View style={styles.modalContainer}>
+    <TouchableOpacity
+      style={styles.option}
+      onPress={() => handleCitySelection("Mandaue City")}
+    >
+      <Text style={styles.optionText}>Mandaue Cit</Text>
+    </TouchableOpacity>
+    <TouchableOpacity
+      style={styles.option}
+      onPress={() => handleCitySelection("Lapu - Lapu City")}
+    >
+      <Text style={styles.optionText}>Lapu-Lapu City</Text>
+    </TouchableOpacity>
+    {/* Add more options as needed */}
+  </View>
+</Modal>
+
+
+<Pressable onPress={toggleRegionModal}>
+  <TextInput
+    style={[styles.input, chosenRegion && styles.chosenInput]}
+    value={addressLine4}
+    editable={false} // Set editable to false
+    placeholder="State/Province/Region"
+  />
+</Pressable>
+
+<Modal
+  animationType="fade"
+  transparent={true}
+  visible={regionModalVisible}
+  onRequestClose={() => {
+    setRegionModalVisible(!regionModalVisible);
+  }}
+>
+  {/* Overlay */}
+  {regionModalVisible && (
+    <TouchableWithoutFeedback onPress={() => setRegionModalVisible(false)}>
+      <View style={styles.overlay} />
+    </TouchableWithoutFeedback>
+  )}
+
+  {/* Modal Content */}
+  <View style={styles.modalContainer}>
+    <TouchableOpacity
+      style={styles.option}
+      onPress={() => handleRegionSelection("Cebu")}
+    >
+      <Text style={styles.optionText}>Cebu</Text>
+    </TouchableOpacity>
+    <TouchableOpacity
+      style={styles.option}
+      onPress={() => handleRegionSelection("Bohol")}
+    >
+      <Text style={styles.optionText}>Bohol</Text>
+    </TouchableOpacity>
+    {/* Add more options as needed */}
+  </View>
+</Modal>
+
+
+<TextInput
+  style={styles.input}
+  value={addressLine5}
+  onChangeText={(text) => {
+    // Check if the entered value contains only numeric characters and has a length of 4
+    if (/^\d{0,4}$/.test(text)) {
+      setAddressLine5(text); // Update the state if it meets the criteria
+    }
+  }}
+  placeholder="Postal Code/Zip Code"
+  keyboardType="numeric" // Set keyboardType to "numeric" to display numeric keyboard
+  maxLength={4} // Limit the input length to 4 characters
+/>
+
+
+
+
+
+
+</View>
         <TouchableOpacity
           style={[
             styles.saveButton,
@@ -312,21 +525,29 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   image14Icon: {
-    top: 50,
-    left: 27,
-    width: 145,
-    height: 141,
+    bottom:  -190,
+    right: windowWidth * 0.625,
+    width: windowWidth * 0.33, 
+    height: windowWidth * 0.33, 
     position: "absolute",
+    marginBottom: 15, 
+  }, 
+  vectorParent: {
+    bottom: -190,
+    right: windowWidth * 0.625,
+    position: "absolute",
+    marginBottom: 10, 
   },
+
   carlWyndelAsoy: {
-    top: 106,
-    left: 150,
+    top: windowHeight * 0.07, // Adjusted for responsiveness
+    left: windowWidth * 0.348, // Adjusted for responsiveness
     fontSize: FontSize.size_6xl,
     fontWeight: "600",
     fontFamily: FontFamily.quicksandSemiBold,
     color: Color.colorWhite,
     textAlign: "center",
-    width: 261,
+    width: windowWidth * 0.605, // Adjusted for responsiveness
     position: "absolute",
   },
   frameChild: {
@@ -334,58 +555,60 @@ const styles = StyleSheet.create({
     top: 0,
   },
   cameraIcon: {
-    top: 13,
-    left: 16,
-    width: 19,
-    height: 24,
+    top: windowHeight * 0.015, 
+    left: windowWidth * 0.03, 
+    width: windowWidth * 0.044, 
+    height: windowHeight * 0.029, 
     position: "absolute",
   },
-  vectorParent: {
-    top: 176,
-    left: 131,
-  },
+  
+  
+
+
+  
   frameChildLayout: {
-    height: 41,
-    width: 41,
+    height: windowHeight * 0.046, 
+    width: windowHeight * 0.046, 
     position: "absolute",
   },
 
   seekereditprofile: {
     backgroundColor: Color.colorWhite,
     width: "100%",
-    minHeight: 932,
+    minHeight: windowHeight, 
     overflow: "hidden",
     justifyContent: "center",
     alignItems: "center",
-    paddingBottom: 20,
+    paddingBottom: windowHeight * 0.021, 
     flex: 1,
   },
   inputContainer: {
-    marginTop: 240, // Adjust the margin here to lower the text fields
+    marginTop: windowHeight * 0.285, 
   },
   inputLabel: {
-    marginBottom: 0,
-    fontSize: 16,
+     marginBottom: 0,
+    fontSize: FontSize.size_md, 
     fontWeight: "bold",
     textAlign: "left",
-    width: 300, // Adjust the width as needed
-    color: '#002F45', // Change the text color here
+    width: windowWidth * 0.7, 
   },
   input: {
-    height: 40,
-    width: 300,
+    height: windowHeight * 0.045, 
+    width: windowWidth * 0.698, 
     borderColor: Color.colorDarkgray,
     borderRadius: 5,
     borderWidth: 1,
-    marginVertical: 8,
-    paddingHorizontal: 10,
+    marginVertical: windowHeight * 0.008, 
+    paddingHorizontal: windowWidth * 0.025, 
+    left: windowWidth * 0.004,
   },
   birthdateText: {
-    color: '#002F45', // Same text color as other fields
+    color: '#002F45', 
   },
   saveButton: {
-    marginTop: 20, // Adjust the marginTop to lower the button
-    marginBottom: 100,
+    marginTop: windowHeight * 0.025, 
+    marginBottom: windowHeight * 0.116, 
+    width: windowWidth * 0.698, 
   },
   gradientButton: {
     paddingVertical: 10,
@@ -400,14 +623,46 @@ const styles = StyleSheet.create({
   },
   errorMsg: {
     color: 'red',
-    fontSize: 14,
-    marginTop: 5,
+    fontSize: 12, 
+    marginTop: windowHeight * 0.0001, 
+    marginBottom: windowHeight * 0.01,
+    width:  windowWidth * 0.698,
   },
   backIcon: {
-    top: 30, // Adjust the top value to position the icon lower
-    left: 25,
-    fontSize: 25,
-},
+    top: windowHeight * 0.045, 
+    left: windowWidth * 0.058, 
+    fontSize: FontSize.size_xl, 
+  },
+  modalContainer: {
+    backgroundColor: 'white',
+    borderColor: 'gray', // Add border color
+    borderWidth: 1, // Add border width
+    padding: 20,
+    width: windowHeight * 0.375,
+    marginTop: windowHeight * 0.4,
+    alignSelf: "center",
+    margin: 20,
+  },
+  option: {
+    paddingVertical: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: 'gray',
+  },
+  optionText: {
+    fontSize: 18,
+  },
+  overlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.7)', 
+  },
+  chosenInput: {
+    color: 'black', 
+  },
+  
 
 });
 

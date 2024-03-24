@@ -55,7 +55,7 @@ const LoginNav = () => {
 
     const Stack = createNativeStackNavigator();
     return (
-        <Stack.Navigator initialRouteName='ProfileScreen' screenOptions={{ headerShown: false }}>
+        <Stack.Navigator initialRouteName='SeekerEditProfileScreen' screenOptions={{ headerShown: false }}>
             <Stack.Screen name='UserRole' component={UserRoleScreen} />
             <Stack.Screen name='Login' component={LoginPage} />
             <Stack.Screen name='Register' component={RegisterPage} />
@@ -69,7 +69,7 @@ const LoginNav = () => {
             <Stack.Screen name='AddressForm' component={AddressForm} />
             <Stack.Screen name='ForgotPassword' component={ForgotPasswordScreen} />
             <Stack.Screen name='ResetPassword' component={ResetPasswordScreen} />
-            <Stack.Screen name='ProfileScreen' component={ProfileScreen} />
+            <Stack.Screen name='SeekerEditProfileScreen' component={SeekerEditProfileScreen } />
         </Stack.Navigator>)
 }
 

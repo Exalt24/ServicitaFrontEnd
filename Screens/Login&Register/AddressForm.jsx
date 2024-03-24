@@ -28,7 +28,7 @@ export default function AddressForm ({navigation, route, props}) {
     
 
     const { name, email, role, birthDate } = route.params;
-    const [roleText, setRoleText] = useState(role === 'Seeker' ? 'Seeking' : 'Servicing');
+    const [roleText, setRoleText] = useState(role === 'Seeker' ? 'Seeking' : 'Servicing'); 
     
     const validateFields = () => {
         return streetAddress1Verify && selectedValue;
