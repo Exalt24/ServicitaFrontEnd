@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, ImageBackground, Image, ScrollView, StyleSheet, Pressable } from "react-native";
+import { View, Text, ImageBackground, Image, ScrollView, StyleSheet, Dimensions, Pressable } from "react-native";
 import { Color, FontSize, FontFamily } from "../GlobalStyles";
 import { useNavigation, useRoute, useFocusEffect } from "@react-navigation/native";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { CommonActions } from '@react-navigation/native';
 import firestore from '@react-native-firebase/firestore';
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 function ProviderProfileScreen(props) {
   const navigation = useNavigation();
@@ -35,7 +38,7 @@ function ProviderProfileScreen(props) {
     }
   };
 
-
+/*
   async function getUserData() {
     const token = await AsyncStorage.getItem('token');
     console.log(token);
@@ -77,11 +80,12 @@ function ProviderProfileScreen(props) {
       getUserData();
     }
   }, [route.params]);
-
+ */
   const goTo = () => {
     // Handle navigation logic here
     navigation.navigate("EditProfile"); // Replace "NextScreen" with the name of the screen you want to navigate to
   };
+ 
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.providerProfileScreen}>
@@ -109,10 +113,10 @@ function ProviderProfileScreen(props) {
         />
         <View style={[styles.lineView, styles.providerChildLayout]} />
         <View
-            style={[styles.providerProfileScreenChild1, styles.providerChildLayout]}
+            style={[styles.lineView1, styles.providerChildLayout]}
         />
         <View
-            style={[styles.providerProfileScreenChild2, styles.providerChildLayout]}
+            style={[styles.lineView2, styles.providerChildLayout]}
         />
         <View style={[styles.settingsParent, styles.parentLayout1]}>
             <Text style={[styles.settings, styles.logOutTypo]}>Settings</Text>
@@ -122,10 +126,10 @@ function ProviderProfileScreen(props) {
             source={require("../assets/image-127.png")}
             />
         </View>
-        <View style={[styles.helpCenterParent, styles.parentLayout]}>
+        <View style={[styles.helpCenterParent, styles.parentLayout1]}>
             <Text style={[styles.settings, styles.logOutTypo]}>Help Center</Text>
             <Image
-            style={[styles.image131Icon, styles.iconLayout]}
+            style={[styles.image130Icon, styles.iconLayout]}
             contentFit="cover"
             source={require("../assets/image-127.png")}
             />
@@ -143,7 +147,7 @@ function ProviderProfileScreen(props) {
             Booking Scheduled
             </Text>
             <Image
-            style={[styles.image133Icon, styles.iconLayout]}
+            style={[styles.image130Icon, styles.iconLayout]}
             contentFit="cover"
             source={require("../assets/image-127.png")}
             />
@@ -159,16 +163,16 @@ function ProviderProfileScreen(props) {
         <View style={[styles.reviewsParent, styles.parentLayout1]}>
             <Text style={[styles.settings, styles.logOutTypo]}>{`Reviews `}</Text>
             <Image
-            style={[styles.image135Icon, styles.iconLayout]}
+            style={[styles.image130Icon, styles.iconLayout]}
             contentFit="cover"
             source={require("../assets/image-127.png")}
             />
         </View>
         <Pressable onPress={goTo}>
-            <View style={[styles.myAccountParent, styles.parentLayout]}>
+            <View style={[styles.myAccountParent, styles.parentLayout1]}>
                 <Text style={[styles.myAccount, styles.promosTypo]}>My Account</Text>
                 <Image
-                style={[styles.image131Icon, styles.iconLayout]}
+                style={[styles.image130Icon, styles.iconLayout]}
                 contentFit="cover"
                 source={require("../assets/image-127.png")}
                 />
@@ -182,7 +186,7 @@ function ProviderProfileScreen(props) {
             source={require("../assets/image-127.png")}
             />
         </View>
-        <View style={styles.termsConditionsParent}>
+        <View style={[styles.termsConditionsParent, styles.parentLayout1]}>
             <Text
             style={[styles.settings, styles.logOutTypo]}
             >{`Terms & Conditions`}</Text>
@@ -207,7 +211,7 @@ const styles = StyleSheet.create({
     fontFamily: FontFamily.quicksandBold,
     fontWeight: "700",
     lineHeight: 15,
-    left: 179,
+    left: windowWidth * 0.445, 
     position: "absolute",
   },
   promosTypo: {
@@ -227,16 +231,10 @@ const styles = StyleSheet.create({
   },
   providerChildLayout: {
     height: 1,
-    width: 378,
+    width: windowWidth - 55, 
     borderTopWidth: 1,
     borderColor: Color.colorSilver,
     borderStyle: "solid",
-    position: "absolute",
-  },
-  parentLayout1: {
-    height: 18,
-    width: 358,
-    left: 44,
     position: "absolute",
   },
   iconLayout: {
@@ -244,140 +242,124 @@ const styles = StyleSheet.create({
     width: 4,
     position: "absolute",
   },
-  parentLayout: {
-    width: 359,
-    height: 18,
-    left: 43,
+  parentLayout1: {
+    height: windowHeight * 0.019, 
+    width: windowWidth * 0.994, 
+    left: windowWidth * 0.1, 
     position: "absolute",
   },
   providerProfileScreenChild: {
-    backgroundColor: Color.colorDarkslategray_100,
-    width: 430,
-    height: 151,
+    backgroundColor: "#05364c",
+    width: windowWidth,
+    height: windowHeight * 0.165,
     position: "absolute",
   },
   providerProfileScreenItem: {
-    top: 78,
-    width: 143,
-    height: 146,
-    left: 27,
-    position: "absolute",
+    top: windowHeight * 0.08,
+    width: windowHeight  * 0.165,
+    height: windowHeight * 0.165,
+    left: windowWidth * 0.065,
+    position: 'absolute',
   },
   euniceEnreraMakeup: {
-    top: 112,
+    top: windowHeight * 0.125, 
     fontSize: 15,
     letterSpacing: 0.8,
     color: Color.colorWhite,
-    width: 239,
+    width: windowWidth * 0.64, 
   },
   hairAndMake: {
-    top: 159,
+    top: windowHeight * 0.18, 
     fontSize: 12,
     letterSpacing: 0.6,
     color: "#002f45",
-    width: 261,
+    width: windowWidth * 0.69, 
   },
   promos: {
-    left: 43,
+    left: windowWidth * 0.1, 
     color: Color.colorBlack,
     fontFamily: FontFamily.quicksandSemiBold,
     fontWeight: "600",
     fontSize: FontSize.size_sm,
-    top: 263,
+    top: windowHeight * 0.29, 
   },
   general: {
-    top: 572,
-    left: 44,
+    top: windowHeight * 0.63, 
+    left: windowWidth * 0.1, 
   },
   logOut: {
-    top: 777,
-    left: 44,
+    top: windowHeight * 0.873, 
+    left: windowWidth * 0.1, 
   },
   providerProfileScreenInner: {
-    left: 368,
-    width: 34,
-    height: 20,
-    top: 263,
-    position: "absolute",
+    left: windowWidth * 0.86,
+    width: windowWidth * 0.08,
+    height: windowHeight * 0.021,
+    top: windowHeight * 0.283,
+    position: 'absolute',
   },
   lineView: {
-    top: 305,
-    left: 27,
+    top: windowHeight * 0.335, 
   },
-  providerProfileScreenChild1: {
-    top: 351,
-    left: 27,
+  lineView1: {
+    top: windowHeight * 0.4, 
+    left: windowWidth * 0.065,  
   },
-  providerProfileScreenChild2: {
-    top: 540,
-    left: 25,
+  lineView2: {
+    top: windowHeight * 0.6, 
+    left: windowWidth * 0.065, 
   },
   settings: {
     left: 0,
     top: 0,
   },
   image130Icon: {
-    left: 354,
-    height: 14,
-    width: 4,
-    top: 2,
+    left: windowWidth * 0.790, 
+    top: windowHeight * 0.01, 
   },
   settingsParent: {
-    top: 654,
+    top: windowHeight * 0.733, 
   },
-  image131Icon: {
-    left: 355,
-    top: 2,
-  },
+  
   helpCenterParent: {
-    top: 613,
+    top: windowHeight * 0.683, 
   },
   timeSlotParent: {
-    top: 492,
+    top: windowHeight * 0.553, 
   },
-  image133Icon: {
-    top: 1,
-    left: 354,
-    height: 14,
-    width: 4,
-  },
+  
   bookingScheduledParent: {
-    top: 451,
+    top: windowHeight * 0.503, 
   },
   incomeParent: {
-    top: 410,
+    top: windowHeight * 0.460, 
   },
-  image135Icon: {
-    left: 354,
-    height: 14,
-    width: 4,
-    top: 0,
-  },
+  
   reviewsParent: {
-    top: 369,
+    top: windowHeight * 0.415, 
   },
   myAccount: {
     left: 0,
     top: 0,
   },
   myAccountParent: {
-    top: 319,
+    top: windowHeight * 0.3555,
   },
   shareFeedbackParent: {
-    top: 736,
+    top: windowHeight * 0.825,
   },
   termsConditionsParent: {
-    top: 695,
-    height: 23,
-    width: 358,
-    left: 44,
+    top: windowHeight  * 0.777, 
+    height: windowHeight * 0.024, 
+    width: windowWidth * 0.994, 
+    left: windowWidth * 0.049, 
     position: "absolute",
   },
   providerProfileScreen: {
     backgroundColor: Color.colorWhite,
     flex: 1,
     width: "100%",
-    height: 932,
+    height: windowHeight,
     overflow: "hidden",
   },
   scrollContainer: {
