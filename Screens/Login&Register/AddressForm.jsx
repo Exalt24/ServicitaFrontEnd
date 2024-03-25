@@ -30,7 +30,7 @@ export default function AddressForm ({navigation, route, props}) {
     const { name, email, role, birthDate } = route.params;
     const [roleText, setRoleText] = useState(role === 'Seeker' ? 'Seeking' : 'Servicing'); 
     
-    const validateFields = () => {
+    const validateFields = () => {        
         return streetAddress1Verify && selectedValue;
     }
 
@@ -238,7 +238,7 @@ export default function AddressForm ({navigation, route, props}) {
                         fontWeight: '400',
                         marginVertical: windowHeight * 0.01,
                         color: Color.colorBlue
-                    }}>Street Address Line 2 (Optional)</Text>
+                    }}>Barangay </Text>
                     
                     <View style={{
                         width: '100%',
@@ -254,7 +254,7 @@ export default function AddressForm ({navigation, route, props}) {
                     }}>
                         <Error name="apartment" color={streetAddress2 === null || streetAddress2 === '' ? Color.colorBlue1 : streetAddress2 ? Color.colorGreen : Color.colorBlue1} style={{marginRight: 5, fontSize: 24}} />
                         <TextInput
-                            placeholder='Apartment, suite, building, etc.'
+                            placeholder='Enter Barangay'
                             placeholderTextColor={Color.colorBlue}
                             style={{
                                 width: '100%'
