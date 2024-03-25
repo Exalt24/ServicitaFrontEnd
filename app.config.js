@@ -47,11 +47,14 @@ export default {
         }
       ]
     ],
+ 
     "extra": {
       "eas": {
-        "projectId": "0f79223f-75c2-46b0-bdb3-5a0306917010"
+        "projectId": "102e369a-82c8-446b-a332-480051a9ad26"
       }
     },
+  
+    
     "runtimeVersion": {
       "policy": "appVersion"
     },

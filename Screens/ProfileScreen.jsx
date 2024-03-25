@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, ImageBackground, Image, ScrollView, StyleSheet, Pressable } from "react-native";
+import { View, Text, ImageBackground, Image, ScrollView, StyleSheet,  Dimensions, Pressable } from "react-native";
 import { Color, FontSize, FontFamily } from "../GlobalStyles";
 import { useNavigation, useRoute, useFocusEffect } from "@react-navigation/native";
 import axios from "axios";
@@ -8,16 +8,18 @@ import { CommonActions } from '@react-navigation/native';
 import firestore from '@react-native-firebase/firestore';
 
 
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
+
+
 function ProfileScreen(props) {
+
+  
   const navigation = useNavigation();
   const route = useRoute();
   console.log(props);
   const [userData, setUserData] = useState("");
   const [storeData, setStoreData] = useState("");
-
-
-
-  
 
   const signOut = async () => {
     try {
@@ -41,7 +43,7 @@ function ProfileScreen(props) {
       console.error('Error signing out:', error);
     }
   };
-
+   /*
 
   async function getUserData() {
     const token = await AsyncStorage.getItem('token');
@@ -84,7 +86,7 @@ function ProfileScreen(props) {
     }
   }, [route.params]);
 
-  
+  */
 
   const GoTo = () => {
     // Handle navigation logic here
@@ -104,18 +106,19 @@ function ProfileScreen(props) {
       <Text style={styles.carlWyndelAsoy}>{storeData.name}</Text>
       <Text style={[styles.rewards, styles.rewardsTypo]}>Rewards</Text>
       <Text style={styles.general}>General</Text>
-      <Text style={[styles.logOut, styles.logOutTypo]} onPress={signOut}>Log out</Text>
+      
       <Image
         style={styles.profileScreenInner}
         resizeMode="cover"
         source={require("../assets/rectangle-468.png")}
       />
       <View style={[styles.lineView, styles.lineViewLayout]} />
+      <View style={[styles.lineView1, styles.lineViewLayout]} />
       <View style={[styles.profileScreenChild1, styles.lineViewLayout]} />
       <View style={[styles.termsConditionsParent, styles.parentLayout1]}>
         <Text style={[styles.termsConditions, styles.logOutTypo]}>Terms & Conditions</Text>
         <Image
-          style={[styles.image127Icon, styles.iconLayout]}
+          style={[styles.image130Icon, styles.iconPosition]}
           resizeMode="cover"
           source={require("../assets/image-127.png")}
         />
@@ -131,7 +134,7 @@ function ProfileScreen(props) {
       <View style={[styles.helpCenterParent, styles.parentLayout]}>
         <Text style={[styles.termsConditions, styles.logOutTypo]}>Help Center</Text>
         <Image
-          style={[styles.image131Icon, styles.iconPosition]}
+          style={[styles.image130Icon, styles.iconPosition]}
           resizeMode="cover"
           source={require("../assets/image-127.png")}
         />
@@ -147,7 +150,7 @@ function ProfileScreen(props) {
       <View style={[styles.bookingScheduledParent, styles.parentLayout1]}>
         <Text style={[styles.termsConditions, styles.logOutTypo]}>Booking Scheduled</Text>
         <Image
-          style={[styles.image133Icon, styles.iconLayout]}
+          style={[styles.image130Icon, styles.iconPosition]}
           resizeMode="cover"
           source={require("../assets/image-127.png")}
         />
@@ -163,7 +166,7 @@ function ProfileScreen(props) {
       <View style={[styles.favouritesParent, styles.parentLayout1]}>
         <Text style={[styles.termsConditions, styles.logOutTypo]}>Favourites</Text>
         <Image
-          style={[styles.image127Icon, styles.iconLayout]}
+          style={[styles.image130Icon, styles.iconPosition]}
           resizeMode="cover"
           source={require("../assets/image-127.png")}
         />
@@ -173,7 +176,7 @@ function ProfileScreen(props) {
         <Pressable onPress={GoTo} style={styles.innerPressable}>
           <Text style={[styles.myAccount, styles.rewardsTypo]}>My Account</Text>
           <Image
-            style={[styles.image131Icon, styles.iconPosition]}
+            style={[styles.image130Icon, styles.iconLayout]}
             resizeMode="cover"
             source={require("../assets/image-127.png")}
           />
@@ -183,12 +186,13 @@ function ProfileScreen(props) {
       <View style={[styles.shareFeedbackParent, styles.parentLayout1]}>
         <Text style={[styles.termsConditions, styles.logOutTypo]}>Share Feedback</Text>
         <Image
-          style={[styles.image128Icon, styles.iconLayout]}
+          style={[styles.image130Icon, styles.iconPosition]}
           resizeMode="cover"
           source={require("../assets/image-127.png")}
         />
       </View>
     </View>
+    <Text style={[styles.logOut, styles.logOutTypo]} onPress={signOut}>Log out</Text>
     </ScrollView>
     
   );
@@ -202,15 +206,15 @@ const styles = StyleSheet.create({
   },
   profileScreen: {
     flex: 1,
-    width: "100%",
-    height: 932,
-    overflow: "hidden",
+    width: windowWidth, 
+    height: windowHeight, 
+    overflow: 'hidden',
     backgroundColor: Color.colorWhite,
   },
   myAccountPosition: {
-    left: 0,
-    top: 0,
-  },
+  left: windowWidth * 0.0001, 
+  top: windowHeight * 0.0001, 
+},
   rewardsTypo: {
     textAlign: "left",
     color: Color.colorBlack,
@@ -228,7 +232,7 @@ const styles = StyleSheet.create({
   },
   lineViewLayout: {
     height: 1,
-    width: 378,
+    width: windowWidth - 55,
     borderTopWidth: 1,
     borderColor: Color.colorSilver,
     borderStyle: "solid",
@@ -236,78 +240,64 @@ const styles = StyleSheet.create({
   },
   parentLayout1: {
     height: 18,
-    width: 358,
+    width: windowWidth - 100,
     left: 44,
     position: "absolute",
   },
-  iconLayout: {
-    height: 14,
-    width: 4,
-    left: 354,
-    position: "absolute",
-  },
+  
   iconPosition: {
     top: 2,
     height: 14,
     width: 4,
     position: "absolute",
   },
+  iconLayout: {
+    top: 26,
+    height: 14,
+    width: 4,
+    position: "absolute",
+  },
   parentLayout: {
-    width: 359,
+    width: windowWidth - 100,
     height: 18,
     left: 43,
     position: "absolute",
   },
-  profileScreenChild: {
-    top: 151,
-    left: -3,
-    shadowColor: "rgba(0, 0, 0, 0.25)",
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowRadius: 4,
-    elevation: 4,
-    shadowOpacity: 1,
-    width: 432,
-    height: 160,
-    position: "absolute",
-    backgroundColor: Color.colorWhite,
-  },
+  
   profileScreenItem: {
     backgroundColor: "#05364c",
-    width: 430,
-    height: 151,
+    width: windowWidth,
+    height: windowHeight * 0.16,
     position: "absolute",
   },
   image14Icon: {
-    top: 76,
-    width: 145,
-    height: 141,
-    left: 27,
-    position: "absolute",
+    top: windowHeight * 0.08,
+    width: windowHeight  * 0.17,
+    height: windowHeight * 0.17,
+    left: windowWidth * 0.065,
+    position: 'absolute',
   },
   carlWyndelAsoy: {
-    top: 106,
-    left: 150,
+    top: windowHeight * 0.11,
+    left: windowWidth * 0.35,
     fontSize: 25,
     color: Color.colorWhite,
-    textAlign: "center",
-    width: 261,
+    textAlign: 'center',
+    width: windowWidth * 0.6,
     fontFamily: FontFamily.quicksandSemiBold,
-    fontWeight: "600",
-    position: "absolute",
+    fontWeight: '600',
+    position: 'absolute',
   },
   rewards: {
-    left: 43,
-    textAlign: "left",
+    left: windowWidth * 0.1,
+    textAlign: 'left',
     color: Color.colorBlack,
     fontSize: FontSize.size_sm,
-    top: 247,
+    top: windowHeight * 0.285,
   },
   general: {
-    top: 572,
-    left: 44,
+    top: windowHeight * 0.64,
+    left: windowWidth * 0.1,
     textAlign: "left",
     color: Color.colorBlack,
     fontSize: FontSize.size_sm,
@@ -316,77 +306,74 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   logOut: {
-    top: 777,
-    left: 45,
+    top: windowHeight * 0.865, 
+    left: windowWidth * 0.110, 
   },
   profileScreenInner: {
-    left: 368,
-    width: 34,
-    height: 20,
-    top: 247,
-    position: "absolute",
+    left: windowWidth * 0.86,
+    width: windowWidth * 0.08,
+    height: windowHeight * 0.021,
+    top: windowHeight * 0.283,
+    position: 'absolute',
   },
   lineView: {
-    top: 351,
-    left: 27,
+    top: windowHeight * 0.335,
+    left: windowWidth * 0.0625,
+  },
+  lineView1: {
+    top: windowHeight * 0.395,
+    left: windowWidth * 0.0625,
   },
   profileScreenChild1: {
-    top: 540,
-    left: 25,
+    top: windowHeight * 0.61,
+    left: windowWidth * 0.0615,
   },
   termsConditions: {
-    left: 0,
-    top: 0,
+    left: windowWidth * 0.0001, 
+    top: windowHeight * 0.0001,
   },
-  image127Icon: {
-    top: 0,
-    height: 14,
-    width: 4,
-  },
+  
   termsConditionsParent: {
-    top: 695,
-  },
-  image130Icon: {
-    left: 354,
-    top: 2,
+    top: windowHeight * 0.775, 
   },
   settingsParent: {
-    top: 654,
+    top: windowHeight * 0.730,
   },
-  image131Icon: {
-    left: 355,
-  },
+  
   helpCenterParent: {
-    top: 613,
+    top: windowHeight * 0.685,
   },
   emergencyContactsParent: {
-    top: 492,
-  },
-  image133Icon: {
-    top: 1,
+    top: windowHeight * 0.555,
   },
   bookingScheduledParent: {
-    top: 451,
+    top: windowHeight * 0.505,
   },
   paymentMethodParent: {
-    top: 410,
+    top: windowHeight * 0.460,
   },
   favouritesParent: {
-    top: 369,
+    top: windowHeight * 0.415,
   },
   myAccount: {
-    left: 0,
-    top: 0,
-  },
+  left: windowWidth * 0, 
+  top: windowHeight * 0.03, 
+},
   myAccountParent: {
-    top: 319,
-  },
-  image128Icon: {
-    top: 4,
+    top: windowHeight * 0.325,
   },
   shareFeedbackParent: {
-    top: 736,
+    top: windowHeight * 0.825,
   },
+
+
+  
+  image130Icon: {
+    left: windowWidth * 0.790, 
+    top: windowHeight * 0.002, 
+  },
+
+
   innerPressable: {
     flexDirection: "row",
     alignItems: "center",
