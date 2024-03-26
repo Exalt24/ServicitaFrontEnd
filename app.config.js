@@ -47,12 +47,15 @@ export default {
         }
       ]
     ],
- 
+    
     "extra": {
       "eas": {
-        "projectId": "102e369a-82c8-446b-a332-480051a9ad26"
+        "projectId": "ad13a3e0-148e-4143-8598-a51c74b70ae3"
       }
     },
+    
+ 
+    
   
     
     "runtimeVersion": {
