@@ -19,7 +19,7 @@ export default function ResetPasswordScreen({navigation, route, params}) {
     const [isConfirmPasswordShown, setIsConfirmPasswordShown] = useState(false);
 
     const { userId } = route.params;
-
+/*
     useEffect(() => {
         setConfirmPasswordVerify(confirmPassword === password);
     }, [confirmPassword, password]);
@@ -40,7 +40,7 @@ export default function ResetPasswordScreen({navigation, route, params}) {
                   console.log(err.response.data.message);
               });
     }
-
+*/
     return (
         <SafeAreaView style={{flex: 1, backgroundColor: Color.colorWhite}}>
         <View style={{ flexDirection: 'column', justifyContent: 'flex-start', marginHorizontal: windowWidth * 0.05, marginTop: windowHeight * 0.07 }}>

@@ -8,16 +8,18 @@ export const FontFamily = {
 };
 /* font sizes */
 export const FontSize = {
+  size_6xs: 7,
+  size_3xs: 10,
+  size_xs: 12,
   size_sm: 14,
+  size_mini: 15,
+  size_lg: 18,
+  size_xl: 20,
+  size_5xl: 24,
   size_6xl: 25,
   size_11xl: 30,
   size_21xl: 40,
-  size_xs: 12,
-  size_mini: 15,
-  size_3xs: 10,
-  size_6xs: 7,
-  size_xl: 20,
-  size_5xl: 24,
+  
 };
 /* Colors */
 export const Color = {
@@ -37,6 +39,8 @@ export const Color = {
   colorOrange: 'orange',
   colorPrimary: "#003045",
   colorSecondary: "#88D0F1",
+  colorGray_100: "#7c7878",
+  colorGray_200: "rgba(0, 0, 0, 0)",
   colorGrey: "#CCCCCC",
   colorBlue:"#1F546D",
   colorBlue1: "#70B4D3",
