@@ -35,6 +35,7 @@ import SearchScreen from './Screens/SearchScreen';
 import NotificationScreen from './Screens/NotificationScreen';
 import HomePage from './Screens/HomePage';
 import ServiceViewScreen from './Screens/ServiceViewScreen';
+import CategoryScreen from './Screens/CategoryScreen';
 
 
 
@@ -61,7 +62,7 @@ const LoginNav = () => {
 
     const Stack = createNativeStackNavigator();
     return (
-        <Stack.Navigator initialRouteName='SearchScreen' screenOptions={{ headerShown: false }}>
+        <Stack.Navigator initialRouteName='CategoryScreen' screenOptions={{ headerShown: false }}>
             <Stack.Screen name='UserRole' component={UserRoleScreen} />
             <Stack.Screen name='Login' component={LoginPage} />
             <Stack.Screen name='Register' component={RegisterPage} />
@@ -76,10 +77,13 @@ const LoginNav = () => {
             <Stack.Screen name='ForgotPassword' component={ForgotPasswordScreen} />
             <Stack.Screen name='ResetPassword' component={ResetPasswordScreen} />
             <Stack.Screen name='HomeScreen' component={HomeScreen} />
+
             <Stack.Screen name='SearchScreen' component={SearchScreen} />
             <Stack.Screen name='NotificationScreen' component={NotificationScreen} />
             <Stack.Screen name='HomePage' component={HomePage} />
             <Stack.Screen name='ServiceViewScreen' component={ServiceViewScreen} />
+            <Stack.Screen name='CategoryScreen' component={CategoryScreen} />
+            
         </Stack.Navigator>)
 }
 

@@ -3,7 +3,7 @@ import React from 'react'
 import Carousel, {ParallaxImage} from 'react-native-snap-carousel';
 import { sliderImages } from '../constants';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import {ViewPropTypes} from 'deprecated-react-native-prop-types';
+
 
 
 

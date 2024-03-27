@@ -7,9 +7,9 @@ const RecentSearch = () => {
 
   const [data, setData] = React.useState([
     { id: 1, image: require("../assets/rectangle-371.jpg") },
-    { id: 2, image: require("../assets/rectangle-372.jpg") }, // Example additional image
-    { id: 3, image: require("../assets/rectangle-373.png") }, // Example additional image
-    { id: 4, image: require("../assets/rectangle-374.jpg") }, // Example additional image
+    { id: 2, image: require("../assets/rectangle-372.jpg") }, 
+    { id: 3, image: require("../assets/rectangle-373.png") }, 
+    { id: 4, image: require("../assets/rectangle-374.jpg") }, 
     
     // Add more images as needed
   ]);
@@ -18,12 +18,11 @@ const RecentSearch = () => {
     setData(prevData => prevData.filter(item => item.id !== id));
   };
 
-  // Function to handle navigation to another screen
+  
   const handleImagePress = () => {
-    navigation.navigate("ServiceViewScreen"); // Replace "AnotherScreen" with the name of the screen you want to navigate to
+    navigation.navigate("ServiceViewScreen"); 
   };
 
-  // Render item function for FlatList
   const renderItem = ({ item }) => (
     <View style={styles.rectangleParent}>
       <Pressable onPress={handleImagePress}>

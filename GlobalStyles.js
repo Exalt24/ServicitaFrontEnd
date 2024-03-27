@@ -5,6 +5,7 @@ export const FontFamily = {
   quicksandBold: "Quicksand-Bold",
   didactGothicRegular: "DidactGothic-Regular",
   quicksandLight: "Quicksand-Light",
+  manjariRegular: "Manjari-Regular",
 };
 /* font sizes */
 export const FontSize = {
