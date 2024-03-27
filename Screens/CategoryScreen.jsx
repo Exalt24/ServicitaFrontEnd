@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, TextInput, Text, StyleSheet } from 'react-native';
-import Header from '../components/Header';
+import Header_Category from '../components/Header_Category';
 import { MaterialIcons, Ionicons } from '@expo/vector-icons';
 import Result from "../components/Result";
 
@@ -8,7 +8,7 @@ import Result from "../components/Result";
 const CategoryScreen = () => {
   return (
     <View style={{ flex: 1, marginTop: 25 }}>
-      <Header title="Category Name" />
+      <Header_Category title="Category Name" />
       <View style={styles.searchBar}>
         <MaterialIcons name="search" size={24} color="gray" style={styles.searchIcon} />
         <TextInput

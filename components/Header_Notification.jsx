@@ -1,12 +1,22 @@
 import React from 'react';
-import { View, Text, StyleSheet, Dimensions } from 'react-native';
-import { AntDesign } from '@expo/vector-icons'; // Assuming you're using Expo, adjust the import if needed
+import { View, Text, StyleSheet, Dimensions, Pressable } from 'react-native';
+import { AntDesign } from '@expo/vector-icons'; 
 import { Border, FontSize, FontFamily, Color } from "../GlobalStyles";
+import { useNavigation } from '@react-navigation/native';
 
-const Header = ({ title }) => {
+const Header_Notification = ({ title }) => {
+
+  const navigation = useNavigation(); 
+
+  const handleBackPress = () => {
+    navigation.navigate('HomeScreen');
+  };
+
   return (
     <View style={styles.header}>
-      <AntDesign name="left" size={24} color="white" style={styles.icon} />
+      <Pressable onPress={handleBackPress}>
+        <AntDesign name="left" size={24} color="white" style={styles.icon} />
+      </Pressable>
       <Text style={styles.title}>{title}</Text>
     </View>
   );
@@ -38,4 +48,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Header;
+export default Header_Notification;
