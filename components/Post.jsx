@@ -1,10 +1,13 @@
 
 
 import React from 'react';
-import { View, Text, Image, StyleSheet, Pressable, FlatList, Modal } from 'react-native';
+import { View, Text, Image, StyleSheet, Pressable, FlatList, Modal, Dimensions } from 'react-native';
 import Swiper from 'react-native-swiper';
 import  { useState } from 'react';
 import { Ionicons } from '@expo/vector-icons';
+
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 
 const postsData = [
@@ -147,8 +150,8 @@ const PostItem = ({ item }) => {
       textAlign: 'justify'
     },
     postImage: {
-      width: 300,
-      height: 300,
+      width: windowWidth * 0.72,
+      height: windowWidth * 0.75,
       marginRight: 8,
 
     },

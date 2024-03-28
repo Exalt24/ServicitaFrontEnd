@@ -67,7 +67,8 @@ const styles = StyleSheet.create({
     backgroundColor: Color.colorWhite,
   },
   navigatorContainer: {
-    borderWidth: 2,
+    borderTopWidth: 2,  // Add border to the top
+    borderBottomWidth: 2,  // Add border to the bottom
     borderColor: '#CCCCCC',
     marginVertical: 10,
     paddingHorizontal: 10,
