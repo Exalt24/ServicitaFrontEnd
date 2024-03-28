@@ -1,11 +1,12 @@
 /* fonts */
 export const FontFamily = {
+  quicksandLight: "Quicksand-Light",
+  quicksandBold: "Quicksand-Bold",
   quicksandRegular: "Quicksand-Regular",
   quicksandSemiBold: "Quicksand-SemiBold",
-  quicksandBold: "Quicksand-Bold",
-  didactGothicRegular: "DidactGothic-Regular",
-  quicksandLight: "Quicksand-Light",
   manjariRegular: "Manjari-Regular",
+  questrialRegular: "Questrial-Regular",
+  quicksandMedium: "Quicksand-Medium",
 };
 /* font sizes */
 export const FontSize = {
@@ -57,6 +58,7 @@ export const Color = {
 };
 /* border radiuses */
 export const Border = {
+  br_11xs: 2,
   br_8xs: 5,
   br_7xs: 6,
   br_5xs: 8,
