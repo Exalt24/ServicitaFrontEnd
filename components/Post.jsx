@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import { View, Text, Image, StyleSheet, Pressable, FlatList, Modal, Dimensions } from 'react-native';
 import Swiper from 'react-native-swiper';
@@ -81,11 +79,12 @@ const PostItem = ({ item }) => {
                 </Pressable>
               )}
               keyExtractor={(item, index) => index.toString()}
+              
             />
           )}
         </View>
   
-        <Modal visible={modalVisible} transparent={false}>
+        <Modal visible={modalVisible} transparent={true}>
           <View style={styles.modalContainer}>
             <Swiper
               index={selectedIndex}
@@ -95,13 +94,13 @@ const PostItem = ({ item }) => {
             >
               {item.postImages && item.postImages.map((image, index) => (
                 <View key={index} style={styles.swiperImageContainer}>
-                  <Pressable style={styles.closeButton} onPress={closeModal}>
-                    <Ionicons name="close-circle-outline" size={36} color="white" />
-                </Pressable>
                   <Image source={image} style={styles.swiperImage} resizeMode="contain" />
                 </View>
               ))}
             </Swiper>
+            <Pressable style={styles.closeButton} onPress={closeModal}>
+              <Ionicons name="close-circle" size={36} color="white" />
+            </Pressable>
           </View>
         </Modal>
       </View>
@@ -114,6 +113,7 @@ const PostItem = ({ item }) => {
         data={postsData}
         renderItem={({ item }) => <PostItem item={item} />}
         keyExtractor={(item) => item.id.toString()}
+        scrollEnabled={false} 
       />
     );
   };
@@ -157,7 +157,7 @@ const PostItem = ({ item }) => {
     },
     modalContainer: {
       flex: 1,
-      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+      backgroundColor: 'rgba(0, 0, 0, 0.8)',
       justifyContent: 'center',
       alignItems: 'center',
     },

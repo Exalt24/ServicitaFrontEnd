@@ -2,9 +2,10 @@
 import { View, StyleSheet, ScrollView,TouchableOpacity, Dimensions, Text} from 'react-native';
 import { Color, FontSize, FontFamily } from "../GlobalStyles";
 import ServiceTop from '../components/ServiceTop';
-//import Navigator from '../components/Navigator';
-import Review from '../components/Review';
+import Description from '../components/Description';
 import Post from '../components/Post';
+import Review from '../components/Review';
+import Photos from '../components/Photos';
 import { useState } from 'react';
 
 const windowWidth = Dimensions.get('window').width;
@@ -34,8 +35,8 @@ const ServiceViewScreen = () => {
         <TouchableOpacity onPress={() => handleTabPress("Post")}>
           <Text style={[styles.tabText, activeTab === "Post" && styles.activeTab]}>Post</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => handleTabPress("Review")}>
-          <Text style={[styles.tabText, activeTab === "Review" && styles.activeTab]}>Review</Text>
+        <TouchableOpacity onPress={() => handleTabPress("Reviews")}>
+          <Text style={[styles.tabText, activeTab === "Reviews" && styles.activeTab]}>Reviews</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => handleTabPress("Photos")}>
           <Text style={[styles.tabText, activeTab === "Photos" && styles.activeTab]}>Photos</Text>
@@ -43,10 +44,18 @@ const ServiceViewScreen = () => {
       </View>
 
       <View>
-        {activeTab === "Review" && <Review />}
+        {activeTab === "Photos" && <Photos />}
+      </View>
+
+      <View>
+        {activeTab === "Reviews" && <Review />}
       </View>  
       <View>
         {activeTab === "Post" && <Post />}
+      </View>
+     
+      <View>
+        {activeTab === "Description" && <Description />}
       </View>
       
 

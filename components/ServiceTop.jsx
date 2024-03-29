@@ -1,8 +1,12 @@
+
 import * as React from "react";
-import { Text, StyleSheet, View, Image, Dimensions } from "react-native";
+import { Text, StyleSheet, View, Image, Dimensions, TouchableOpacity } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { Color, FontFamily, FontSize, Border } from "../GlobalStyles";
 import  { useState } from "react";
+import { SwiperFlatList } from "react-native-swiper-flatlist";
+import ServiceImage from './ServiceImage'; 
+import RatingStars from './RatingStars';
 
 
 const windowWidth = Dimensions.get('window').width;
@@ -11,10 +15,22 @@ const windowHeight = Dimensions.get('window').height;
 
 const ServiceTop= () => {
   const [price, setPrice] = useState("499");
-  const [serviceName, setServiceName] = useState("Hair and Make UP - Eunice Enrera Makeup Artistry");
+  const [serviceName, setServiceName] = useState("Eunice Enrera Makeup Artistry - Cebu Makeup Artist ");
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [rating, setRating] = useState(3.5);
+
+  const toggleFavorite = () => {
+    setIsFavorite(!isFavorite);
+  };
+
+
 
   return (
     <View style={styles.serviceview}>
+
+      <View style={styles.serviceImageContainer}>
+        <ServiceImage/>
+      </View>
 
 
       <View style={styles.positioncontainer}>
@@ -27,6 +43,9 @@ const ServiceTop= () => {
         <Text style={[styles.service]}>
           {serviceName}
         </Text>
+        <View style={styles.ratingContainer}>
+          <RatingStars rating={rating} />
+        </View>
 
       </View>
 
@@ -56,7 +75,7 @@ const ServiceTop= () => {
       </View>
 
 
-      <View style={[styles.message, styles.bookPosition]}>
+      <View style={[styles.message, styles.bookPosition2]}>
         <View style={[styles.messageChild, styles.childShadowBox]} />
         <Text style={[styles.message1, styles.message1Position]}>Message</Text>
         <Image
@@ -67,16 +86,22 @@ const ServiceTop= () => {
       </View>
 
 
-      <Text style={[styles.addToFavorites, styles.serviceTypo]}>
-        Add to Favorites
-      </Text>
+      <TouchableOpacity onPress={toggleFavorite}>
+        <View style={[styles.favoriteContainer]}>
+          <Image
+            style={[styles.favoriteIcon]}
+            source={isFavorite ? require("../assets/filledHeartIcon.png") : require("../assets/unfilledHeartIcon.png")}
+          /> 
+          <Text style={[styles.addToFavorites, styles.serviceTypo]}>
+            Add to Favorites
+        </Text>
+          
+        </View>
+        
+      </TouchableOpacity>
 
 
-      <Image
-        style={[styles.serviceimageIcon, styles.servicePosition]}
-        contentFit="cover"
-        source={require("../assets/serviceimage.png")}
-      />
+      
     </View>
   );
 };
@@ -89,10 +114,18 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   bookPosition: {
-    top: windowHeight * 0.51,
-//    left: windowWidth * 0.5,
+    top: windowHeight * 0.52,
+    left: windowWidth * 0.5,
     height: 30,
     position: "absolute",
+    
+  },
+  bookPosition2: {
+    top: windowHeight * 0.52,
+    left: windowWidth * 0.49,
+    height: 30,
+    position: "absolute",
+    
   },
   childShadowBox: {
     shadowOpacity: 2,
@@ -154,7 +187,7 @@ const styles = StyleSheet.create({
   },
 
   price: {
-    top: windowHeight * 0.055,
+    top: windowHeight * 0.11,
     fontSize: 32,
     letterSpacing: 1.6,
     lineHeight: 35,
@@ -171,9 +204,9 @@ const styles = StyleSheet.create({
     fontSize: 20,
     letterSpacing: 1,
     lineHeight: 20,
-    width: 383,
+    width: 340,
     height: 53,
-    top: 0,
+    top: 40,
     left: 0,
     color: Color.colorBlack,
     fontFamily: FontFamily.quicksandRegular,
@@ -181,7 +214,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   positioncontainer: {
-    top: windowHeight * 0.565,
+    top: windowHeight * 0.52,
     left: 25,
     width: 380,
     height: 85,
@@ -238,7 +271,7 @@ const styles = StyleSheet.create({
   },
   bookNow: {
     top: 8,
-    left: windowWidth * 0.29,
+    left: windowWidth * 0.30,
     position: "absolute",
     textAlign: "center",
     fontSize: FontSize.size_xs,
@@ -278,7 +311,8 @@ const styles = StyleSheet.create({
     top: 450,
   },
   addToFavorites: {
-    top: windowHeight * 0.52,
+    
+    top: windowHeight * 0.53,
     left:windowWidth * 0.123,
     fontSize: 11.5,
     letterSpacing: 0.5,
@@ -289,6 +323,7 @@ const styles = StyleSheet.create({
     display: "flex",
     color: Color.colorBlack,
     fontFamily: FontFamily.quicksandRegular,
+    position:'relative'
   },
   serviceimageIcon: {
     borderBottomRightRadius: Border.br_xl,
@@ -303,6 +338,37 @@ const styles = StyleSheet.create({
     height:  windowHeight * 0.67,
     overflow: "hidden",
     backgroundColor: Color.colorWhite,
+  },
+  favoriteContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    top: windowHeight * 0.52,
+    left: windowWidth * 0.123,
+  },
+  serviceImageContainer: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+   
+  },
+  favoriteContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+
+  },
+  favoriteIcon: {
+    width: 15,
+    height: 15,
+    marginLeft: 25,
+    top: windowHeight * 0.528,
+    position: 'relative',
+  },
+  ratingContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+   // marginTop: 40,
+   top: windowHeight * 0.12,
+   left: windowWidth * 0.65,
   },
 });
 
