@@ -1,33 +1,30 @@
-// I want this program to be responsive using dimensions.
-
-
-import * as React from "react";
+import React from "react";
 import { StyleSheet, View, Text, Image, FlatList, Dimensions, Pressable } from "react-native";
 import { useNavigation } from '@react-navigation/native';
 import { FontFamily, Color, FontSize } from "../GlobalStyles";
+import { FontAwesome } from '@expo/vector-icons';
+//import RatingStars from "./RatingStars"; // Import the RatingStars component
 
 const Result = () => {
   const navigation = useNavigation();
   const data = [
     {
       id: 1,
-      price: 1999,
+      price:499,
       location: 'Lahug, Cebu City',
       locationIcon: require("../assets/image-145.png"),
-      stars: require("../assets/group-726.png"),
-      rating: '3.7',
-      service: "Elysium Glow: Exquisite Sanctuary Care and Beauty Enhancement ",
-      providerImage: require("../assets/rectangle-370.jpg"),
+      ratingStar: 4.5,
+      service: "Eunice Enrera Makeup Artistry - Cebu Make Up Artist ",
+      providerImage: require('../assets/rectangle-373.png'),
     },
     {
       id: 2,
-      price: 849,
+      price: 1999,
       location: 'Lahug, Cebu City',
       locationIcon: require("../assets/image-145.png"),
-      stars: require("../assets/group-726.png"),
-      rating: '3.7',
+      ratingStar: 3.5,
       service: "LuxeElegance Sparkle & Shine: Opulent Cleaning and Beauty Experience ",
-      providerImage:  require("../assets/rectangle-371.jpg"),
+      providerImage: require("../assets/rectangle-370.jpg"),
     },
     {
       id: 3,
@@ -35,7 +32,7 @@ const Result = () => {
       location: 'Lahug, Cebu City',
       locationIcon: require("../assets/image-145.png"),
       stars: require("../assets/group-726.png"),
-      rating: '3.7',
+      ratingStar:'5',
       service: "Daniel's Electrical Services ",
       providerImage: require("../assets/rectangle-372.jpg"),
     },
@@ -45,7 +42,7 @@ const Result = () => {
       location: 'Lahug, Cebu City',
       locationIcon: require("../assets/image-145.png"),
       stars: require("../assets/group-726.png"),
-      rating: '3.7',
+      ratingStar:'4',
       service: "John's Tutoring Service",
       providerImage:  require("../assets/rectangle-374.jpg"),
     },
@@ -55,7 +52,7 @@ const Result = () => {
       location: 'Lahug, Cebu City',
       locationIcon: require("../assets/image-145.png"),
       stars: require("../assets/group-726.png"),
-      rating: '3.7',
+      ratingStar: '4.5',
       service: "Arit's Plumbing Service",
       providerImage: require("../assets/rectangle-545.png"),
     },
@@ -65,7 +62,7 @@ const Result = () => {
       location: 'Lahug, Cebu City',
       locationIcon: require("../assets/image-145.png"),
       stars: require("../assets/group-726.png"),
-      rating: '3.7',
+      ratingStar: '5',
       service: "Arit's Plumbing Service",
       providerImage: require("../assets/rectangle-545.png"),
     },
@@ -75,7 +72,7 @@ const Result = () => {
       location: 'Lahug, Cebu City',
       locationIcon: require("../assets/image-145.png"),
       stars: require("../assets/group-726.png"),
-      rating: '3.7',
+      ratingStar: '3.7',
       service: "Arit's Plumbing Service",
       providerImage: require("../assets/rectangle-545.png"),
     },
@@ -94,49 +91,32 @@ const Result = () => {
   };
 
   return (
-    
     <FlatList
       data={data}
       renderItem={({ item }) => (
         <Pressable onPress={handlePress}>
-        <View style={[styles.resultContainer, { width: itemWidth }]}>
-
-          <Image
-            style={styles.providerImage}
-            contentFit="cover"
-            source={item.providerImage}
-          />
-
-          <View style={styles.hays}>
-          
-            <Text style={styles.Service}>{item.service}</Text>
-
-            <View style={styles.ratingContainer}>
-              <Image
-                style={styles.stars}
-                contentFit="cover"
-                source={item.stars}
-              />
-              <Text style={styles.rating}>{item.rating}</Text>
+          <View style={[styles.resultContainer, { width: itemWidth }]}>
+            <Image
+              style={styles.providerImage}
+              contentFit="cover"
+              source={item.providerImage}
+            />
+            <View style={styles.hays}>
+              <Text style={styles.Service}>{item.service}</Text>
+              {/* Render RatingStars component with item.ratingStar */}
+              <RatingStars  rating={item.ratingStar} />
+              <View style={styles.locationContainer}>
+                <Image
+                  style={styles.locationIcon}
+                  contentFit="cover"
+                  source={item.locationIcon}
+                />
+                <Text style={styles.location}>{item.location}</Text>
+              </View>
             </View>
-
-
-            <View style={styles.locationContainer}>
-              <Image
-                style={styles.locationIcon}
-                contentFit="cover"
-                source={item.locationIcon}
-              />
-              <Text style={styles.location}>{item.location}</Text>
-            </View>
-
+            <Text style={styles.price}>Php {item.price}</Text>
+            <Text style={styles.seeDetails}>See Details</Text>
           </View>
-
-          <Text style={styles.price}>Php {item.price}</Text>
-          <Text style={styles.seeDetails}>See Details</Text>
-
-
-        </View>
         </Pressable>
       )}
       keyExtractor={(item) => item.id.toString()}
@@ -145,11 +125,36 @@ const Result = () => {
   );
 };
 
+
+const RatingStars = ({ rating }) => {
+  const filledStars = Math.floor(rating);
+  const hasHalfStar = rating - filledStars >= 0.5;
+  const remainingStars = 5 - filledStars - (hasHalfStar ? 1 : 0);
+
+  return (
+    <View style={styles.container}>
+    <Text style={styles.ratingText}>{rating}</Text>
+      <View style={styles.ratingStars}>
+        {[...Array(filledStars)].map((_, index) => (
+          <FontAwesome key={index} name="star" size={12} color="#07374d" />
+        ))}
+        {hasHalfStar && <FontAwesome name="star-half-full" size={12} color="#07374d" />}
+        {[...Array(remainingStars)].map((_, index) => (
+          <FontAwesome key={index + filledStars + (hasHalfStar ? 1 : 0)} name="star-o" size={12} color="#07374d" />
+        ))}
+      </View>
+      
+    </View>
+  );
+};
+
+
+
+
 const styles = StyleSheet.create({
   resultContainer: {
     backgroundColor: Color.colorWhite,
     marginVertical: 5,
-   
     shadowColor: "rgba(0, 0, 0, 0.25)",
     shadowOffset: {
       width: 3,
@@ -182,7 +187,6 @@ const styles = StyleSheet.create({
     lineHeight: 10,
     width: 150,
     position: "absolute",
-
   },
   locationIcon: {
     top: 2,
@@ -190,7 +194,6 @@ const styles = StyleSheet.create({
     height: 6,
     position: "absolute",
   },
-  
   price: {
     top: 96,
     right: 26,
@@ -216,9 +219,6 @@ const styles = StyleSheet.create({
     lineHeight: 15,
     position: "absolute",
   },
-  
-  
-  
   rating: {
     fontSize: 13,
     letterSpacing: 0.7,
@@ -228,14 +228,12 @@ const styles = StyleSheet.create({
     color: Color.colorBlack,
     fontFamily: FontFamily.quicksandRegular,
     position: "absolute",
-    
   },
   stars: {
     left: 25,
     width: 49,
     height: 10,
     position: "absolute",
-    
   },
   providerImage: {
     left: 14,
@@ -244,25 +242,19 @@ const styles = StyleSheet.create({
     top: 17,
     position: "absolute",
   },
-  
   Service: {
     paddingTop: 15,
     paddingBottom: 1,
     width: 230,
-
     alignItems: "center",
     display: "flex",
     textAlign: "left",
-
     color: Color.colorBlack,
     fontFamily: FontFamily.quicksandRegular,
-   
     lineHeight: 25,
     letterSpacing: 0.75,
     fontSize: FontSize.size_lg,
-    //top: 17,
     position: "relative",
-    
   },
   ratingContainer: {
     flexDirection: 'row',
@@ -282,7 +274,21 @@ const styles = StyleSheet.create({
   hays: {
     marginLeft: 125,
   },
-  
+  container: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  ratingStars: {
+    flexDirection: 'row',
+    marginRight: 5,
+  },
+  ratingText: {
+    fontSize: 12,
+    fontWeight: 'bold',
+    color: '#555',
+    marginHorizontal: 3,
+    
+  },
 });
 
 export default Result;

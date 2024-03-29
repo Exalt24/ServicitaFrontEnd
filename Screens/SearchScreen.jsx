@@ -30,15 +30,15 @@ const SearchScreen = ({navigation}) => {
 
     
         
-        <View style={{ marginTop: 15, marginBottom:200 }}>
-        <Text style={styles.results}>Recent Search</Text>
-          <RecentSearch />
-        </View>
-
         {/*<View style={{ marginTop: 15, marginBottom:200 }}>
+        <Text style={styles.results}>Recent Searches</Text>
+          <RecentSearch />
+        </View>*/}
+
+        <View style={{ marginTop: 15, marginBottom:200 }}>
         <Text style={styles.results}>Results</Text>
           <Result />
-        </View>*/}
+        </View>
 
 
 
