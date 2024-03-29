@@ -136,11 +136,11 @@ const RatingStars = ({ rating }) => {
     <Text style={styles.ratingText}>{rating}</Text>
       <View style={styles.ratingStars}>
         {[...Array(filledStars)].map((_, index) => (
-          <FontAwesome key={index} name="star" size={12} color="#07374d" />
+          <FontAwesome key={index} name="star" size={10} color="#4A82AC" />
         ))}
-        {hasHalfStar && <FontAwesome name="star-half-full" size={12} color="#07374d" />}
+        {hasHalfStar && <FontAwesome name="star-half-full" size={10} color="#4A82AC" />}
         {[...Array(remainingStars)].map((_, index) => (
-          <FontAwesome key={index + filledStars + (hasHalfStar ? 1 : 0)} name="star-o" size={12} color="#07374d" />
+          <FontAwesome key={index + filledStars + (hasHalfStar ? 1 : 0)} name="star-o" size={10} color="#4A82AC" />
         ))}
       </View>
       
