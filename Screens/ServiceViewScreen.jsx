@@ -13,7 +13,7 @@ const windowHeight = Dimensions.get('window').height;
 
 const ServiceViewScreen = () => {
 
-  const [activeTab, setActiveTab] = useState("Post"); // State to track active tab
+  const [activeTab, setActiveTab] = useState("Reviews"); // State to track active tab
 
   const handleTabPress = (tabName) => {
     setActiveTab(tabName);

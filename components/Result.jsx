@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, Image, FlatList, Dimensions, Pressable } from "
 import { useNavigation } from '@react-navigation/native';
 import { FontFamily, Color, FontSize } from "../GlobalStyles";
 import { FontAwesome } from '@expo/vector-icons';
-//import RatingStars from "./RatingStars"; // Import the RatingStars component
+import RatingService from "./RatingService"; 
 
 const Result = () => {
   const navigation = useNavigation();
@@ -42,7 +42,7 @@ const Result = () => {
       location: 'Lahug, Cebu City',
       locationIcon: require("../assets/image-145.png"),
       stars: require("../assets/group-726.png"),
-      ratingStar:'4',
+      ratingStar:'4.8',
       service: "John's Tutoring Service",
       providerImage:  require("../assets/rectangle-374.jpg"),
     },
@@ -104,7 +104,7 @@ const Result = () => {
             <View style={styles.hays}>
               <Text style={styles.Service}>{item.service}</Text>
               {/* Render RatingStars component with item.ratingStar */}
-              <RatingStars  rating={item.ratingStar} />
+              <RatingService  rating={item.ratingStar} />
               <View style={styles.locationContainer}>
                 <Image
                   style={styles.locationIcon}
@@ -124,31 +124,6 @@ const Result = () => {
     />
   );
 };
-
-
-const RatingStars = ({ rating }) => {
-  const filledStars = Math.floor(rating);
-  const hasHalfStar = rating - filledStars >= 0.5;
-  const remainingStars = 5 - filledStars - (hasHalfStar ? 1 : 0);
-
-  return (
-    <View style={styles.container}>
-    <Text style={styles.ratingText}>{rating}</Text>
-      <View style={styles.ratingStars}>
-        {[...Array(filledStars)].map((_, index) => (
-          <FontAwesome key={index} name="star" size={10} color="#4A82AC" />
-        ))}
-        {hasHalfStar && <FontAwesome name="star-half-full" size={10} color="#4A82AC" />}
-        {[...Array(remainingStars)].map((_, index) => (
-          <FontAwesome key={index + filledStars + (hasHalfStar ? 1 : 0)} name="star-o" size={10} color="#4A82AC" />
-        ))}
-      </View>
-      
-    </View>
-  );
-};
-
-
 
 
 const styles = StyleSheet.create({
@@ -274,21 +249,7 @@ const styles = StyleSheet.create({
   hays: {
     marginLeft: 125,
   },
-  container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  ratingStars: {
-    flexDirection: 'row',
-    marginRight: 5,
-  },
-  ratingText: {
-    fontSize: 12,
-    fontWeight: 'bold',
-    color: '#555',
-    marginHorizontal: 3,
-    
-  },
+  
 });
 
 export default Result;

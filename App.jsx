@@ -37,6 +37,8 @@ import HomePage from './Screens/HomePage';
 import ServiceViewScreen from './Screens/ServiceViewScreen';
 import CategoryScreen from './Screens/CategoryScreen';
 import ViewAllScreen from './Screens/ViewAllScreen';
+import EditOptions from './Screens/EditOptions';
+
 
 
 
@@ -85,6 +87,7 @@ const LoginNav = () => {
             <Stack.Screen name='ServiceViewScreen' component={ServiceViewScreen} />
             <Stack.Screen name='CategoryScreen' component={CategoryScreen} />
             <Stack.Screen name='ViewAllScreen' component={ViewAllScreen} />
+            <Stack.Screen name='EditOptions' component={EditOptions} />
             
         </Stack.Navigator>)
 }

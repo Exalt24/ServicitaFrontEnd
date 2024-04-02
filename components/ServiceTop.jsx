@@ -6,7 +6,7 @@ import { Color, FontFamily, FontSize, Border } from "../GlobalStyles";
 import  { useState } from "react";
 import { SwiperFlatList } from "react-native-swiper-flatlist";
 import ServiceImage from './ServiceImage'; 
-import RatingStars from './RatingStars';
+import RatingService from "./RatingService"; 
 
 
 const windowWidth = Dimensions.get('window').width;
@@ -44,7 +44,7 @@ const ServiceTop= () => {
           {serviceName}
         </Text>
         <View style={styles.ratingContainer}>
-          <RatingStars rating={rating} />
+          <RatingService rating={rating} />
         </View>
 
       </View>

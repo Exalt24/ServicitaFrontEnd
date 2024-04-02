@@ -29,7 +29,7 @@ const reviewsData = [
       id: 3,
       userImage: require('../assets/rectangle-372.jpg'),
       userName: 'Alexis Padolina',
-      ratingStar: 4.5,
+      ratingStar: 4,
       reviewText: "Great service! Really satisfied with my ate's look.",
       reviewImages: [
         require('../assets/review5.jpg'),
@@ -57,7 +57,7 @@ const reviewsData = [
       id: 5,
       userImage: require('../assets/image-14.png'),
       userName: 'Wyndel Asoy',
-      ratingStar: 3.5,
+      ratingStar: 3,
       reviewText: '',
       reviewImages: [
         require('../assets/review4.jpg'),
@@ -70,7 +70,7 @@ const reviewsData = [
       id: 6,
       userImage: require('../assets/rectangle-372.jpg'),
       userName: 'Alexis Padolina',
-      ratingStar: 4.5,
+      ratingStar: 2,
       reviewText: 'Good service. Could be better.',
       reviewImages: [
         
