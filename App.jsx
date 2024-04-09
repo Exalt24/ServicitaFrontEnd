@@ -21,7 +21,7 @@ import MissingInfoPage from './Screens/Login&Register/MissingInfo';
 import Providerpref from './Screens/Login&Register/Providerpref';
 import AddressForm from './Screens/Login&Register/AddressForm';
 import HomeScreen from './Screens/HomeScreen';
-import BookingScreen from './Screens/BookingScreen';
+import SeekerBookingScreen from './Screens/SeekerBookingScreen';
 import MessageScreen from './Screens/MessageScreen';
 import ProfileScreen from './Screens/ProfileScreen';
 import SeekerEditProfileScreen from './Screens/SeekerEditProfileScreen';
@@ -65,7 +65,7 @@ const LoginNav = () => {
 
     const Stack = createNativeStackNavigator();
     return (
-        <Stack.Navigator initialRouteName='SearchScreen' screenOptions={{ headerShown: false }}>
+        <Stack.Navigator initialRouteName='SeekerBookingScreen' screenOptions={{ headerShown: false }}>
             <Stack.Screen name='UserRole' component={UserRoleScreen} />
             <Stack.Screen name='Login' component={LoginPage} />
             <Stack.Screen name='Register' component={RegisterPage} />
@@ -88,6 +88,7 @@ const LoginNav = () => {
             <Stack.Screen name='CategoryScreen' component={CategoryScreen} />
             <Stack.Screen name='ViewAllScreen' component={ViewAllScreen} />
             <Stack.Screen name='EditOptions' component={EditOptions} />
+            <Stack.Screen name='SeekerBookingScreen' component={SeekerBookingScreen} />
             
         </Stack.Navigator>)
 }
@@ -152,7 +153,7 @@ const TabNavigator = ({userData}) => {
                 tabBarIcon: tabBarIcon(require("./assets/home.png")),
                 tabBarActiveTintColor: Color.colorOrange,
             }} />
-            <Tab.Screen name='Booking' component={BookingScreen} options={{
+            <Tab.Screen name='Booking' component={SeekerBookingScreen} options={{
                 title: '',
                 tabBarIcon: tabBarIcon(require("./assets/booking.png")),
                 tabBarActiveTintColor: Color.colorOrange,

@@ -1,5 +1,6 @@
 /* fonts */
 export const FontFamily = {
+  didactGothicRegular: "DidactGothic-Regular",
   quicksandLight: "Quicksand-Light",
   quicksandBold: "Quicksand-Bold",
   quicksandRegular: "Quicksand-Regular",
@@ -28,8 +29,11 @@ export const Color = {
   colorDarkgray: "#9a9797",
   colorBlack: "#000",
   colorSilver: "#c4c4c4",
+  colorDarkslategray_300: "#1f546d",
   colorDarkslategray_100: "#05364c",
   colorDarkslategray_200: "#002f45",
+  colorDarkslategray_400: "#0e4c69",
+  colorDarkslategray_500: "#07374d",
   colorSkyblue: "#5fa7c9",
   colorGray: "#7c7878",
   colorSteelblue: "#1c729b",
