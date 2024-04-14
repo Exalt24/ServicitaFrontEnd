@@ -5,66 +5,40 @@ import { Color, FontFamily, FontSize, Border } from "../GlobalStyles";
 import Button from '../components/Button';
 import { ScrollView } from "react-native-gesture-handler";
 import { useState, useEffect } from "react";
-import DatePicker from 'react-native-modern-datepicker';
-import { getFormatedDate } from "react-native-modern-datepicker";
-import {Dropdown} from 'react-native-element-dropdown';
+import CalendarPicker from "react-native-calendar-picker";
+import { FontAwesome5 } from '@expo/vector-icons';
 
 
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
-const data = [
-  {label: '8:00 - 9:00 AM', value: '1'},
-  {label: '9:00 - 10:00 AM', value: '2'},
-  {label: '10:00 - 11:00 AM', value: '3'},
-  {label: '11:00 - 12:00 PM', value: '4'},
-  {label: '12:00 - 1:00 PM', value: '5'},
-  
-]
 
 
 const BookingScreen = () => {
   const [firstName, setFirstName] = React.useState('');
   const [lastName, setLastName] = React.useState('');
-  const [province, setProvince] = React.useState('');
-  const [city, setCity] = React.useState('');
-  const [barangay, setBarangay] = React.useState('');
-  const [zipCode, setZipCode] = React.useState('');
-  const [contactNumber, setContactNumber] = useState('+63');
-  const [contactNumberError, setContactNumberError] = useState("");
+  const [location, setLocation] = React.useState('');
   const [date, setDate] = React.useState('');
-  const [time, setTime] = React.useState('');
-  const [isFocus, setIsFocus] = useState(false);
-  const [openStartDatePicker, setOpenStartDatePicker] = useState(false);
-  const today = new Date();
-  
+  const [startTime, setStartTime] = React.useState('');
+  const [endTime, setEndTime] = React.useState('');
+
   
   const handleContinue = () => {
     // Handle continue button press
   };
+  const onDateChange = (selectedDate) => {
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+      "July", "August", "September", "October", "November", "December"];
   
+    const month = monthNames[selectedDate.getMonth()];
+    const day = selectedDate.getDate();
+    const year = selectedDate.getFullYear();
   
+    const formattedDate = `${month} ${day}, ${year}`;
+    setDate(formattedDate);
+  };
+
   
-    
-
-    
-    const startDate = getFormatedDate(
-      today.setDate(today.getDate() + 1),
-      // "DD/MM/YYYY"
-    );
-
-
-    const [selectedStartDate, setSelectedStartDate] = useState("");
-    const [startedDate, setStartedDate] = useState("");
-
-    function handleChangeStartDate(propDate) {
-      setStartedDate(propDate);
-    }
-
-    const handleOnPressStartDate = () => {
-      setOpenStartDatePicker(!openStartDatePicker);
-    };
-
 
   
 
@@ -79,158 +53,73 @@ const BookingScreen = () => {
 
         <View style={[styles.rectangleParent, styles.groupChildLayout]}>
           
+          
           <View style={[styles.groupChild, styles.groupChildLayout]} />
+          <Text style={{  left: 15, fontSize: 15,fontWeight: '500', position: "relative", bottom: 10, }}>Select your preferred date and time-slot</Text>
+          
+          <View style={styles.calenderContainer}>
+          <CalendarPicker
+                onDateChange={onDateChange}
+                width={340}
+                minDate={Date.now()}
+                todayBackgroundColor="white"
+                todayTextStyle={{ color: "black" }}
+                selectedDayColor="#07374d"
+                selectedDayTextColor="white"
+              />
+          </View>
+
+
+          
           <View style={styles.inputRow}>
 
           <View style={styles.inputContainer}>
-            <Text style={styles.inputLabel}>First Name</Text>
+            <Text style={styles.inputLabel}>Start Time</Text>
             <TextInput
               style={styles.input1}
-              value={firstName}
-              onChangeText={setFirstName}
+              value={startTime}
+              onChangeText={setStartTime}
             />
           </View>
 
           <View style={styles.inputContainer}>
-            <Text style={styles.inputLabel1}>Last Name</Text>
+            <Text style={styles.inputLabel1}>End Time</Text>
             <TextInput
               style={styles.input2}
-              value={lastName}
-              onChangeText={setLastName}
+              value={endTime}
+              onChangeText={setEndTime}
             />
           </View>
           </View>
 
-          <Text style={styles.inputLabel}>Province</Text>
-          <TextInput
-            style={styles.input}
-            value={province}
-            onChangeText={setProvince}
-          />
-
-          <Text style={styles.inputLabel}>City / Municipality </Text>
-          <TextInput
-            style={styles.input}
-            value={city}
-            onChangeText={setCity}
-          />
-
-          <Text style={styles.inputLabel}>Barangay</Text>
-          <TextInput
-            style={styles.input}
-            value={barangay}
-            onChangeText={setBarangay}
-          />
-
-          <Text style={styles.inputLabel}>ZIP Code</Text>
-
-          <TextInput
-            style={styles.input}
-            value={zipCode}
-            onChangeText={(text) => {
-              if (/^\d{0,4}$/.test(text)) {
-                setZipCode(text); // Update the state if it meets the criteria
-              }
-            }}
-            
-            keyboardType="numeric" // Set keyboardType to "numeric" to display numeric keyboard
-            maxLength={4} // Limit the input length to 4 characters
-            fontSize={15}
-          />
-
-          <Text style={styles.inputLabel}>Contact Number</Text>
-          <TextInput
-             style={styles.input}
-            value={contactNumber}
-            onChangeText={(text) => {
-              // Check if the entered text starts with '+63'
-              if (text.startsWith('+63')) {
-                setContactNumber(text);
-                setContactNumberError(text.length === 13 && /^(\+63[89])[0-9]{9}$/.test(text) ? "" : "Please enter a valid Philippine mobile number in the format +63*********.");
-              }
-            }}
-            
-            keyboardType="numeric" 
-          />
-          {contactNumberError ? <Text style={styles.errorMsg}>{contactNumberError}</Text> : null}
-          
-
-
-
-
-
-
-
-          <Pressable onPress={handleOnPressStartDate}>
-            <Text style={styles.inputLabel}>Date</Text>
+          <Text style={styles.inputLabel}>Date</Text>
             <TextInput
               style={styles.input}
               value={date }  // Display selected date
               editable={false} // Disable editing of the input field
             />
-          </Pressable>
 
-          {/* {showDatePicker && (
-            <DateTimePicker
-              testID="dateTimePicker"
-              value={date ? date : new Date()} // Initialize with current date if not set
-              mode="calendar"
-              is24Hour={true}
-              display="default"
-              onChange={handleDateChange}
-              
+
+          
+          <Text style={styles.inputLabel}>Location</Text>
+          <View style={styles.locationInput}>
+            <TextInput
+              style={styles.input}
+              placeholder="Choose Location"
+              value={location}
+              onChangeText={setLocation}
             />
-          )} */}
-          <Modal
-            animationType="slide"
-            transparent={true}
-            visible={openStartDatePicker}
-          >
-            <View style={styles.centeredView}>
-              <View style={styles.modalView}>
-                <DatePicker
-                  mode="calendar"
-                  minimumDate={startDate}
-                  selected={startedDate}
-                  onDateChanged={handleChangeStartDate}
-                  onSelectedChange={(date) => setDate(date)}
-                  options={{
-                    backgroundColor: "#7C7878",
-                    textHeaderColor: "#07374d",
-                    textDefaultColor: "#FFFFFF",
-                    selectedTextColor: "#FFF",
-                    mainColor: "#07374d",
-                    textSecondaryColor: "#FFFFFF",
-                    borderColor: "rgba(122, 146, 165, 0.1)",
-                  }}
-                />
+            <FontAwesome5 name="map-marker-alt" size={15} color="gray" style={styles.locationIcon} />
+          </View>
 
-                <TouchableOpacity onPress={handleOnPressStartDate}>
-                  <Text style={{ color: "white" }}>Close</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-          </Modal>
+          
 
 
-    <Text style={styles.inputLabel}>Time</Text>
-    <Dropdown
-          style={[styles.dropdown, isFocus && {borderColor: 'blue'}]}
-          placeholderStyle={styles.placeholderStyle}
-          selectedTextStyle={styles.selectedTextStyle}
-          data={data}
-          maxHeight={300}
-          labelField="label"
-          valueField="value"
-          placeholder={!isFocus ? 'Select time' : '...'}
-          value={time}
-          onFocus={() => setIsFocus(true)}
-          onBlur={() => setIsFocus(false)}
-          onChange={item => {
-            setTime(item.value);
-            setIsFocus(false);
-          }}
-        />
+         
+
+
+    
+    
         </View>
         
         <Button title="Continue" filled Color={Color.colorWhite} 
@@ -318,7 +207,7 @@ const styles = StyleSheet.create({
     color: Color.colorWhite,
     fontFamily: FontFamily.quicksandBold,
     fontWeight: "700",
-    lineHeight: 55,
+    lineHeight: 53,
     position: "absolute", 
    
     
@@ -448,29 +337,21 @@ const styles = StyleSheet.create({
   selectedTextStyle: {
     fontSize: 14,
   },
-  centeredView: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  modalView: {
-    margin: 20,
-    backgroundColor: "#7C7878",
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 8,
-    padding: 35,
-    width: 331,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
   
+  calenderContainer: {
+    backgroundColor: "white",
+    padding:20,
+    borderRadius: 15,
+    bottom: 10,
+    marginBottom:5,
+  },
+  locationInput: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  locationIcon: {
+    marginLeft: 5,
+  },
   
 });
 
