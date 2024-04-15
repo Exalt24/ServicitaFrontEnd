@@ -1,3 +1,5 @@
+// Render Error: A date or time must be specified as 'value' prop
+
 
 import * as React from "react";
 import { StyleSheet, View, Text, SafeAreaView, Dimensions, TextInput, TouchableOpacity, Pressable, Modal } from "react-native";
@@ -7,20 +9,38 @@ import { ScrollView } from "react-native-gesture-handler";
 import { useState, useEffect } from "react";
 import CalendarPicker from "react-native-calendar-picker";
 import { FontAwesome5 } from '@expo/vector-icons';
+import DateTimePicker from "@react-native-community/datetimepicker";
+import {Dropdown} from 'react-native-element-dropdown';
+
+
+
 
 
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
+const data = [
+  {label: '8:00 AM ', value: '1'},
+  {label: '9:00 AM', value: '2'},
+  {label: '10:00 AM ', value: '3'},
+  {label: '11:00 AM ', value: '4'},
+  {label: '12:00 AM ', value: '5'},
+
+  {label: '1:00 PM ', value: '5'},
+  {label: '2:00 PM ', value: '5'},
+  {label: '3:00 PM ', value: '5'},
+  {label: '4:00 PM ', value: '5'},
+  {label: '5:00 PM ', value: '5'},
+]
 
 
 const BookingScreen = () => {
-  const [firstName, setFirstName] = React.useState('');
-  const [lastName, setLastName] = React.useState('');
   const [location, setLocation] = React.useState('');
-  const [date, setDate] = React.useState('');
-  const [startTime, setStartTime] = React.useState('');
-  const [endTime, setEndTime] = React.useState('');
+  const [date, setDate] = useState('');
+  const [startTime, setStartTime] = useState(new Date());
+  const [endTime, setEndTime] = useState(new Date());
+  const [isFocus, setIsFocus] = useState(false);
+
 
   
   const handleContinue = () => {
@@ -37,10 +57,6 @@ const BookingScreen = () => {
     const formattedDate = `${month} ${day}, ${year}`;
     setDate(formattedDate);
   };
-
-  
-
-  
 
   return (
     <SafeAreaView style={{ flex: 1, marginTop: 25 }}>
@@ -72,34 +88,55 @@ const BookingScreen = () => {
 
           
           <View style={styles.inputRow}>
-
-          <View style={styles.inputContainer}>
-            <Text style={styles.inputLabel}>Start Time</Text>
-            <TextInput
-              style={styles.input1}
-              value={startTime}
-              onChangeText={setStartTime}
-            />
-          </View>
-
-          <View style={styles.inputContainer}>
-            <Text style={styles.inputLabel1}>End Time</Text>
-            <TextInput
-              style={styles.input2}
-              value={endTime}
-              onChangeText={setEndTime}
-            />
-          </View>
+            <View style={styles.inputContainer}>
+              <Text style={styles.inputLabel}>Start Time</Text>
+              <Dropdown
+                style={[styles.dropdown1, isFocus && {borderColor: 'blue'}]}
+                placeholderStyle={styles.placeholderStyle}
+                selectedTextStyle={styles.selectedTextStyle}
+                data={data}
+                maxHeight={300}
+                labelField="label"
+                valueField="value"
+                placeholder={!isFocus ? '' : '...'}
+                value={startTime}
+                onFocus={() => setIsFocus(true)}
+                onBlur={() => setIsFocus(false)}
+                onChange={item => {
+                  setStartTime(item.value);
+                  setIsFocus(false);
+                }}
+              />
+            </View>
+          
+            <View style={styles.inputContainer}>
+              <Text style={styles.inputLabel1}>End Time</Text>
+              <Dropdown
+                style={[styles.dropdown2, isFocus ]}
+                placeholderStyle={styles.placeholderStyle}
+                selectedTextStyle={styles.selectedTextStyle}
+                data={data}
+                maxHeight={300}
+                labelField="label"
+                valueField="value"
+                placeholder={!isFocus ? '' : '...'}
+                value={endTime}
+                onFocus={() => setIsFocus(true)}
+                onBlur={() => setIsFocus(false)}
+                onChange={item => {
+                  setEndTime(item.value);
+                  setIsFocus(false);
+                }}
+              />
+            </View>
           </View>
 
           <Text style={styles.inputLabel}>Date</Text>
             <TextInput
               style={styles.input}
-              value={date }  // Display selected date
-              editable={false} // Disable editing of the input field
+              value={date }  
+              editable={false} 
             />
-
-
           
           <Text style={styles.inputLabel}>Location</Text>
           <View style={styles.locationInput}>
@@ -111,15 +148,6 @@ const BookingScreen = () => {
             />
             <FontAwesome5 name="map-marker-alt" size={15} color="gray" style={styles.locationIcon} />
           </View>
-
-          
-
-
-         
-
-
-    
-    
         </View>
         
         <Button title="Continue" filled Color={Color.colorWhite} 
@@ -132,6 +160,7 @@ const BookingScreen = () => {
         />
 
       </View>
+      
       </ScrollView>
     </SafeAreaView>
   );
@@ -306,10 +335,27 @@ const styles = StyleSheet.create({
     flex: 1,
     marginRight: 10,
   },
+
   
-  dropdown: {
+  calenderContainer: {
+    backgroundColor: "white",
+    padding:20,
+    borderRadius: 15,
+    bottom: 10,
+    marginBottom:5,
+  },
+  locationInput: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  locationIcon: {
+    marginLeft: 5,
+  },
+
+
+  dropdown1: {
     height: windowHeight * 0.045, 
-    width:295, 
+    width: 140,
     borderColor: Color.colorDarkgray,
     borderRadius: 5,
     borderWidth: 1,
@@ -317,6 +363,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: windowWidth * 0.025, 
     marginTop:8,
     left: 25,
+  },
+  dropdown2: {
+    height: windowHeight * 0.045, 
+    width: 145,
+    borderColor: Color.colorDarkgray,
+    borderRadius: 5,
+    borderWidth: 1,
+    marginBottom: windowHeight * 0.008, 
+    paddingHorizontal: windowWidth * 0.025, 
+    marginTop:8,
   },
   icon: {
     marginRight: 5,
@@ -336,22 +392,7 @@ const styles = StyleSheet.create({
   },
   selectedTextStyle: {
     fontSize: 14,
-  },
-  
-  calenderContainer: {
-    backgroundColor: "white",
-    padding:20,
-    borderRadius: 15,
-    bottom: 10,
-    marginBottom:5,
-  },
-  locationInput: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  locationIcon: {
-    marginLeft: 5,
-  },
+  }
   
 });
 

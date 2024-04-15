@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { View, Image, Dimensions} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
@@ -67,7 +68,7 @@ const LoginNav = () => {
 
     const Stack = createNativeStackNavigator();
     return (
-        <Stack.Navigator initialRouteName='BookingScreen' screenOptions={{ headerShown: false }}>
+        <Stack.Navigator initialRouteName='ProviderBookingScreen' screenOptions={{ headerShown: false }}>
             <Stack.Screen name='UserRole' component={UserRoleScreen} />
             <Stack.Screen name='Login' component={LoginPage} />
             <Stack.Screen name='Register' component={RegisterPage} />
