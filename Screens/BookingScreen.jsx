@@ -59,7 +59,8 @@ const BookingScreen = () => {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1, marginTop: 25 }}>
+    // <SafeAreaView style={{ flex: 1, marginTop: 25 }}>
+    <SafeAreaView style={{ flex: 1}}>
       <ScrollView>
     <View style={[styles.bookingscreen2, { marginBottom: 0 }]}>
         <View style={[styles.bookingscreen2Child, styles.childPosition]} />
@@ -71,17 +72,18 @@ const BookingScreen = () => {
           
           
           <View style={[styles.groupChild, styles.groupChildLayout]} />
-          <Text style={{  left: 15, fontSize: 15,fontWeight: '500', position: "relative", bottom: 10, }}>Select your preferred date and time-slot</Text>
+          <Text style={{  left: windowWidth *0.05, fontSize: 15,fontWeight: '500', position: "relative", bottom: 10, }}>Select your preferred date and time-slot</Text>
           
           <View style={styles.calenderContainer}>
           <CalendarPicker
                 onDateChange={onDateChange}
-                width={340}
+                width={windowWidth * 0.8}
                 minDate={Date.now()}
                 todayBackgroundColor="white"
                 todayTextStyle={{ color: "black" }}
                 selectedDayColor="#07374d"
                 selectedDayTextColor="white"
+                
               />
           </View>
 
@@ -152,7 +154,7 @@ const BookingScreen = () => {
         
         <Button title="Continue" filled Color={Color.colorWhite} 
         style={{ height: 53,
-            width: 350, 
+            width: windowWidth * 0.890, 
             top: 850,
             position: "absolute", 
              }} 
@@ -175,7 +177,7 @@ const styles = StyleSheet.create({
   },
   groupChildLayout: {
     height: 650,
-    width: 345,
+    width: windowWidth * 0.890,
     position: "absolute",
 
     
@@ -232,7 +234,8 @@ const styles = StyleSheet.create({
     fontSize: 55,
     width: 210,
     textAlign: "left",
-    left: 36,
+    
+    left: windowWidth * 0.05,
     color: Color.colorWhite,
     fontFamily: FontFamily.quicksandBold,
     fontWeight: "700",
@@ -251,18 +254,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center', // Center vertically
     alignItems: 'center', // Center horizontally
   },
-  errorMsg: {
-    color: 'red',
-    fontSize: 12, 
-    marginTop: windowHeight * 0.0001, 
-    marginBottom: windowHeight * 0.01,
-    width:  windowWidth * 0.698,
-    left: 25,
-  },
+  
 
   input: {
     height: windowHeight * 0.045, 
-    width:295, 
+    width:windowWidth * 0.77, 
     borderColor: Color.colorDarkgray,
     borderRadius: 5,
     borderWidth: 1,
@@ -272,34 +268,7 @@ const styles = StyleSheet.create({
     color: 'black',
     left: 25,
   },
-  input1: {
-    height: windowHeight * 0.045, 
-    width: 140,
-    borderColor: Color.colorDarkgray,
-    borderRadius: 5,
-    borderWidth: 1,
-    marginBottom: windowHeight * 0.008, 
-    paddingHorizontal: windowWidth * 0.025, 
-    fontSize: 14,
-    color: 'black',
-    left: 25,
-    
-  },
-  input2: {
-    height: windowHeight * 0.045, 
-    width: 145, 
-    borderColor: Color.colorDarkgray,
-    borderRadius: 5,
-    borderWidth: 1,
-    marginBottom: windowHeight * 0.008, 
-    paddingHorizontal: windowWidth * 0.025,
-    fontSize: 14,
-    color: 'black',
   
-    
-    // left: 175,
-    
-  },
   inputLabel: {
     marginBottom: 0,
     fontWeight: "bold",
@@ -343,6 +312,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     bottom: 10,
     marginBottom:5,
+    
   },
   locationInput: {
     flexDirection: 'row',
@@ -355,7 +325,7 @@ const styles = StyleSheet.create({
 
   dropdown1: {
     height: windowHeight * 0.045, 
-    width: 140,
+    width: windowWidth * 0.37,
     borderColor: Color.colorDarkgray,
     borderRadius: 5,
     borderWidth: 1,
@@ -366,7 +336,7 @@ const styles = StyleSheet.create({
   },
   dropdown2: {
     height: windowHeight * 0.045, 
-    width: 145,
+    width: windowWidth * 0.39,
     borderColor: Color.colorDarkgray,
     borderRadius: 5,
     borderWidth: 1,

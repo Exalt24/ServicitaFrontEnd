@@ -245,6 +245,7 @@ function SeekerEditProfileScreen(props){
   placeholder="Contact Number"
 />
 {contactNumberError ? <Text style={styles.errorMsg}>{contactNumberError}</Text> : null}
+
 <Pressable onPress={() => setShowDatePicker(true)}>
   <Text style={styles.inputLabel}>Birthdate</Text>
   <TextInput

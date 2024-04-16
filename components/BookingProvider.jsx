@@ -1,11 +1,11 @@
-
-
 import React, { useState } from "react";
-import { StyleSheet, View, Text, Image, Dimensions, FlatList, TouchableOpacity } from "react-native";
+import { StyleSheet, View, Text, Image, Dimensions, FlatList, TouchableOpacity, Pressable } from "react-native";
 import { Color, FontFamily, FontSize, Border } from "../GlobalStyles";
+import { useNavigation } from '@react-navigation/native';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
+
 
 const data = [
   {
@@ -49,7 +49,7 @@ const BookingProvider= () => {
   const [bookings, setBookings] = useState(data);
   const [buttonPressed, setButtonPressed] = useState(Array(data.length).fill(false));
   const [bookingseekerMargin, setBookingSeekerMargin] = useState(45); // Initial marginBottom
-
+  const navigation = useNavigation();
   const handleAccept = (id, index) => {
     setBookings(prevBookings => {
       return prevBookings.map(booking => {
@@ -83,8 +83,14 @@ const BookingProvider= () => {
     });
     setBookingSeekerMargin(10); // Change marginBottom to 10
   };
+  const handlePress = () => {
+    // Navigate to another screen
+    navigation.navigate('ProviderBookingStatusScreen'); 
+  };
 
   const renderItem = ({ item, index }) => (
+    <Pressable onPress={handlePress}>
+    
     <View style={styles.container}>
       <View style={[styles.bookingseeker, { marginBottom: buttonPressed[index] ? 10 : 45 }]}>
         <View style={[styles.frame, styles.framePosition]}>
@@ -136,6 +142,7 @@ const BookingProvider= () => {
 
       </View>
     </View>
+    </Pressable>
   );
 
   return (

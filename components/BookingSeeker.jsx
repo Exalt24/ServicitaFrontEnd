@@ -1,8 +1,7 @@
-
-
 import React from "react";
-import { StyleSheet, View, Text, Image, Dimensions, FlatList } from "react-native";
+import { StyleSheet, View, Text, Image, Dimensions, FlatList, Pressable } from "react-native";
 import { Color, FontFamily, FontSize, Border } from "../GlobalStyles";
+import { useNavigation } from '@react-navigation/native'; 
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -55,56 +54,60 @@ const data = [
   // Add more data objects as needed
 ];
 
-const renderItem = ({ item }) => (
-  <View style={styles.container}>
-    <View style={styles.bookingseeker}>
-      <View style={[styles.frame, styles.framePosition]}>
-        <View style={[styles.frameChild, styles.frameShadowBox]} />
-        <View style={[styles.frameItem, styles.frameShadowBox]} />
-      </View>
-      <Image
-        style={styles.serviceimageIcon}
-        contentFit="cover"
-        source={item.imageSource}
-      />
-
-      <View style={styles.serviceWrapper}>
-        <Text style={styles.service}>{item.serviceName}</Text>
-        <View style={styles.provider}>
-          <Image
-            style={styles.userIcon}
-            contentFit="cover"
-            source={require("../assets/user.png")}
-          />
-          <Text style={styles.provider1}>{item.providerName}</Text>
-        </View>
-      </View>
-      
-      <View style={[styles.status, styles.statusLayout]}>
-        <Text style={[styles.bookingid, styles.status1Typo]}>{item.bookingId}</Text>
-        <Text style={[styles.status1, styles.status1Typo]}>{item.status}</Text>
-      </View>
-      <View style={styles.bookingdetails}>
-        
-
-        <Text style={[styles.address, styles.dateTypo]}>{item.address}</Text>
-        <Text style={[styles.date, styles.dateTypo]}>{item.date}</Text>
-        <Text style={styles.time}>{item.time}</Text>
-      </View>
-      
-    </View>
-  </View>
-);
 
 const BookingSeeker = () => {
+  const navigation = useNavigation();
+
+  const renderItem = ({ item }) => (
+    <Pressable onPress={() => navigation.navigate('SeekerBookingStatusScreen')}>
+
+    <View style={styles.container}>
+      <View style={styles.bookingseeker}>
+        <View style={[styles.frame, styles.framePosition]}>
+          <View style={[styles.frameChild, styles.frameShadowBox]} />
+          <View style={[styles.frameItem, styles.frameShadowBox]} />
+        </View>
+        <Image
+          style={styles.serviceimageIcon}
+          contentFit="cover"
+          source={item.imageSource}
+        />
+
+        <View style={styles.serviceWrapper}>
+          <Text style={styles.service}>{item.serviceName}</Text>
+          <View style={styles.provider}>
+            <Image
+              style={styles.userIcon}
+              contentFit="cover"
+              source={require("../assets/user.png")}
+            />
+            <Text style={styles.provider1}>{item.providerName}</Text>
+          </View>
+        </View>
+        
+        <View style={[styles.status, styles.statusLayout]}>
+          <Text style={[styles.bookingid, styles.status1Typo]}>{item.bookingId}</Text>
+          <Text style={[styles.status1, styles.status1Typo]}>{item.status}</Text>
+        </View>
+        <View style={styles.bookingdetails}>
+          
+
+          <Text style={[styles.address, styles.dateTypo]}>{item.address}</Text>
+          <Text style={[styles.date, styles.dateTypo]}>{item.date}</Text>
+          <Text style={styles.time}>{item.time}</Text>
+        </View>
+        
+      </View>
+    </View>
+    </Pressable>
+  );
   return (
-    <FlatList
-      data={data}
-      renderItem={renderItem}
-      keyExtractor={item => item.id}
-      contentContainerStyle={{ paddingBottom: 150, paddingTop: 10  }} 
-      
-    />
+      <FlatList
+        data={data}
+        renderItem={renderItem}
+        keyExtractor={item => item.id}
+        contentContainerStyle={{ paddingBottom: 150, paddingTop: 10  }}  
+      />
   );
 };
 

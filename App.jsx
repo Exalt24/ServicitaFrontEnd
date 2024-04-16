@@ -41,6 +41,8 @@ import CategoryScreen from './Screens/CategoryScreen';
 import ViewAllScreen from './Screens/ViewAllScreen';
 import EditOptions from './Screens/EditOptions';
 import BookingScreen from './Screens/BookingScreen';
+import ProviderBookingStatusScreen from './Screens/ProviderBookingStatusScreen';
+import SeekerBookingStatusScreen from './Screens/SeekerBookingStatusScreen';
 
 
 
@@ -68,7 +70,7 @@ const LoginNav = () => {
 
     const Stack = createNativeStackNavigator();
     return (
-        <Stack.Navigator initialRouteName='ProviderBookingScreen' screenOptions={{ headerShown: false }}>
+        <Stack.Navigator initialRouteName='BookingScreen' screenOptions={{ headerShown: false }}>
             <Stack.Screen name='UserRole' component={UserRoleScreen} />
             <Stack.Screen name='Login' component={LoginPage} />
             <Stack.Screen name='Register' component={RegisterPage} />
@@ -94,6 +96,8 @@ const LoginNav = () => {
             <Stack.Screen name='SeekerBookingScreen' component={SeekerBookingScreen} />
             <Stack.Screen name='ProviderBookingScreen' component={ProviderBookingScreen} />
             <Stack.Screen name='BookingScreen' component={BookingScreen} />
+            <Stack.Screen name='SeekerBookingStatusScreen' component={SeekerBookingStatusScreen} />
+            <Stack.Screen name='ProviderBookingStatusScreen' component={ProviderBookingStatusScreen} />
             
         </Stack.Navigator>)
 }
