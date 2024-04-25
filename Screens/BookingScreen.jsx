@@ -19,6 +19,7 @@ import {Dropdown} from 'react-native-element-dropdown';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
+
 const data = [
   {label: '8:00 AM ', value: '1'},
   {label: '9:00 AM', value: '2'},

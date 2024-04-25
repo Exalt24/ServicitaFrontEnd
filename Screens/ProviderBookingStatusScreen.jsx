@@ -1,33 +1,159 @@
+
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Dimensions, Pressable, SafeAreaView, Modal, TouchableOpacity, Image } from 'react-native';
-import { Border, FontSize, FontFamily, Color } from "../GlobalStyles";
-import { AntDesign } from '@expo/vector-icons';
+import { View, Text, StyleSheet, Dimensions, Pressable, Image, TouchableOpacity,  TextInput, Modal  } from 'react-native';
+import { AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native'; 
+import Button from '../components/Button';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { Border, FontSize, FontFamily, Color } from "../GlobalStyles";
+import { ScrollView } from 'react-native-gesture-handler';
+import RealTimeInfoSeeker from "../components/RealTimeInfoSeeker";
 
 
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 
 function ProviderBookingStatusScreen(props) {
     const navigation = useNavigation(); 
+    const [statusText, setStatusText] = useState("In Progress");
+    const [buttonsVisible, setButtonsVisible] = useState(true);
+    const [buttonsVisible1, setButtonsVisible1] = useState(true);
+    const [buttonsVisible2, setButtonsVisible2] = useState(true);
+    const [acceptPressed, setAcceptPressed] = useState(false);
+    const [startPressed, setStartPressed] = useState(false);
+    const [isReportModalVisible, setReportModalVisible] = useState(false);
+    const [complaintText, setComplaintText] = useState('');
+    const [modalVisible, setModalVisible] = useState(false);
+    const [complaint, setComplaint] = useState('');
+
 
     const handleBackPress = () => {
         navigation.navigate('ProviderBookingScreen');
     };
+    const handleAccept = () => {
+      setStatusText("Accepted");
+      setButtonsVisible(false);
+      setAcceptPressed(true);
+  };
+
+  const handleDecline = () => {
+      setStatusText("Rejected");
+      setButtonsVisible(false);
+      
+  };
+  const handleCancel = () => {
+    setStatusText("Cancelled");
+    setButtonsVisible1(false);
+  };
+  const handleStart = () => {
+    setStatusText("In Progress");
+    setButtonsVisible1(false);
+    setStartPressed(true);
+  };
+  const handleCompleted = () => {
+    setStatusText("Completed");
+    setButtonsVisible2(false);
+  };
+  const handleStopService = () => {
+    setStatusText("Failed");
+    setButtonsVisible2(false);
+  };
+  const handleReport = () => {
+    // Set the modalVisible state to true when the Report button is pressed
+    setModalVisible(true);
+  };
+  const openReportModal = () => {
+    setReportModalVisible(true);
+  };
+  
+  const closeReportModal = () => {
+    setReportModalVisible(false);
+  };
+  
+  const handleSubmit = () => {
+    // Handle submission of the complaint
+    console.log('Complaint submitted:', complaint);
+    // Reset the input field and close the modal
+    setComplaint('');
+    setModalVisible(false);
+};
+  
+  
+  
     
 
   return (
-    <SafeAreaView style={{ flex: 1, marginTop: 25 }}>
+    <SafeAreaView style={{ flex: 1}}>
+      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+      <View style={[styles.bookingscreen2]}>
+      
       <View style={styles.header}>
       <Pressable onPress={handleBackPress}>
-        
         <AntDesign name="left" size={24} color="white" style={styles.icon} />
       </Pressable>
-        <Text style={styles.title}>For Approval</Text>
+        <Text style={styles.title}>{statusText}</Text>
       </View>
 
-{/* Place this part at the center of the screen */}
-    <View style={styles.centeredContainer}>
+
+    
+    {statusText !== "In Progress" && (
+    <View  style={styles.centeredContainer1}>
+
+
+
+
+
+
+    <View style={[styles.servicecontainer, styles.servicecontainerLayout]}>
+      
+    {/* Service */}
+      <Image
+        style={[styles.serviceimageIcon, styles.servicenamePosition]}
+        contentFit="cover"
+        source={require("../assets/serviceimage1.png")}
+      />
+      <Text style={[styles.servicename, styles.servicenamePosition]}>
+        Eunice Enrera Makeup Artistry - Cebu Makeup Artist
+      </Text>
+      
+
+
+      <View style={[styles.message, styles.messageLayout]}>
+        <View style={[styles.messageChild, styles.messageLayout]} />
+        <Text style={styles.messageSeeker}>Message Seeker</Text>
+        <Image
+          style={styles.letterIcon}
+          contentFit="cover"
+          source={require("../assets/letter.png")}
+        />
+      </View>
+
+    </View>
 
      
+
+
+
+      <View style={[styles.bookingdets, styles.bookingdetsLayout]}>
+        <View style={[styles.bookingdetsChild, styles.bookingdetsLayout]} />
+        <Text
+          style={[styles.bookingIdSeeker, styles.bookingPosition]}
+        >{`Booking ID
+Seeker
+Contact
+Location
+Date
+Time`}</Text>
+        <Text style={[styles.booking, styles.bookingPosition]}>{`#236
+Darmae Tan
++639283242034
+Lahug, Cebu City
+December 25, 2023
+1:00 AM - 2:00 AM
+`}</Text>
+      </View>
+
+
       <View style={[styles.transactionDets, styles.transactionLayout1]}>
         <View style={[styles.transactionDetsChild, styles.childShadowBox]} />
         <Text
@@ -47,55 +173,185 @@ Gcash
 
 `}</Text>
       </View>
-
-
-      <View style={[styles.bookingdets, styles.bookingdetsLayout]}>
-        <View style={[styles.bookingdetsChild, styles.bookingdetsLayout]} />
-        <Text
-          style={[styles.bookingIdSeeker, styles.bookingPosition]}
-        >{`Booking ID
-Seeker
-Location
-Date
-Time`}</Text>
-        <Text style={[styles.booking, styles.bookingPosition]}>{`#236
-Darmae Tan
-Lahug, Cebu City
-December 25, 2023
-1:00 AM - 2:00 AM
-`}</Text>
       </View>
 
+    )}
+    <View style={styles.centeredContainer}>
 
-    {/* Message Button */}
-    <View style={[styles.servicecontainer, styles.servicecontainerLayout]}>
-      <View style={[styles.message, styles.messageLayout]}>
-        <View style={[styles.messageChild, styles.messageLayout]} />
-        <Text style={styles.messageSeeker}>Message Seeker</Text>
-        <Image
-          style={styles.letterIcon}
-          contentFit="cover"
-          source={require("../assets/letter.png")}
-        />
+      {buttonsVisible && (
+          <>
+            
+            <View style={{bottom:windowHeight > 732 ? windowHeight * -0.34 : windowHeight * -0.375  }} >
+            {/* height: windowHeight > 808 ? windowHeight : 770, */}
+            
+            <Button 
+              title="Accept" 
+              filled 
+              Color={Color.colorWhite} 
+              style={{ 
+                height: 53,
+                width: windowWidth * 0.890, 
+                // top: 540,
+                // bottom: windowHeight * 0.12, 
+                position: "relative", 
+              }} 
+              onPress={handleAccept} 
+            />
+            <View style={{ marginBottom: 10 }} />
+            <Button 
+              title="Decline" 
+              filled 
+              Color={Color.colorWhite} 
+              style={{ 
+                height: 53,
+                width: windowWidth * 0.890, 
+                // top: 600,
+                // bottom: windowHeight * 0.05, 
+                position: "relative", 
+                backgroundColor: "#7C7878",
+                borderColor: "#7C7878",
+              }} 
+              onPress={handleDecline} 
+            />
+            </View>
+          </>
+        )}
+        
+        {acceptPressed && buttonsVisible1 && (
+          <>
+
+
+          
+          <View style={{bottom:windowHeight > 732 ? windowHeight * -0.34 : windowHeight * -0.375  }} >
+            <Button 
+              title="Start" 
+              filled 
+              Color={Color.colorWhite} 
+              style={{ 
+                height: 53,
+                width: windowWidth * 0.890, 
+                
+                // top: 540,
+                position: "relative", 
+              }} 
+              onPress={handleStart} 
+            />
+            <View style={{ marginBottom: 10 }} />
+            <Button 
+              title="Cancel" 
+              filled 
+              Color={Color.colorWhite} 
+              style={{ 
+                height: 53,
+                width: windowWidth * 0.890, 
+                // top: 600,
+                position: "relative", 
+                backgroundColor: "#7C7878",
+                borderColor: "#7C7878",
+              }} 
+              onPress={handleCancel} 
+            />
+          </View>
+          </>
+        )}
+        {startPressed && buttonsVisible2 && (
+  <>
+    
+    <View style={styles.container01}>
+      <View style={styles.seekerInfo}>
+        <RealTimeInfoSeeker />
       </View>
+    </View>
+ 
 
-     
-    {/* Service */}
-      <Text style={[styles.servicename, styles.servicenamePosition]}>
-        Eunice Enrera Makeup Artistry - Cebu Makeup Artist
-      </Text>
-      <Image
-        style={[styles.serviceimageIcon, styles.servicenamePosition]}
-        contentFit="cover"
-        source={require("../assets/serviceimage1.png")}
+    <View style={{bottom:windowHeight > 732 ? windowHeight * -0.34 : windowHeight * -0.375  }} >
+      <Button 
+        title="Completed" 
+        filled 
+        Color={Color.colorWhite} 
+        style={{ 
+          height: 53,
+          width: windowWidth * 0.890, 
+          //top: 540,
+          position: "relative", 
+        }} 
+        onPress={handleCompleted} 
       />
-{/* The part ends here */}
-</View>
-</View>
-     
-      
+      <View style={{ marginBottom: 10 }} />
+      <Button 
+        title="Stop Service" 
+        filled 
+        Color={Color.colorWhite} 
+        style={{ 
+          height: 53,
+          width: windowWidth * 0.890, 
+          //top: 600,
+          position: "relative", 
+          backgroundColor: "#7C7878",
+          borderColor: "#7C7878",
+        }} 
+        onPress={handleStopService} 
+      />
+    </View>
+  </>
+)}
 
-      
+        {(statusText === "Completed" || statusText === "Failed" || statusText === "Cancelled") && (
+          // <View style={{top: windowHeight * 0.37}} >
+          <View style={{bottom:windowHeight > 732 ? windowHeight * -0.385 : windowHeight * -0.42  }} > 
+          <Button 
+            title="Report" 
+            filled 
+            Color={Color.colorWhite} 
+            style={{ 
+              height: 53,
+              width: windowWidth * 0.890, 
+              // top: 600,
+              position: "relative", 
+              backgroundColor: "#7C7878",
+              borderColor: "#7C7878",
+            }} 
+            onPress={handleReport} 
+          />
+          </View>
+        )}
+  </View>
+  <Modal
+  visible={modalVisible}
+  animationType="slide"
+  transparent={true}
+>
+  <View style={styles.modalContainer}>
+    <View style={styles.modalContent}>
+      <TouchableOpacity onPress={() => setModalVisible(false)} style={styles.closeIcon}>
+        <AntDesign name="close" size={24} color="black" />
+      </TouchableOpacity>
+      <Text style={styles.modalHeader}>Report</Text>
+      <TextInput
+        style={styles.input}
+        multiline
+        placeholder="Enter your complaint..."
+        textAlignVertical="top"
+        onChangeText={(text) => setComplaint(text)}
+        value={complaint}
+      />
+      <Button title="Submit" onPress={handleSubmit} 
+      filled 
+      Color={Color.colorWhite} 
+      style={{ 
+        backgroundColor: "#07374d",
+        borderColor: "#07374d",
+      }} 
+      />
+    </View>
+  </View>
+</Modal>
+    
+    
+    </View>
+
+    </ScrollView>
+     
     </SafeAreaView>
   );
 };
@@ -149,7 +405,8 @@ December 25, 2023
   },
   transactionLayout1: {
     height: 188,
-    width: 350,
+    //width: 350,
+    width: windowWidth * 0.890, 
     position: "absolute",
   },
   childShadowBox: {
@@ -183,7 +440,7 @@ December 25, 2023
   },
   bookingdetsLayout: {
     height: 164,
-    width: 350,
+    width: windowWidth * 0.890, 
     position: "absolute",
   },
   bookingPosition: {
@@ -239,20 +496,22 @@ December 25, 2023
   },
   transactionDetsChild: {
     height: 188,
-    width: 350,
+    width: windowWidth * 0.890, 
     position: "absolute",
   },
   transactionIdBooking: {
     top: 17,
     width: 108,
     textAlign: "left",
-    left: 21,
+    // left: 21,
+    left: windowWidth * 0.051,
     fontFamily: FontFamily.quicksandBold,
     fontWeight: "700",
   },
   transaction: {
     top: 19,
-    left: 219,
+    // left: 219,
+    right: windowWidth * 0.051,
     width: 110,
     height: 156,
     color: Color.colorBlack,
@@ -287,12 +546,14 @@ December 25, 2023
     width: 77,
     height: 136,
     textAlign: "left",
-    left: 21,
+    left: windowWidth * 0.051,
+    // left: 21,
     fontFamily: FontFamily.quicksandBold,
     fontWeight: "700",
   },
   booking: {
-    left: 158,
+    // left: 158,
+    right: windowWidth * 0.051,
     width: 172,
     height: 142,
     textAlign: "right",
@@ -332,10 +593,10 @@ December 25, 2023
   },
   message: {
     top: 176,
-    left: 140,
+    left: 130,
   },
   servicename: {
-    left: 140,
+    left: 130,
     letterSpacing: 1,
     lineHeight: 20,
     fontFamily: FontFamily.quicksandRegular,
@@ -351,7 +612,7 @@ December 25, 2023
   serviceimageIcon: {
     width: 118,
     height: 118,
-    left: 10,
+    left: 0,
   },
   headerChild: {
     backgroundColor: Color.colorDarkslategray_500,
@@ -383,6 +644,12 @@ December 25, 2023
     position:"relative",
     justifyContent: 'center',
 },
+centeredContainer1: {
+  
+  alignItems: 'center',
+  position:"relative",
+  justifyContent: 'center',
+},
 servicecontainerLayout: {
 height: 118,
 position: "absolute",
@@ -390,19 +657,73 @@ position: "absolute",
 },
 servicecontainer: {
     top: -80,
-    
-    
-    
-    width: 372,
+    width: windowWidth * 0.890, 
     
     
 },
+modalContainer: {
+  flex: 1,
+  justifyContent: 'center',
+  alignItems: 'center',
+  backgroundColor: 'rgba(0, 0, 0, 0.5)',
+},
+modalContent: {
+  backgroundColor: 'white',
+  borderRadius: 10,
+  padding: 20,
+  width: '80%',
+  maxHeight: '80%',
+},
+modalHeader: {
+  fontSize: 20,
+  fontWeight: 'bold',
+  marginBottom: 10,
+},
+input: {
+  borderWidth: 1,
+  borderColor: 'gray',
+  borderRadius: 5,
+  padding: 10,
+  marginBottom: 20,
+  height:200,
+  maxHeight: 200,
+  // minHeight: 200,
+},
+closeIcon: {
+  position: 'absolute',
+  top: 10,
+  right: 10,
+},
+bookingscreen2: {
+  flex: 1,
+  width: "100%",
+  height:  760,
+  height: windowHeight > 732 ? windowHeight : 770,
+  overflow: "hidden",
+  // backgroundColor: Color.colorWhite,
+  
+  
+},
+
+
+
+
+container01: {
+  flex: 1,
+  // justifyContent: "center",
+  alignItems: "center",
+  // backgroundColor: "#ffffff",
+},
+seekerInfo: {
+  position: "absolute",
+  top: 15,
+//  alignItems: "center",  
+},
+
 
 });
   
 
-  
-  
 
 
 export default ProviderBookingStatusScreen;
