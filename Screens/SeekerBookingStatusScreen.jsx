@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Dimensions, Pressable, Image, TouchableOpacity,  TextInput, Modal  } from 'react-native';
 import { AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
@@ -17,7 +16,8 @@ const windowHeight = Dimensions.get('window').height;
 
 function SeekerBookingStatusScreen(props) {
     const navigation = useNavigation(); 
-    const [statusText, setStatusText] = useState("In Progress");// No buttons: Rejected, Expired
+    const [statusText, setStatusText] = useState("Completed");// No buttons: Rejected, Expired
+    const [serviceName, setServiceName] = useState("Eunice Enrera Makeupaavss sfawfacv");
     const [buttonsVisible, setButtonsVisible] = useState(true);
     const [buttonsVisible1, setButtonsVisible1] = useState(true);
     const [buttonsVisible2, setButtonsVisible2] = useState(true);
@@ -27,15 +27,26 @@ function SeekerBookingStatusScreen(props) {
     const [complaintText, setComplaintText] = useState('');
     const [modalVisible, setModalVisible] = useState(false);
     const [modalVisible1, setModalVisible1] = useState(false);
+    const [modalVisible2, setModalVisible2] = useState(false);
     const [complaint, setComplaint] = useState('');
     const [reviewText, setReviewText] = useState('');
     const [starCount, setStarCount] = useState(0);
     const [image, setImage] = useState(null);
+    
 
-
-    const handleBackPress = () => {
-        navigation.navigate('SeekerBookingScreen');
+    const handleImHerePress = () => {
+        setModalVisible2(true);
     };
+
+    const handleModalClose = () => {
+        setModalVisible2(false);
+    };
+    const handleBackPress = () => {
+      navigation.navigate('SeekerBookingScreen');
+  };
+
+
+    
     
     const handleCancel = () => {
       setStatusText("Cancelled");
@@ -93,10 +104,7 @@ const handleSubmitReview = () => {
     setImage(null);
     setModalVisible1(false);
 };
-  
-  
-  
-    
+
 
   return (
     <SafeAreaView style={{ flex: 1}}>
@@ -119,29 +127,32 @@ const handleSubmitReview = () => {
     {statusText !== "In Progress" && (
     <View  style={styles.centeredContainer1}>
       
-    <View style={[styles.servicecontainer, styles.servicecontainerLayout]}>
-      <Image
-        style={[styles.serviceimageIcon, styles.servicenamePosition]}
-        contentFit="cover"
-        source={require("../assets/serviceimage1.png")}
-      />
-      <Text style={[styles.servicename, styles.servicenamePosition]}>
-        Eunice Enrera Makeup Artistry - Cebu Makeup Artist
-      </Text>
-      <View style={[styles.message, styles.messageLayout]}>
-        <View style={[styles.messageChild, styles.messageLayout]} />
-        <Text style={styles.messageSeeker}>Message Provider</Text>
+      <View style={[styles.servicecontainer2, styles.servicecontainer2Layout]}>
         <Image
-          style={styles.letterIcon}
+          style={[styles.serviceimage2Icon, styles.servicecontainer2Layout]}
           contentFit="cover"
-          source={require("../assets/letter.png")}
+          source={require("../assets/serviceimage1.png")}
         />
+        <View style={[styles.serviceinfo2, styles.serviceinfo2Layout]}>
+          <View >
+            <Text style={[styles.servicename2]}>
+              {serviceName}
+            </Text>
+          </View>
+          
+          <View style={[styles.message2, styles.message2Layout]}>
+            <View style={[styles.message2Child, styles.message2Layout]} />
+            <Text style={[styles.role2, styles.role2FlexBox]}>
+              Message Provider
+            </Text>
+            <Image
+              style={styles.lettericon2}
+              contentFit="cover"
+              source={require("../assets/letter.png")}
+            />
+          </View>
+        </View>
       </View>
-
-    </View>
-
-     
-
 
 
       <View style={[styles.bookingdets, styles.bookingdetsLayout]}>
@@ -189,20 +200,6 @@ Gcash
     <View style={styles.centeredContainer}>
 
 
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
       {(statusText === "Pending" || statusText === "Accepted" && buttonsVisible)   && (
           // <View style={{top: windowHeight * 0.37}} >
           <View style={{bottom:windowHeight > 732 ? windowHeight * -0.385 : windowHeight * -0.42  }} > 
@@ -244,27 +241,21 @@ Gcash
             <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
             <Button 
               title="Review" 
-              filled 
-              color="white"
+              filled={false} 
               style={{ 
                 height: 53,
                 width: (windowWidth * 0.445) - 5, 
                 position: "relative",
-                backgroundColor: "#7C7878",
-                borderColor: "#7C7878",
               }} 
               onPress={handleReview}
             />
             <Button 
               title="Report" 
-              filled 
-              color="white"
+              filled={false}
               style={{ 
                 height: 53,
                 width: (windowWidth * 0.445) - 5,
                 position: "relative",
-                backgroundColor: "#7C7878",
-                borderColor: "#7C7878",
               }} 
               onPress={handleReport} 
             />
@@ -277,33 +268,45 @@ Gcash
 
           <>
 
+          <View style={styles.container01}>
+            <View style={styles.providerInfo}>
+              <RealTimeInfoProvider />
+            </View>
+          </View>
 
-<View style={styles.container}>
-  <View style={styles.providerInfo}>
-    <RealTimeInfoProvider />
-  </View>
-</View>
+
+          <Button 
+            title="i'm here" 
+            filled={false}
+            style={{ 
+              height: 53,
+              width: windowWidth * 0.890, 
+               top: 300,
+              position: "absolute", 
+            }} 
+            onPress={handleImHerePress}  
+          />
+         
 
           
 
-          <View style={{bottom:windowHeight > 732 ? windowHeight * -0.385 : windowHeight * -0.42  }} > 
+          <View style={{bottom:windowHeight > 732 ? windowHeight * -0.322 : windowHeight * -0.35 }} > 
           <Button 
             title="Report" 
-            filled 
-            Color={Color.colorWhite} 
+            filled={false}
             style={{ 
               height: 53,
               width: windowWidth * 0.890, 
               // top: 600,
               position: "relative", 
-              backgroundColor: "#7C7878",
-              borderColor: "#7C7878",
             }} 
             onPress={handleReport} 
           />
           </View>
           </>
         )}
+
+        
         {( statusText === "Failed" || statusText === "Cancelled") && (
           <View style={{bottom:windowHeight > 732 ? windowHeight * -0.385 : windowHeight * -0.42  }} > 
           <Button 
@@ -402,7 +405,24 @@ Gcash
         </View>
     </View>
 </Modal>
-    
+
+{/* Circular Modal */}
+<Modal
+    visible={modalVisible2}
+    animationType="fade"
+    transparent={true}
+    onRequestClose={handleModalClose}
+>
+    <View style={styles.centeredView}>
+        <View style={styles.modalView}>
+            <Text style={styles.modalText}>Service is Here!</Text>
+            <Pressable onPress={handleModalClose} style={styles.closeButton}>
+                <AntDesign name="close" size={24} color="black" />
+            </Pressable>
+        </View>
+    </View>
+</Modal>
+
     
     </View>
 
@@ -510,7 +530,7 @@ Gcash
   messageLayout: {
     height: 21,
     width: 139,
-    position: "absolute",
+    position: "relative",
   },
   servicenamePosition: {
     top: 106,
@@ -762,17 +782,15 @@ bookingscreen2: {
 },
 
 container01: {
-  flex: 1,
+  // flex: 1,
   // justifyContent: "center",
   alignItems: "center",
   // backgroundColor: "#ffffff",
 },
-
 providerInfo: {
-  position: "absolute",
-  top: 15,
-//  alignItems: "center",
-  
+  position: "relative",
+  top:windowHeight > 732 ? windowHeight * -0.345 : windowHeight* -0.365,
+//  alignItems: "center", 
 },
 
 
@@ -830,7 +848,128 @@ image: {
 submitButton: {
   marginTop: 10,
 },
+centeredView: {
+  flex: 1,
+  justifyContent: "center",
+  alignItems: "center",
+  backgroundColor: 'rgba(0, 0, 0, 0.5)',
+},
+modalView: {
+  backgroundColor: "#07374d",
+  borderColor:"#9F9C9C", 
+  borderWidth: 17,
+  borderRadius: windowWidth * 0.5,
+  width: windowWidth * 0.75,
+  height: windowWidth * 0.75,
+  alignItems: "center",
+  justifyContent: "center",
+  shadowColor: "#000",
+  shadowOffset: {
+      width: 0,
+      height: 2
+  },
+  shadowOpacity: 0.25,
+  shadowRadius: 4,
+  elevation: 20,
+  
+},
+modalText: {
+  textAlign: "center",
+  fontSize: 50,
+  fontWeight: "700",
+  color: 'white',
+  fontFamily: FontFamily.quicksandBold,
+},
+closeButton: {
+  position: 'absolute',
+  top: 10,
+  right: 10,
+},
 
+
+//////////////
+servicecontainer2Layout: {
+  height: 118,
+  position: "absolute",
+},
+serviceinfo2Layout: {
+  width: 246,
+  top: 0,
+},
+role2FlexBox: {
+  textAlign: "left",
+  position: "absolute",
+},
+message2Layout: {
+  height: 21,
+  width: 139,
+  left: 0,
+  // position: "absolute",
+},
+serviceimage2Icon: {
+  width: 118,
+  left: 0,
+  top: 0,
+},
+servicename2: {
+  fontSize: FontSize.size_xl,
+  letterSpacing: 1,
+  lineHeight: 20,
+  fontFamily: FontFamily.quicksandRegular,
+  color: Color.colorBlack,
+  display: "flex",
+  alignItems: "center",
+  width: windowWidth * 0.6,
+  textAlign: "left",
+  
+  
+  paddingBottom: 1,
+  
+},
+message2Child: {
+  borderRadius: Border.br_9xs,
+  backgroundColor: Color.colorGainsboro_100,
+  top: 0,
+},
+role2: {
+  top: 3,
+  left: 24,
+  fontSize: FontSize.size_xs,
+  letterSpacing: 0.6,
+  lineHeight: 15,
+  fontWeight: "600",
+  fontFamily: FontFamily.quicksandSemiBold,
+  color: Color.colorDarkslategray_500,
+},
+lettericon2: {
+  top: 4,
+  left: 4,
+  width: 17,
+  height: 13,
+  position: "absolute",
+},
+message2: {
+  flexDirection: 'row',
+  alignItems: 'center',
+  marginTop: 5,
+},
+serviceinfo2: {
+  left: 126,
+  height: 85,
+  position: "absolute",
+},
+servicecontainer2: {
+  top: 20,
+  width: windowWidth * 0.890, 
+    
+},
+serviceinfo: {
+  backgroundColor: Color.colorWhite,
+  flex: 1,
+  width: "100%",
+  height: 932,
+  overflow: "hidden",
+},
 });
   
 

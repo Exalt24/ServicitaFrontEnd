@@ -38,6 +38,7 @@ export const Color = {
   colorGray: "#7c7878",
   colorSteelblue: "#1c729b",
   colorGainsboro: "rgba(217, 217, 217, 0)",
+  colorGainsboro_100: "#dbdbdb",
   colorWhite: '#FFFFFF',
   colorBlack: '#000',
   colorPlaceholder: '#8B8B8B',
@@ -63,6 +64,7 @@ export const Color = {
 /* border radiuses */
 export const Border = {
   br_11xs: 2,
+  br_9xs: 4,
   br_8xs: 5,
   br_7xs: 6,
   br_5xs: 8,

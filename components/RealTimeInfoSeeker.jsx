@@ -1,5 +1,3 @@
-
-
 import * as React from "react";
 import { StyleSheet, View, Text, Image, Dimensions } from "react-native";
 import { Border, FontFamily, Color, FontSize } from "../GlobalStyles";
@@ -54,7 +52,8 @@ const styles = StyleSheet.create({
     width: 42,
     borderRadius: 25,
     position: "absolute",
-    backgroundColor:"#D9D9D9"
+    borderColor: "#07374d", // Add your desired border color here "#D9D9D9" "#07374d"
+    borderWidth: 2,      // Add border width if needed
   },
   iconLayout: {
     height: 23,
@@ -94,6 +93,8 @@ const styles = StyleSheet.create({
     borderRadius: Border.br_mini,
     height: 101,
     width: windowWidth * 0.890, 
+    borderColor: "#07374d", // Add your desired border color here "#D9D9D9" "#07374d"
+    borderWidth: 2,      // Add border width if needed
   },
   messageChild: {
     width: 52,
@@ -107,12 +108,12 @@ const styles = StyleSheet.create({
     width: 52,
   },
   smsIcon: {
-    left: 10,
-    top: 9,
+    left: 7,
+    top: 7,
   },
   callIcon: {
-    left: 9.5,
-    top: 9 ,
+    left: 7,
+    top: 7 ,
   },
   call: {
     right: windowWidth * 0.03,
