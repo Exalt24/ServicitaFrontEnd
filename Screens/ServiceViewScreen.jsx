@@ -5,7 +5,7 @@ import ServiceTop from '../components/ServiceTop';
 import Description from '../components/Description';
 import Post from '../components/Post';
 import Review from '../components/Review';
-import Photos from '../components/Photos';
+import Photos1 from '../components/Photos1';
 import { useState } from 'react';
 
 const windowWidth = Dimensions.get('window').width;
@@ -44,7 +44,7 @@ const ServiceViewScreen = () => {
       </View>
 
       <View>
-        {activeTab === "Photos" && <Photos />}
+        {activeTab === "Photos" && <Photos1 />}
       </View>
 
       <View>
