@@ -39,8 +39,9 @@ const ReviewsWithNonEmptyImages = () => {
           vertical={false}
           numColumns={3} // Display three photos per row
           contentContainerStyle={styles.flatListContainer} // Add this line
-          showsVerticalScrollIndicator={false} 
-          showsHorizontalScrollIndicator={false} 
+          // showsVerticalScrollIndicator={false} 
+          // showsHorizontalScrollIndicator={false} 
+          scrollEnabled={false} 
         />
       </View>
       <Modal visible={modalVisible} transparent={false}>

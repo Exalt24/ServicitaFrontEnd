@@ -16,7 +16,7 @@ const windowHeight = Dimensions.get('window').height;
 
 function SeekerBookingStatusScreen(props) {
     const navigation = useNavigation(); 
-    const [statusText, setStatusText] = useState("Completed");// No buttons: Rejected, Expired
+    const [statusText, setStatusText] = useState("In Progress");// No buttons: Rejected, Expired
     const [serviceName, setServiceName] = useState("Eunice Enrera Makeupaavss sfawfacv");
     const [buttonsVisible, setButtonsVisible] = useState(true);
     const [buttonsVisible1, setButtonsVisible1] = useState(true);
@@ -32,8 +32,12 @@ function SeekerBookingStatusScreen(props) {
     const [reviewText, setReviewText] = useState('');
     const [starCount, setStarCount] = useState(0);
     const [image, setImage] = useState(null);
-    
+    const [isWorking, setIsWorking] = useState(false);
 
+    const handleWorkingPress1 = () => {
+      setIsWorking(true);
+    };
+    
     const handleImHerePress = () => {
         setModalVisible2(true);
     };
@@ -41,12 +45,12 @@ function SeekerBookingStatusScreen(props) {
     const handleModalClose = () => {
         setModalVisible2(false);
     };
+    
     const handleBackPress = () => {
       navigation.navigate('SeekerBookingScreen');
-  };
+    };
 
 
-    
     
     const handleCancel = () => {
       setStatusText("Cancelled");
@@ -121,8 +125,6 @@ const handleSubmitReview = () => {
 
 
 
-
-    
 
     {statusText !== "In Progress" && (
     <View  style={styles.centeredContainer1}>
@@ -264,47 +266,66 @@ Gcash
           </>
         )}
 
-        {(statusText === "In Progress" ) && (
-
-          <>
-
+      {!isWorking && statusText === "In Progress" && (
+        <>
           <View style={styles.container01}>
             <View style={styles.providerInfo}>
               <RealTimeInfoProvider />
             </View>
           </View>
 
-
-          <Button 
-            title="i'm here" 
+          <Button
+            title="i'm here"
             filled={false}
-            style={{ 
+            style={{
               height: 53,
-              width: windowWidth * 0.890, 
-               top: 300,
-              position: "absolute", 
-            }} 
-            onPress={handleImHerePress}  
+              width: windowWidth * 0.890,
+              top: 300,
+              position: "absolute",
+            }}
+            onPress={handleImHerePress}
           />
-         
-
-          
-
-          <View style={{bottom:windowHeight > 732 ? windowHeight * -0.322 : windowHeight * -0.35 }} > 
-          <Button 
-            title="Report" 
+          <Button
+            title="i'm working"
             filled={false}
-            style={{ 
+            style={{
               height: 53,
-              width: windowWidth * 0.890, 
-              // top: 600,
-              position: "relative", 
-            }} 
-            onPress={handleReport} 
+              width: windowWidth * 0.890,
+              position: "absolute",
+            }}
+            onPress={handleWorkingPress1}
           />
+
+          <View style={{ bottom: windowHeight > 732 ? windowHeight * -0.322 : windowHeight * -0.35 }}>
+            <Button
+              title="Report"
+              filled={false}
+              style={{
+                height: 53,
+                width: windowWidth * 0.890,
+                position: "relative",
+              }}
+              onPress={handleReport}
+            />
           </View>
-          </>
-        )}
+        </>
+      )}
+
+      {isWorking && (
+        <View style={styles.containerGif}>
+          <Text style={styles.sched}>Schedule</Text>
+          <Text style={styles.time}>8:00 AM - 9:00 AM</Text>
+          
+          <Image
+            source={require('../assets/1400px.gif')}
+            style={styles.gif}
+          />
+
+
+          <Text style={styles.wonderful}>Have a wonderful</Text>
+          <Text style={styles.servicitime}> Servicitime!</Text>
+        </View>
+      )}
 
         
         {( statusText === "Failed" || statusText === "Cancelled") && (
@@ -422,6 +443,8 @@ Gcash
         </View>
     </View>
 </Modal>
+
+
 
     
     </View>
@@ -970,6 +993,42 @@ serviceinfo: {
   height: 932,
   overflow: "hidden",
 },
+
+
+
+containerGif: {
+    flex: 1,
+    // justifyContent: 'center',
+    paddingTop: 50,
+    alignItems: 'center',
+    backgroundColor: '#fff',
+  },
+  sched: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  time: {
+    fontSize: 18,
+    marginBottom: 20,
+  },
+  gif: {
+    width: windowWidth * 0.95,
+    height: windowWidth * 0.95,
+    marginBottom: 20,
+  },
+  wonderful: {
+    fontSize: 25,
+    // fontStyle: 'italic',
+  },
+  servicitime: {
+    fontSize: 30,
+    fontWeight: '900',
+    fontStyle: 'italic',
+  },
+
+
+
 });
   
 
