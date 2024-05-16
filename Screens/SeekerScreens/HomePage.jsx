@@ -92,21 +92,26 @@ export default HomePage = ({navigation, route}) => {
   // style={{ paddingBottom: 10 }}
   return (
     <SafeAreaView style={{ flex: 1, marginBottom: 70 }}>
-      
-        <View style={styles.container}>
-          
-          <View style={styles.searchContainer}>
-            <Pressable onPress={()=>navigation.navigate("Search", {userData: userData})} style={styles.searchTouchable}>
+
+
+    <View style={styles.container}>
+      <View style={styles.searchContainer}>
+        
+        <View style={styles.searchWrapper}>
+          <Image
+            source={require('./../../assets/logo4home.png')} // Replace with your actual image path
+            style={styles.searchImage}
+          />
+          <Pressable onPress={() => navigation.navigate("Search", { userData: userData })} style={styles.searchTouchable}>
             <View style={styles.searchBar}>
-          
               <AntDesign name="search1" size={24} color="#002D62" />
-              
               <TextInput placeholder="Search for services or more" style={styles.searchInput} editable={false} />
-              
             </View>
           </Pressable>
-          </View>
         </View>
+        
+      </View>
+    </View>
 
       <ScrollView  >
 
@@ -324,8 +329,7 @@ export default HomePage = ({navigation, route}) => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingLeft: 10,
-    paddingRight: 10,
+    paddingHorizontal:5,
     borderBottomLeftRadius: 0,
     borderBottomRightRadius: 0,
     backgroundColor: '#07364B',
@@ -336,9 +340,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     margin: 10,
-
-    // marginRight: 20,
-   // marginRight: 20,
   },
   searchBar: {
     flexDirection: 'row',
@@ -350,12 +351,8 @@ const styles = StyleSheet.create({
     borderColor: '#002147',
     borderRadius: 20,
     backgroundColor: '#F0F0F0',
-    // marginLeft: 15
+    width: windowWidth * 0.85
 
-  },
-  searchInput: {
-    flex: 1, // Take remaining space within the searchBar
-    marginLeft: 8, // Adjust left margin to create space between icon and input
   },
 
   filter: {
@@ -388,5 +385,27 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
 
-  }
+  },
+
+
+  searchWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    // additional styles if needed
+  },
+  // searchBar: {
+  //   flexDirection: 'row',
+  //   alignItems: 'center',
+  //   // your search bar styles
+  // },
+  searchImage: {
+    width: 35, // adjust the size as needed
+    height: 30, // adjust the size as needed
+    // marginHorizotal: 18, // adjust the spacing as needed
+    marginRight:8,
+  },
+  searchInput: {
+    flex: 1,
+    // your search input styles
+  },
 });
