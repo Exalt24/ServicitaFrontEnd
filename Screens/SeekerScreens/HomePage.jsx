@@ -96,7 +96,7 @@ export default HomePage = ({navigation, route}) => {
         <View style={styles.container}>
           
           <View style={styles.searchContainer}>
-            <TouchableOpacity onPress={()=>navigation.navigate("Search", {userData: userData})} style={styles.searchTouchable}>
+            <Pressable onPress={()=>navigation.navigate("Search", {userData: userData})} style={styles.searchTouchable}>
             <View style={styles.searchBar}>
           
               <AntDesign name="search1" size={24} color="#002D62" />
@@ -104,7 +104,7 @@ export default HomePage = ({navigation, route}) => {
               <TextInput placeholder="Search for services or more" style={styles.searchInput} editable={false} />
               
             </View>
-          </TouchableOpacity>
+          </Pressable>
           </View>
         </View>
 
@@ -337,18 +337,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     margin: 10,
 
-    marginRight: 20,
+    // marginRight: 20,
+   // marginRight: 20,
   },
   searchBar: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent:"center",
     borderWidth: 1,
     paddingVertical: 8, // Adjust vertical padding to change height
-    paddingHorizontal: 5,
+    paddingHorizontal: 12,
     borderColor: '#002147',
     borderRadius: 20,
     backgroundColor: '#F0F0F0',
-    marginLeft: 15
+    // marginLeft: 15
 
   },
   searchInput: {
