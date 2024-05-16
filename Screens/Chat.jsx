@@ -514,22 +514,42 @@ const Chat = ({ navigation, route }) => {
           )}
         renderAvatarOnTop={true}
         renderAvatar={(props) => {
+          
+          const { currentMessage, previousMessage } = props;
+
+        
+
           return (
-            <Image
-              source={{ uri: otherUserImage }}
+            <View
               style={{
-                width: 36,
-                height: 36,
-                borderRadius: 18,
-                marginRight: 8,
+                marginLeft: 12,
+                marginRight: 12,
+                marginBottom: 4,
               }}
-            />
+            >
+              {currentMessage?.user?._id !== previousMessage?.user?._id ? (
+  <Image
+    source={{ uri: otherUserImage }}
+    style={{
+      height: 32,
+      width: 32,
+      borderRadius: 16,
+      marginRight: windowWidth * 0.08
+    }}
+  />
+) : (
+  <View style={{ height: 32, width: 32, marginRight: windowWidth * 0.08 }} />
+)}
+
+
+            </View>
+            
           );
         }
         }
         loadEarlier={true}
         isLoadingEarlier={true}
-        infiniteScroll={true}
+        // infiniteScroll={true}
       />
       <Modal animationType="slide" transparent={true} visible={modalVisible}>
         <View

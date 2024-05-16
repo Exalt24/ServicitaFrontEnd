@@ -33,7 +33,7 @@ const PopularServices = () => {
     <View>
         <SafeAreaView/>
         <FlatList 
-        data ={data} 
+            data ={data} 
             renderItem={({item})=> (
             <View style={styles.flatListContainer}>
               <Image 
@@ -43,10 +43,12 @@ const PopularServices = () => {
               <Text style={styles.Text}>{item.title}</Text>
               <Text style={styles.Text2}>{item.description}</Text>
               <TouchableOpacity style={styles.button}>
-                    <Text style={styles.buttonText}>Book Now!</Text>
+                <Text style={styles.buttonText}>Book Now!</Text>
             </TouchableOpacity>
-             </View>)}
-             />
+            </View>
+            )}
+            // scrollEnabled={false}
+        />
     </View>
   )
 }

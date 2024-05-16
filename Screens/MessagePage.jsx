@@ -23,7 +23,7 @@ const MessagePage = ({ navigation, route }) => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.post("http://172.16.9.33:5000/user/getUserDetailsByEmail", { email: userEmail });
+        const response = await axios.post("http://172.16.4.69:5000/user/getUserDetailsByEmail", { email: userEmail });
         const userData = response.data.data;
         setUserData(userData);
         
