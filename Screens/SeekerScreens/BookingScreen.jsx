@@ -12,8 +12,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { COLORS } from '../../constants';
 import firestore from '@react-native-firebase/firestore';
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+const  { width, height } = Dimensions.get('window');
 
 export default function BookingScreen ({navigation, route}) {
 
@@ -351,7 +350,7 @@ if ( !bookingDataFetched || !bookingData || !unavailableDatesFetched || !unavail
                 selectedStartDate={chooseFinalStartingSelectedDate()}
                 selectedDayColor="#88D0F1"
                 selectedDayTextStyle={{ color: 'black' }}
-                width={windowWidth * 0.865}
+                width={width * 0.865}
                 disabledDates={unavailableDates}
                 disabledDatesTextStyle={{ color: 'gray' }}
                 nextComponent={<FontAwesome5 name="chevron-right" size={15} color="black"/>}
@@ -446,7 +445,7 @@ if ( !bookingDataFetched || !bookingData || !unavailableDatesFetched || !unavail
 
         <Button title="Continue" filled Color={Color.colorWhite} 
         style={{ height: 53,
-            width: windowWidth * 0.9,
+            width: width * 0.9,
             top: 850,
             position: "absolute", 
             opacity: date === '' || startTime === '' || endTime === '' || location === '' ? 0.5 : 1
@@ -472,7 +471,7 @@ const styles = StyleSheet.create({
   },
   groupChildLayout: {
     height: 650,
-    width: windowWidth * 0.9,
+    width: width * 0.9,
     position: "absolute",
 
     
@@ -492,7 +491,7 @@ const styles = StyleSheet.create({
   },
   bookingscreen2Child: {
     top: -19,
-    width: windowWidth,
+    width: width,
     height: 378,
   },
   groupChild: {
@@ -517,15 +516,15 @@ const styles = StyleSheet.create({
     //alignItems: 'center',
   },
   bookingtext: {
-    top: windowHeight * 0.06,
+    top: height * 0.06,
     fontSize: 55,
-    width: windowWidth * 0.9,
+    width: width * 0.9,
     textAlign: "left",
     left: 36,
     color: Color.colorWhite,
     fontFamily: FontFamily.quicksandBold,
     fontWeight: "700",
-    lineHeight: windowHeight * 0.073,
+    lineHeight: height * 0.073,
     position: "absolute", 
 
   },
@@ -541,29 +540,29 @@ const styles = StyleSheet.create({
   errorMsg: {
     color: 'red',
     fontSize: 12, 
-    marginTop: windowHeight * 0.0001, 
-    marginBottom: windowHeight * 0.01,
-    width:  windowWidth * 0.698,
+    marginTop: height * 0.0001, 
+    marginBottom: height * 0.01,
+    width:  width * 0.698,
     left: 25,
   },
 
   input: {
-    height: windowHeight * 0.045, 
-    width: windowWidth * 0.77,
+    height: height * 0.045, 
+    width: width * 0.77,
     borderColor: Color.colorDarkgray,
     borderRadius: 5,
     borderWidth: 1,
-    marginVertical: windowHeight * 0.008, 
-    paddingHorizontal: windowWidth * 0.025, 
+    marginVertical: height * 0.008, 
+    paddingHorizontal: width * 0.025, 
     fontSize: 14,
     color: 'black',
-    left: windowWidth * 0.070,
+    left: width * 0.070,
   },
   inputLabel: {
     marginBottom: 0,
     fontWeight: "bold",
     textAlign: "left",
-    width: windowWidth * 0.7, 
+    width: width * 0.7, 
     left: 25,
     color: Color.colorBlack,
     fontFamily: FontFamily.quicksandSemiBold,
@@ -575,13 +574,13 @@ const styles = StyleSheet.create({
     marginBottom: 0,
     fontWeight: "bold",
     textAlign: "left",
-    width: windowWidth * 0.7, 
+    width: width * 0.7, 
     // left: 175,
     color: Color.colorBlack,
     fontFamily: FontFamily.quicksandSemiBold,
     fontWeight: "600",
     fontSize: FontSize.size_mini,
-    marginLeft: windowWidth * 0.035,
+    marginLeft: width * 0.035,
     
   },
   inputRow: {
@@ -597,11 +596,11 @@ const styles = StyleSheet.create({
 
   
   calenderContainer: {
-    padding: windowWidth * 0.05,
+    padding: width * 0.05,
     borderRadius: 15,
     bottom: 10,
     marginBottom:5,
-    width: windowWidth * 0.9,
+    width: width * 0.9,
   },
   locationInput: {
     flexDirection: 'row',
@@ -613,26 +612,26 @@ const styles = StyleSheet.create({
 
 
   dropdown1: {
-    height: windowHeight * 0.045, 
-    width: windowWidth * 0.35,
+    height: height * 0.045, 
+    width: width * 0.35,
     borderColor: Color.colorDarkgray,
     borderRadius: 5,
     borderWidth: 1,
-    marginBottom: windowHeight * 0.008, 
-    paddingHorizontal: windowWidth * 0.025, 
+    marginBottom: height * 0.008, 
+    paddingHorizontal: width * 0.025, 
     marginTop:8,
-    marginLeft: windowWidth * 0.070,
+    marginLeft: width * 0.070,
   },
   dropdown2: {
-    height: windowHeight * 0.045, 
-    width: windowWidth * 0.35,
+    height: height * 0.045, 
+    width: width * 0.35,
     borderColor: Color.colorDarkgray,
     borderRadius: 5,
     borderWidth: 1,
-    marginBottom: windowHeight * 0.008, 
-    paddingHorizontal: windowWidth * 0.025, 
+    marginBottom: height * 0.008, 
+    paddingHorizontal: width * 0.025, 
     marginTop:8,
-    marginLeft: windowWidth * 0.035,
+    marginLeft: width * 0.035,
   },
   icon: {
     marginRight: 5,

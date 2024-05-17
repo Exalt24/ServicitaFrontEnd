@@ -9,8 +9,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const windowHeight = Dimensions.get('window').height;
-const windowWidth = Dimensions.get('window').width;
+const  { width, height } = Dimensions.get('window');
 
 export default HomePage = ({navigation, route}) => {
 
@@ -351,7 +350,7 @@ const styles = StyleSheet.create({
     borderColor: '#002147',
     borderRadius: 20,
     backgroundColor: '#F0F0F0',
-    width: windowWidth * 0.85
+    width: width * 0.85
 
   },
 

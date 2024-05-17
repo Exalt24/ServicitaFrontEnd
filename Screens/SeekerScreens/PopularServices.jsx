@@ -2,8 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, FlatList, TouchableOpacity, Dimensions } from 'react-native';
 import { Border, FontSize, FontFamily, Color } from "./../../GlobalStyles";
 
-const windowHeight = Dimensions.get('window').height;
-const windowWidth = Dimensions.get('window').width;
+const  { width, height } = Dimensions.get('window');
 
 
 export default function PopularServices({ navigation, serviceData, userData }) {
@@ -53,7 +52,7 @@ export default function PopularServices({ navigation, serviceData, userData }) {
       contentContainerStyle={{ flexGrow: 1 }}
       showsVerticalScrollIndicator={false}
       keyboardShouldPersistTaps={"always"}
-    //   style={{ maxHeight: windowHeight * 0.50 }}
+    //   style={{ maxHeight: height * 0.50 }}
       scrollEnabled={false}
     />
   );
@@ -62,7 +61,7 @@ export default function PopularServices({ navigation, serviceData, userData }) {
 const styles = StyleSheet.create({
   flatListContainer: {
     backgroundColor: "white",
-    marginVertical: windowHeight * 0.01,
+    marginVertical: height * 0.01,
     marginHorizontal: 16,
     paddingBottom: 20,
     borderRadius: 30,
@@ -95,10 +94,10 @@ const styles = StyleSheet.create({
   },
   image: {
     width: "100%",
-    height: windowHeight * 0.25,
+    height: height * 0.25,
     // borderRadius: 15,
     borderTopLeftRadius: 30, 
     borderTopRightRadius: 30, 
-    marginBottom: windowHeight * 0.01,
+    marginBottom: height * 0.01,
   },
 });

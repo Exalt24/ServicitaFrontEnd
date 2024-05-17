@@ -14,8 +14,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { sendPushNotification } from '../NotificationScreen';
 
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+const  { width, height } = Dimensions.get('window');
 
 function ProviderBookingStatusScreen({ navigation, route }) {
 
@@ -293,28 +292,28 @@ if (isLoading) {
       
 
 
-      <View style={{top: windowHeight * 0.67 }} >
-    <View style={{ marginVertical: windowHeight * 0.01 }}>
+      <View style={{top: height * 0.67 }} >
+    <View style={{ marginVertical: height * 0.01 }}>
       <Button 
         title="Completed" 
         filled 
         Color={Color.colorWhite} 
         style={{ 
           height: 53,
-          width: windowWidth * 0.890, 
+          width: width * 0.890, 
           //top: 540,
           position: "relative", 
         }} 
         onPress={handleCompleted}
       />
       </View>
-      <View style={{ marginBottom: windowHeight * 0.01 }}>
+      <View style={{ marginBottom: height * 0.01 }}>
       <Button 
         title="Report" 
         filled={false}
         style={{ 
           height: 53,
-          width: windowWidth * 0.890, 
+          width: width * 0.890, 
           //top: 600,
           position: "relative", 
         }} 
@@ -421,8 +420,8 @@ ${data.paymentMethod === 'gcash' ? 'GCash' : data.paymentMethod === 'grab_pay' ?
       {buttonsVisible && statusText === "Pending" && (
           <>
             
-            <View style={{bottom:windowHeight > 732 ? windowHeight * -0.34 : windowHeight * -0.375  }} >
-            {/* height: windowHeight > 808 ? windowHeight : 770, */}
+            <View style={{bottom:height > 732 ? height * -0.34 : height * -0.375  }} >
+            {/* height: height > 808 ? height : 770, */}
             
             <Button 
               title="Accept" 
@@ -430,9 +429,9 @@ ${data.paymentMethod === 'gcash' ? 'GCash' : data.paymentMethod === 'grab_pay' ?
               Color={Color.colorWhite} 
               style={{ 
                 height: 53,
-                width: windowWidth * 0.890, 
+                width: width * 0.890, 
                 // top: 540,
-                // bottom: windowHeight * 0.12, 
+                // bottom: height * 0.12, 
                 position: "relative", 
               }} 
               onPress={handleAccept} 
@@ -443,9 +442,9 @@ ${data.paymentMethod === 'gcash' ? 'GCash' : data.paymentMethod === 'grab_pay' ?
               filled={false}
               style={{ 
                 height: 53,
-                width: windowWidth * 0.890, 
+                width: width * 0.890, 
                 // top: 600,
-                // bottom: windowHeight * 0.05, 
+                // bottom: height * 0.05, 
                 position: "relative", 
                 
               }} 
@@ -460,14 +459,14 @@ ${data.paymentMethod === 'gcash' ? 'GCash' : data.paymentMethod === 'grab_pay' ?
 
 
           
-          <View style={{bottom:windowHeight > 732 ? windowHeight * -0.362 : windowHeight * -0.375  }} >
+          <View style={{bottom:height > 732 ? height * -0.362 : height * -0.375  }} >
             <Button 
               title="Start" 
               filled 
               Color={Color.colorWhite} 
               style={{ 
                 height: 53,
-                width: windowWidth * 0.890, 
+                width: width * 0.890, 
                 opacity: startButtonDisabled ? 0.5 : 1,
                 position: "relative", 
               }} 
@@ -480,7 +479,7 @@ ${data.paymentMethod === 'gcash' ? 'GCash' : data.paymentMethod === 'grab_pay' ?
               filled={false}
               style={{ 
                 height: 53,
-                width: windowWidth * 0.890, 
+                width: width * 0.890, 
                 // top: 600,
                 position: "relative", 
               }} 
@@ -504,28 +503,28 @@ ${data.paymentMethod === 'gcash' ? 'GCash' : data.paymentMethod === 'grab_pay' ?
     
     
 
-    <View style={{bottom:windowHeight > 732 ? windowHeight * -0.362 : windowHeight * -0.375}} >
-    <View style={{ marginVertical: windowHeight * 0.01 }}>
+    <View style={{bottom:height > 732 ? height * -0.362 : height * -0.375}} >
+    <View style={{ marginVertical: height * 0.01 }}>
       <Button 
         title="Arrived" 
         filled 
         Color={Color.colorWhite} 
         style={{ 
           height: 53,
-          width: windowWidth * 0.890, 
+          width: width * 0.890, 
           //top: 540,
           position: "relative", 
         }} 
         onPress={handleArrivedPress} 
       />
       </View>
-      <View style={{ marginBottom: windowHeight * 0.01 }}>
+      <View style={{ marginBottom: height * 0.01 }}>
       <Button 
         title="Stop Service" 
         filled={false}
         style={{ 
           height: 53,
-          width: windowWidth * 0.890, 
+          width: width * 0.890, 
           //top: 600,
           position: "relative", 
         }} 
@@ -537,14 +536,14 @@ ${data.paymentMethod === 'gcash' ? 'GCash' : data.paymentMethod === 'grab_pay' ?
 )}
 
         {(statusText === "Completed" || statusText === "Failed" || statusText === "Canceled" || statusText === "Rejected" || statusText === "Expired") && (
-          // <View style={{top: windowHeight * 0.37}} >
-          <View style={{bottom:windowHeight > 732 ? windowHeight * -0.385 : windowHeight * -0.42  }} > 
+          // <View style={{top: height * 0.37}} >
+          <View style={{bottom:height > 732 ? height * -0.385 : height * -0.42  }} > 
           <Button 
             title="Report" 
             filled={false}
             style={{ 
               height: 53,
-              width: windowWidth * 0.890, 
+              width: width * 0.890, 
               opacity: hasReported ? 0.5 : 1,
               position: "relative", 
             }} 
@@ -644,7 +643,7 @@ ${data.paymentMethod === 'gcash' ? 'GCash' : data.paymentMethod === 'grab_pay' ?
   transactionLayout1: {
     height: 188,
     //width: 350,
-    width: windowWidth * 0.890, 
+    width: width * 0.890, 
     position: "absolute",
   },
   childShadowBox: {
@@ -678,7 +677,7 @@ ${data.paymentMethod === 'gcash' ? 'GCash' : data.paymentMethod === 'grab_pay' ?
   },
   bookingdetsLayout: {
     height: 164,
-    width: windowWidth * 0.890, 
+    width: width * 0.890, 
     position: "absolute",
   },
   bookingPosition: {
@@ -690,7 +689,7 @@ ${data.paymentMethod === 'gcash' ? 'GCash' : data.paymentMethod === 'grab_pay' ?
     position: "absolute",
   },bookingPositions: {
     lineHeight: 27,
-    top: windowHeight * 0.132,
+    top: height * 0.132,
     color: Color.colorBlack,
     letterSpacing: 0.6,
     fontSize: FontSize.size_xs,
@@ -743,7 +742,7 @@ ${data.paymentMethod === 'gcash' ? 'GCash' : data.paymentMethod === 'grab_pay' ?
   },
   transactionDetsChild: {
     height: 188,
-    width: windowWidth * 0.890, 
+    width: width * 0.890, 
     position: "absolute",
   },
   transactionIdBooking: {
@@ -751,15 +750,15 @@ ${data.paymentMethod === 'gcash' ? 'GCash' : data.paymentMethod === 'grab_pay' ?
     width: 108,
     textAlign: "left",
     // left: 21,
-    left: windowWidth * 0.051,
+    left: width * 0.051,
     fontFamily: FontFamily.quicksandBold,
     fontWeight: "700",
   },
   transaction: {
     top: 19,
     // left: 219,
-    right: windowWidth * 0.051,
-    width: windowWidth * 0.890,
+    right: width * 0.051,
+    width: width * 0.890,
     height: 156,
     color: Color.colorBlack,
     lineHeight: 30,
@@ -790,26 +789,26 @@ ${data.paymentMethod === 'gcash' ? 'GCash' : data.paymentMethod === 'grab_pay' ?
     backgroundColor: Color.colorWhite,
   },
   bookingIdSeeker: {
-    width: windowWidth * 0.890,
+    width: width * 0.890,
     height: 136,
     textAlign: "left",
-    left: windowWidth * 0.051,
+    left: width * 0.051,
     // left: 21,
     fontFamily: FontFamily.quicksandBold,
     fontWeight: "700",
   },
   booking: {
     // left: 158,
-    right: windowWidth * 0.051,
-    width: windowWidth * 0.890,
+    right: width * 0.051,
+    width: width * 0.890,
     height: 142,
     textAlign: "right",
     fontFamily: FontFamily.quicksandMedium,
     fontWeight: "500",
   },  bookings: {
     // left: 158,
-    right: windowWidth * 0.026,
-    width: windowWidth * 0.890,
+    right: width * 0.026,
+    width: width * 0.890,
     height: 142,
     textAlign: "right",
     fontFamily: FontFamily.quicksandMedium,
@@ -915,7 +914,7 @@ position: "absolute",
 },
 servicecontainer: {
     top: -80,
-    width: windowWidth * 0.890, 
+    width: width * 0.890, 
     
     
 },
@@ -956,7 +955,7 @@ bookingscreen2: {
   flex: 1,
   width: "100%",
   height:  760,
-  height: windowHeight > 732 ? windowHeight : 770,
+  height: height > 732 ? height : 770,
   overflow: "hidden",
   // backgroundColor: Color.colorWhite,
   
@@ -972,7 +971,7 @@ container01: {
 },
 seekerInfo: {
   position: "absolute",
-  top: windowHeight* -0.355,
+  top: height* -0.355,
 //  alignItems: "center",  
 },
 
@@ -1010,7 +1009,7 @@ servicename2: {
   color: Color.colorBlack,
   display: "flex",
   alignItems: "center",
-  width: windowWidth * 0.6,
+  width: width * 0.6,
   textAlign: "left",
   
   
@@ -1051,7 +1050,7 @@ serviceinfo2: {
 },
 servicecontainer2: {
   top: 20,
-  width: windowWidth * 0.890, 
+  width: width * 0.890, 
     
 },
 serviceinfo: {
@@ -1064,11 +1063,11 @@ serviceinfo: {
 mapContainer: {
   flex: 1,
   width: "90%",
-  height: windowHeight * 0.54,
+  height: height * 0.54,
   backgroundColor: Color.colorWhite,
   borderRadius: Border.br_mini,
   position: "absolute",
-  bottom: windowHeight * 0.195,
+  bottom: height * 0.195,
 },
 containerGif: {
   flex: 1,
@@ -1081,17 +1080,17 @@ sched: {
   fontWeight: 'bold',
   marginBottom: 10,
   position: "absolute",
-  top: windowHeight * 0.02,  
+  top: height * 0.02,  
 },
 time: {
   fontSize: 18,
   marginBottom: 20,
   position: "absolute",
-  top: windowHeight * 0.07,  
+  top: height * 0.07,  
 },
 gif: {
-  width: windowWidth * 0.95,
-  height: windowWidth * 0.95,
+  width: width * 0.95,
+  height: width * 0.95,
   marginBottom: 20,
 },
 wonderful: {
@@ -1099,14 +1098,14 @@ wonderful: {
   fontSize: 25,
   // fontStyle: 'italic',
   position: "absolute",
-  top: windowHeight * 0.52,
+  top: height * 0.52,
 },
 servicitime: {
   fontSize: 30,
   fontWeight: '900',
   fontStyle: 'italic',
   position: "absolute", 
-  top: windowHeight * 0.565, 
+  top: height * 0.565, 
 },
 
 

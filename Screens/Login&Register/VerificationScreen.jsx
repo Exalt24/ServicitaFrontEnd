@@ -14,8 +14,7 @@ import * as Notifications from 'expo-notifications';
 import { set } from "date-fns";
 
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+const  { width, height } = Dimensions.get('window');
 
 export default function VerificationScreen({ navigation, route, props }) {
 
@@ -275,7 +274,7 @@ export default function VerificationScreen({ navigation, route, props }) {
     return (
         <SafeAreaView style={{flex: 1, backgroundColor: Color.colorWhite}}>
             <ScrollView contentContainerStyle={{ flexGrow: 1 }} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps={"always"}>
-            <View style={{ flexDirection: 'column', justifyContent: 'flex-start', marginHorizontal: windowWidth * 0.05, marginTop: windowHeight * 0.07 }}>
+            <View style={{ flexDirection: 'column', justifyContent: 'flex-start', marginHorizontal: width * 0.05, marginTop: height * 0.07 }}>
                             <Pressable onPress={() => navigation.goBack()} style={styles.arrowContainer}>
                                             <Image
                                             style={styles.userroleChild}
@@ -283,9 +282,9 @@ export default function VerificationScreen({ navigation, route, props }) {
                                             source={require("./../../assets/arrow-1.png")}
                                             />
                             </Pressable>
-                            <View style={{ marginVertical: windowHeight * 0.02 }}>
+                            <View style={{ marginVertical: height * 0.02 }}>
                     <Text style={{
-                        fontSize: windowWidth * 0.12,
+                        fontSize: width * 0.12,
                         fontWeight: 'bold',
                         color: Color.colorBlue,
                     }}>
@@ -392,35 +391,35 @@ export default function VerificationScreen({ navigation, route, props }) {
             <View style={styles.centeredView}>
             
               <View style={styles.modalView}>
-              <View flexDirection='row' style={{ borderBottomColor: Color.colorBlue, borderBottomWidth: 1, alignItems: 'center', justifyContent: 'space-between', marginVertical: windowHeight * 0.01 }}>
+              <View flexDirection='row' style={{ borderBottomColor: Color.colorBlue, borderBottomWidth: 1, alignItems: 'center', justifyContent: 'space-between', marginVertical: height * 0.01 }}>
                             <Text style={{
-                                    fontSize: windowWidth * 0.06,
+                                    fontSize: width * 0.06,
                                     fontWeight: '400',
-                                    marginVertical: windowHeight * 0.01,
+                                    marginVertical: height * 0.01,
                                     color: Color.colorBlue,
-                                    marginLeft: windowWidth * 0.05 
+                                    marginLeft: width * 0.05 
                                 }}>Verify Code</Text>
-                            <AntDesignIcon style = {{ marginRight: windowWidth * 0.05 }} name="close" size= {windowWidth * 0.06} color={Color.colorBlue} onPress={() => hideModal()} />
+                            <AntDesignIcon style = {{ marginRight: width * 0.05 }} name="close" size= {width * 0.06} color={Color.colorBlue} onPress={() => hideModal()} />
                             </View>
               <View style={{flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-              <View style={{ marginBottom: windowHeight * 0.04, justifyContent: 'center', marginHorizontal: windowWidth * 0.05 }}>
+              <View style={{ marginBottom: height * 0.04, justifyContent: 'center', marginHorizontal: width * 0.05 }}>
                     <Text style={{
                         fontSize: 16,
                         fontWeight: '400',
-                        marginVertical: windowHeight * 0.01,
+                        marginVertical: height * 0.01,
                         color: Color.colorBlue
 
                     }}>Mobile Number</Text>
 
                     <View style={{
                         width: '100%',
-                        height: windowHeight * 0.06,
+                        height: height * 0.06,
                         borderColor: mobile === null || mobile.length <= 3 ? Color.colorBlue1 : mobileVerify && !equal  ? Color.colorGreen : Color.colorRed,
                         borderWidth: 1,
-                        borderRadius: windowHeight * 0.015,
+                        borderRadius: height * 0.015,
                         alignItems: 'center',
                         justifyContent: 'center',
-                        paddingHorizontal: windowWidth * 0.05,
+                        paddingHorizontal: width * 0.05,
                         flexDirection: 'row'
                         
                     }}>
@@ -434,7 +433,7 @@ export default function VerificationScreen({ navigation, route, props }) {
                             borderRightWidth: 1,
                             borderColor: mobile === null || mobile.length <= 3 ? Color.colorBlue1 : mobileVerify && !equal ? Color.colorGreen : Color.colorRed,
                             height: "100%",
-                            right: windowWidth * 0.02,
+                            right: width * 0.02,
                         }}
                         color={mobile === null || mobile.length <= 3 ? Color.colorBlue1 : mobileVerify && !equal ? Color.colorGreen : Color.colorRed}
                         defaultValue='+63'
@@ -447,7 +446,7 @@ export default function VerificationScreen({ navigation, route, props }) {
                             style={{
                                 width: "80%",
                                 marginRight: 10,
-                                left: windowWidth * 0.005,
+                                left: width * 0.005,
                             }}
                             onChangeText={(text) => {
                                 const formattedMobile = "+63" + text;
@@ -498,29 +497,29 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         backgroundColor: Color.colorWhite,
-        marginHorizontal: windowWidth * 0.025,
+        marginHorizontal: width * 0.025,
         flexDirection: 'column',
         position: 'absolute',
-        top: windowHeight * 0.3
+        top: height * 0.3
     },
     arrowContainer: {
-        bottom: windowHeight * 0.02,
-        left: windowWidth * 0.01,
+        bottom: height * 0.02,
+        left: width * 0.01,
     },
     userroleChild: {
-        top: windowHeight * 0.003,
-        left: windowWidth * 0.001,
+        top: height * 0.003,
+        left: width * 0.001,
         maxHeight: "100%",
-        width: windowWidth * 0.07,
+        width: width * 0.07,
     },
     codeInputContainer: {
         flexDirection: 'row',
-        marginVertical: windowHeight * 0.04,
+        marginVertical: height * 0.04,
         alignItems: 'center',
     },
     codeInput: {
-        width: windowWidth * 0.13,
-        height: windowHeight * 0.08,
+        width: width * 0.13,
+        height: height * 0.08,
         borderWidth: 1,
         borderColor: Color.colorGray,
         backgroundColor: Color.colorGainsboro,
@@ -537,7 +536,7 @@ const styles = StyleSheet.create({
         display: "flex",
         textAlign: "center",
         lineHeight: 23,
-        marginBottom: windowHeight * 0.04,
+        marginBottom: height * 0.04,
     },
     passwordRecovery: {
         fontSize: FontSize.size_xl,
@@ -547,11 +546,11 @@ const styles = StyleSheet.create({
         alignItems: "center",
         display: "flex",
         textAlign: "center",
-        lineHeight: windowHeight * 0.1,
+        lineHeight: height * 0.1,
     },
     changeMobileButton: {
-        marginTop: windowHeight * 0.09,
-        top: windowHeight * 0.02,
+        marginTop: height * 0.09,
+        top: height * 0.02,
     },
     changeMobileButtonText: {
         color: Color.colorBlue,
@@ -570,31 +569,31 @@ const styles = StyleSheet.create({
         borderRadius: 10,
     },
     button: {
-        marginBottom: windowHeight * 0.02,
-        width: windowWidth * 0.85,
-        height: windowHeight * 0.08,
+        marginBottom: height * 0.02,
+        width: width * 0.85,
+        height: height * 0.08,
         alignSelf: 'center',
-        marginTop: windowHeight * 0.08, 
+        marginTop: height * 0.08, 
     },
     buttons: {
-        marginVertical: windowHeight * 0.02,
-        width: windowWidth * 0.85,
-        height: windowHeight * 0.08,
+        marginVertical: height * 0.02,
+        width: width * 0.85,
+        height: height * 0.08,
         alignSelf: 'center',    
     },
     buttones: {
-        top: windowHeight * 0.23,
-        marginVertical: windowHeight * 0.02,
-        width: windowWidth * 0.85,
-        height: windowHeight * 0.08,
+        top: height * 0.23,
+        marginVertical: height * 0.02,
+        width: width * 0.85,
+        height: height * 0.08,
         alignSelf: 'center',
     },
     buttonis:
     {
-        width: windowWidth * 0.7,
-        height: windowHeight * 0.08,
+        width: width * 0.7,
+        height: height * 0.08,
         alignSelf: 'center',
-        marginVertical: windowHeight * 0.02,
+        marginVertical: height * 0.02,
     },
 
 });

@@ -6,8 +6,7 @@ import { Color, FontFamily, FontSize, Border } from "./../GlobalStyles";
 import { parse } from 'date-fns';
 
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+const  { width, height } = Dimensions.get('window');
 
 const BookingSeeker = ({ navigation, filters, bookingData, userData}) => {
 
@@ -140,7 +139,7 @@ const BookingSeeker = ({ navigation, filters, bookingData, userData}) => {
         </Pressable>
       )}
       keyExtractor={item => item.id}
-      contentContainerStyle={{ paddingBottom: windowHeight * 0.285, paddingTop: windowHeight * 0.02 }}
+      contentContainerStyle={{ paddingBottom: height * 0.285, paddingTop: height * 0.02 }}
       ListEmptyComponent={() => (
         <View style={styles.container}>
           <Text>No bookings found</Text>
@@ -183,7 +182,7 @@ const styles = StyleSheet.create({
     left: 0,
     top: 0,
     position: "absolute",
-    width: windowWidth * 0.95,
+    width: width * 0.95,
     
   },
   
@@ -203,8 +202,8 @@ const styles = StyleSheet.create({
   frame: {
     left: 0,
     position: "relative",
-    height: windowHeight * 0.25,  // Adjust height as needed
-    width: windowWidth * 0.95, // Adjust width as needed
+    height: height * 0.25,  // Adjust height as needed
+    width: width * 0.95, // Adjust width as needed
     
   },
 
@@ -326,10 +325,10 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   bookingid: {
-    left: windowWidth * 0.470,
+    left: width * 0.470,
     textAlign: "right",
-    width: windowWidth * 0.4,
-    height: windowHeight * 0.02,
+    width: width * 0.4,
+    height: height * 0.02,
   },
   status1: {
     width: 135,
@@ -339,7 +338,7 @@ const styles = StyleSheet.create({
   status: {
     top: 15,
     width: 380,
-    left:  windowWidth * 0.04,
+    left:  width * 0.04,
    
   },
  

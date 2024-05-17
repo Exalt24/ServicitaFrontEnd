@@ -7,8 +7,7 @@ import Button from "../../components/Button"
 import axios from 'axios';
 import Addition from '@expo/vector-icons/MaterialCommunityIcons';
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+const  { width, height } = Dimensions.get('window');
 
 export default function ResetPasswordScreen({navigation, route, params}) {
     const [password, setPassword] = useState('');
@@ -44,7 +43,7 @@ export default function ResetPasswordScreen({navigation, route, params}) {
     return (
         <SafeAreaView style={{flex: 1, backgroundColor: Color.colorWhite}}>
             <ScrollView contentContainerStyle={{ flexGrow: 1 }} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps={"always"}>
-        <View style={{ flexDirection: 'column', justifyContent: 'flex-start', marginHorizontal: windowWidth * 0.05, marginTop: windowHeight * 0.07 }}>
+        <View style={{ flexDirection: 'column', justifyContent: 'flex-start', marginHorizontal: width * 0.05, marginTop: height * 0.07 }}>
                             <Pressable onPress={() => navigation.navigation("Login")} style={styles.arrowContainer}>
                                             <Image
                                             style={styles.userroleChild}
@@ -62,24 +61,24 @@ export default function ResetPasswordScreen({navigation, route, params}) {
                 Enter your new password
             </Text>
 
-            <View style={{  marginTop: windowHeight * 0.05, width: windowWidth * 0.9 }}>
+            <View style={{  marginTop: height * 0.05, width: width * 0.9 }}>
                 <Text style={{
-                    fontSize: windowWidth * 0.05,
+                    fontSize: width * 0.05,
                     fontWeight: '400',
-                    marginVertical: windowHeight * 0.01,
+                    marginVertical: height * 0.01,
                     color: Color.colorBlue
                 }}>Password</Text>
 
                 <View style={{
                     width: '100%',
-                    height: windowHeight * 0.06,
+                    height: height * 0.06,
                     borderColor: password === null || password === '' ? Color.colorBlue1 : passwordVerify ? Color.colorGreen : Color.colorRed,
                     borderWidth: 1,
-                    borderRadius: windowHeight * 0.015,
+                    borderRadius: height * 0.015,
                     alignItems: 'center',
                     justifyContent: 'center',
-                    paddingLeft: windowWidth * 0.05,
-                    paddingHorizontal: windowWidth * 0.14,
+                    paddingLeft: width * 0.05,
+                    paddingHorizontal: width * 0.14,
                     flexDirection: 'row'
                 }}>
                     <FontAwesome name="lock" color={password === null || password === '' ? Color.colorBlue1 : passwordVerify ? Color.colorGreen : Color.colorRed} style={{marginRight: 5, fontSize: 24}} />
@@ -105,24 +104,24 @@ export default function ResetPasswordScreen({navigation, route, params}) {
                 )}
             </View>
 
-             <View style={ { marginTop: windowHeight * 0.03, width: windowWidth * 0.90} }>
+             <View style={ { marginTop: height * 0.03, width: width * 0.90} }>
                 <Text style={{
-                    fontSize: windowWidth * 0.05,
+                    fontSize: width * 0.05,
                     fontWeight: '400',
-                    marginVertical: windowHeight * 0.01,
+                    marginVertical: height * 0.01,
                     color: Color.colorBlue
                 }}>Confirm Password</Text>
 
                 <View style={{
                     width: '100%',
-                    height: windowHeight * 0.06,
+                    height: height * 0.06,
                     borderColor: confirmPassword === null || confirmPassword === '' ? Color.colorBlue1 : confirmPasswordVerify ? Color.colorGreen : Color.colorRed,
                     borderWidth: 1,
-                    borderRadius: windowHeight * 0.015,
+                    borderRadius: height * 0.015,
                     alignItems: 'center',
                     justifyContent: 'center',
-                    paddingLeft: windowWidth * 0.05,
-                    paddingHorizontal: windowWidth * 0.14,
+                    paddingLeft: width * 0.05,
+                    paddingHorizontal: width * 0.14,
                     flexDirection: 'row'
                 }}>
                     <Addition name="lock-check" color={confirmPassword === null || confirmPassword === '' ? Color.colorBlue1 : confirmPasswordVerify ? Color.colorGreen : Color.colorRed} style={{marginRight: 5, fontSize: 24}} />
@@ -152,11 +151,11 @@ export default function ResetPasswordScreen({navigation, route, params}) {
                     filled
                     Color={Color.colorWhite}
                     style={{
-                        marginTop: windowHeight * 0.07,
-                        marginBottom: windowHeight * 0.05,
-                        width: windowWidth * 0.87,
-                        height: windowHeight * 0.08,
-                        top: windowHeight * 0.03,
+                        marginTop: height * 0.07,
+                        marginBottom: height * 0.05,
+                        width: width * 0.87,
+                        height: height * 0.08,
+                        top: height * 0.03,
                     }}
                     onPress={handleSubmit}
                     disabled={!passwordVerify || !confirmPasswordVerify}
@@ -175,7 +174,7 @@ const styles = StyleSheet.create({
         display: "flex",
         textAlign: "center",
         lineHeight: 23,
-        marginBottom: windowHeight * 0.04,
+        marginBottom: height * 0.04,
     },
     passwordRecovery: {
         fontSize: FontSize.size_5xl,
@@ -185,7 +184,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         display: "flex",
         textAlign: "center",
-        lineHeight: windowHeight * 0.1,
+        lineHeight: height * 0.1,
     },
     enterYourEmail: {
         fontSize: FontSize.size_mini,
@@ -196,27 +195,27 @@ const styles = StyleSheet.create({
         alignItems: "center",
         display: "flex",
         textAlign: "center",
-        lineHeight: windowHeight * 0.05,
-        bottom: windowHeight * 0.02,
+        lineHeight: height * 0.05,
+        bottom: height * 0.02,
     },
     resetPasswordScreen: {
         flex: 1,
         justifyContent: 'center',
         backgroundColor: Color.colorWhite,
-        marginHorizontal: windowWidth * 0.05,
+        marginHorizontal: width * 0.05,
         flexDirection: 'column',
         alignItems: 'center',
         position: 'absolute',
-        top: windowHeight * 0.2,
+        top: height * 0.2,
     },
     arrowContainer: {
-        bottom: windowHeight * 0.02,
-        left: windowWidth * 0.01,
+        bottom: height * 0.02,
+        left: width * 0.01,
     },
     userroleChild: {
-        top: windowHeight * 0.003,
-        left: windowWidth * 0.001,
+        top: height * 0.003,
+        left: width * 0.001,
         maxHeight: "100%",
-        width: windowWidth * 0.07,
+        width: width * 0.07,
     },
 });

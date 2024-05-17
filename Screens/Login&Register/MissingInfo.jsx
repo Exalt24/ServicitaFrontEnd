@@ -10,8 +10,7 @@ import Material from '@expo/vector-icons/MaterialCommunityIcons';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import axios from 'axios';
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+const  { width, height } = Dimensions.get('window');
 
 export default function MissingInfoPage ({navigation, route, props}) {
 
@@ -131,8 +130,8 @@ export default function MissingInfoPage ({navigation, route, props}) {
                     filled
                     Color={Color.colorWhite}
                     style={{
-                        marginTop: windowHeight * 0.02,
-                        marginBottom: windowHeight * 0.05,
+                        marginTop: height * 0.02,
+                        marginBottom: height * 0.05,
                     }}
                     onPress={handleSubmit}
                     disabled={!validateFields()}
@@ -145,8 +144,8 @@ export default function MissingInfoPage ({navigation, route, props}) {
                     filled
                     Color={Color.colorWhite}
                     style={{
-                        marginTop: windowHeight * 0.02,
-                        marginBottom: windowHeight * 0.05,
+                        marginTop: height * 0.02,
+                        marginBottom: height * 0.05,
                     }}
                     onPress={() => navigation.navigate('ProviderPrefer', { firstName: firstName, lastName: lastName, email: email, role: role, streetAddress1: streetAddress1, streetAddress2: streetAddress2, city: selectedValueCity.name, barangay: selectedBarangay, birthDate: formattedBirthday, mobile: mobile, password: userId})}
                     disabled={!validateFields()}
@@ -169,7 +168,7 @@ export default function MissingInfoPage ({navigation, route, props}) {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: Color.colorWhite }}>
         <ScrollView contentContainerStyle={{ flexGrow: 1 }} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps={"always"}>
-            <View style={{ flex: 1, marginHorizontal: windowWidth * 0.05, justifyContent: "center", flexDirection: "column"}}>
+            <View style={{ flex: 1, marginHorizontal: width * 0.05, justifyContent: "center", flexDirection: "column"}}>
                 
                 <Pressable onPress={() => navigation.goBack()} style={styles.arrowContainer}>
                     <Image
@@ -179,12 +178,12 @@ export default function MissingInfoPage ({navigation, route, props}) {
                     />
                 </Pressable>
 
-                <View style={{ marginVertical: windowHeight * 0.04 }}>
+                <View style={{ marginVertical: height * 0.04 }}>
                     
                     <Text style={{
-                        fontSize: windowWidth * 0.1,
+                        fontSize: width * 0.1,
                         fontWeight: 'bold',
-                        marginVertical: windowHeight * 0.02,
+                        marginVertical: height * 0.02,
                         color: Color.colorBlue
                         
                     }}>
@@ -194,11 +193,11 @@ export default function MissingInfoPage ({navigation, route, props}) {
                     </Text>
                 </View>
                 
-                <View style={{ marginBottom: windowHeight * 0.01 }}>
+                <View style={{ marginBottom: height * 0.01 }}>
                     <Text style={{
-                        fontSize: windowWidth * 0.05,
+                        fontSize: width * 0.05,
                         fontWeight: '400',
-                        marginVertical: windowHeight * 0.01,
+                        marginVertical: height * 0.01,
                         color: Color.colorBlue
                     }}>Birthdate</Text>
                     <TouchableOpacity onPress={() => {
@@ -210,14 +209,14 @@ export default function MissingInfoPage ({navigation, route, props}) {
                     }}>
                        <View style={{
                         width: '100%',
-                        height: windowHeight * 0.06,
+                        height: height * 0.06,
                         borderColor: birthday === null || birthday === '' ? Color.colorBlue1 : birthdayVerify ? Color.colorGreen : Color.colorRed,
                         borderWidth: 1,
-                        borderRadius: windowHeight * 0.015,
+                        borderRadius: height * 0.015,
                         alignItems: 'center',
                         justifyContent: 'center',
-                        paddingLeft: windowWidth * 0.05,
-                        paddingHorizontal: windowWidth * 0.14,
+                        paddingLeft: width * 0.05,
+                        paddingHorizontal: width * 0.14,
                         flexDirection: 'row'                   
                     }}>
                         <FontAwesome name="calendar" color = {birthday === null || birthday === '' ? Color.colorBlue1 : birthdayVerify ? Color.colorGreen : Color.colorRed} style={{marginRight: 5, fontSize: 24}} />
@@ -231,7 +230,7 @@ export default function MissingInfoPage ({navigation, route, props}) {
                             value={birthday ? formattedBirthday: ''}
                             editable={false}
                             color={birthday === null || birthday === '' ? Color.colorBlack : birthdayVerify ? Color.colorBlack : Color.colorRed}
-                            fontSize={windowWidth * 0.034}
+                            fontSize={width * 0.034}
                         />
                         {birthday < 1 ? null : birthdayVerify ? (
                             <Feather name="check-circle" color="green" size={24} style={{ position: "absolute", right: 12 }}/>
@@ -255,24 +254,24 @@ export default function MissingInfoPage ({navigation, route, props}) {
                         <Text style={errorText}>You must be at least 18 years old to register.</Text>
                     )}
 
-<View style={{ marginBottom: windowHeight * 0.01 }}>
+<View style={{ marginBottom: height * 0.01 }}>
                     <Text style={{
-                        fontSize: windowWidth * 0.05,
+                        fontSize: width * 0.05,
                         fontWeight: '400',
-                        marginVertical: windowHeight * 0.01,
+                        marginVertical: height * 0.01,
                         color: Color.colorBlue
                     }}>Street Address Line 1</Text>
                     
                     <View style={{
                         width: '100%',
-                        height: windowHeight * 0.06,
+                        height: height * 0.06,
                         borderColor: streetAddress1 === null || streetAddress1 === '' ? Color.colorBlue1 : streetAddress1Verify ? Color.colorGreen : Color.colorRed,
                         borderWidth: 1,
-                        borderRadius: windowHeight * 0.015,
+                        borderRadius: height * 0.015,
                         alignItems: 'center',
                         justifyContent: 'center',
-                        paddingLeft: windowWidth * 0.05,
-                        paddingHorizontal: windowWidth * 0.13,
+                        paddingLeft: width * 0.05,
+                        paddingHorizontal: width * 0.13,
                         flexDirection: 'row'
                     }}>
                         <FontAwesome name="home" color = {streetAddress1 === null || streetAddress1 === '' ? Color.colorBlue1 : streetAddress1Verify ? Color.colorGreen : Color.colorRed} style={{marginRight: 5, fontSize: 24}} />
@@ -299,24 +298,24 @@ export default function MissingInfoPage ({navigation, route, props}) {
                     )}
                 </View>
                 
-                <View style={{ marginBottom: windowHeight * 0.01 }}>
+                <View style={{ marginBottom: height * 0.01 }}>
                     <Text style={{
-                        fontSize: windowWidth * 0.05,
+                        fontSize: width * 0.05,
                         fontWeight: '400',
-                        marginVertical: windowHeight * 0.01,
+                        marginVertical: height * 0.01,
                         color: Color.colorBlue
                     }}>Street Address Line 2 (Optional)</Text>
                     
                     <View style={{
                         width: '100%',
-                        height: windowHeight * 0.06,
+                        height: height * 0.06,
                         borderColor: streetAddress2 === null || streetAddress2 === '' ? Color.colorBlue1 : streetAddress2 ? Color.colorGreen : Color.colorBlue1,
                         borderWidth: 1,
-                        borderRadius: windowHeight * 0.015,
+                        borderRadius: height * 0.015,
                         alignItems: 'center',
                         justifyContent: 'center',
-                        paddingLeft: windowWidth * 0.05,
-                        paddingHorizontal: windowWidth * 0.13,
+                        paddingLeft: width * 0.05,
+                        paddingHorizontal: width * 0.13,
                         flexDirection: 'row'
                     }}>
                         <Error name="apartment" color={streetAddress2 === null || streetAddress2 === '' ? Color.colorBlue1 : streetAddress2 ? Color.colorGreen : Color.colorBlue1} style={{marginRight: 5, fontSize: 24}} />
@@ -340,24 +339,24 @@ export default function MissingInfoPage ({navigation, route, props}) {
                 </View>
 
                 <TouchableWithoutFeedback onPress={() => setShowSelectListCity(false)}>
-            <View style={{ marginBottom: windowHeight * 0.01 }}>
+            <View style={{ marginBottom: height * 0.01 }}>
                 <Text style={{
-                    fontSize: windowWidth * 0.05,
+                    fontSize: width * 0.05,
                     fontWeight: '400',
-                    marginVertical: windowHeight * 0.01,
+                    marginVertical: height * 0.01,
                     color: Color.colorBlue,
                 }}>City/Municipality</Text>
                 <TouchableOpacity onPress={() => setShowSelectListCity(true)}>
                     <View style={{
                         width: '100%',
-                        height: windowHeight * 0.06,
+                        height: height * 0.06,
                         borderColor: selectedValueCity ? Color.colorGreen : Color.colorBlue1,
                         borderWidth: 1,
-                        borderRadius: windowHeight * 0.015,
+                        borderRadius: height * 0.015,
                         alignItems: 'center',
                         justifyContent: 'center',
-                        paddingLeft: windowWidth * 0.025,
-                        paddingHorizontal: windowWidth * 0.14,
+                        paddingLeft: width * 0.025,
+                        paddingHorizontal: width * 0.14,
                         flexDirection: 'row'
                     }}>
                         <Error name="location-city" color = {selectedValueCity === null || selectedValueCity === '' ? Color.colorBlue1 : selectedValueCity ? Color.colorGreen : Color.colorBlue1} style={{marginRight: 5, fontSize: 24}}/>
@@ -384,7 +383,7 @@ export default function MissingInfoPage ({navigation, route, props}) {
                     <TouchableWithoutFeedback onPress={() => setShowSelectListCity(false)}>
                         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
                             <View style={{ backgroundColor: 'white', width: '80%', maxHeight: '80%', borderRadius: 10 }}>
-                                <View style={{ flexDirection: 'row', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: 'rgba(0, 0, 0, 0.3)', height: windowHeight * 0.06, }}>
+                                <View style={{ flexDirection: 'row', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: 'rgba(0, 0, 0, 0.3)', height: height * 0.06, }}>
                                 <FontAwesome name="search" color={Color.colorBlue} style={{ marginLeft: 10, fontSize: 20 }} />
                                 <TextInput
                                     placeholder='Search...'
@@ -392,7 +391,7 @@ export default function MissingInfoPage ({navigation, route, props}) {
                                     style={{ paddingHorizontal: 10 }}
                                 />
                                 </View>
-                                <ScrollView style={{ maxHeight: windowHeight * 0.5 }}>
+                                <ScrollView style={{ maxHeight: height * 0.5 }}>
                                 {filteredCities.map((item, index) => (
                                     <TouchableOpacity key={item.key} onPress={() => handleSelectCity(item)} style={{ borderBottomWidth: 1, borderBottomColor: 'rgba(0, 0, 0, 0.3)' }}>
                                         <Text style={{ paddingVertical: 10, paddingHorizontal: 20 }}>{item.name}</Text>
@@ -408,24 +407,24 @@ export default function MissingInfoPage ({navigation, route, props}) {
                 
         {selectedValueCity ? (
                      <TouchableWithoutFeedback onPress={() => setShowSelectBarangay(false)}>
-                     <View style={{ marginBottom: windowHeight * 0.01 }}>
+                     <View style={{ marginBottom: height * 0.01 }}>
                          <Text style={{
-                             fontSize: windowWidth * 0.05,
+                             fontSize: width * 0.05,
                              fontWeight: '400',
-                             marginVertical: windowHeight * 0.01,
+                             marginVertical: height * 0.01,
                              color: Color.colorBlue,
                          }}>Barangay</Text>
                          <TouchableOpacity onPress={() => setShowSelectBarangay(true)}>
                              <View style={{
                                  width: '100%',
-                                 height: windowHeight * 0.06,
+                                 height: height * 0.06,
                                  borderColor: selectedBarangay ? Color.colorGreen : Color.colorBlue1,
                                  borderWidth: 1,
-                                 borderRadius: windowHeight * 0.015,
+                                 borderRadius: height * 0.015,
                                  alignItems: 'center',
                                  justifyContent: 'center',
-                                 paddingLeft: windowWidth * 0.025,
-                                 paddingHorizontal: windowWidth * 0.14,
+                                 paddingLeft: width * 0.025,
+                                 paddingHorizontal: width * 0.14,
                                  flexDirection: 'row'
                              }}>
                                  <Material name="town-hall" color = {selectedBarangay === null || selectedBarangay === '' ? Color.colorBlue1 : selectedBarangay ? Color.colorGreen : Color.colorBlue1} style={{marginRight: 5, fontSize: 24}}/>
@@ -452,7 +451,7 @@ export default function MissingInfoPage ({navigation, route, props}) {
                              <TouchableWithoutFeedback onPress={() => setShowSelectBarangay(false)}>
                                  <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
                                      <View style={{ backgroundColor: 'white', width: '80%', maxHeight: '80%', borderRadius: 10 }}>
-                                         <View style={{ flexDirection: 'row', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: 'rgba(0, 0, 0, 0.3)', height: windowHeight * 0.06, }}>
+                                         <View style={{ flexDirection: 'row', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: 'rgba(0, 0, 0, 0.3)', height: height * 0.06, }}>
                                          <FontAwesome name="search" color={Color.colorBlue} style={{ marginLeft: 10, fontSize: 20 }} />
                                          <TextInput
                                              placeholder='Search...'
@@ -460,7 +459,7 @@ export default function MissingInfoPage ({navigation, route, props}) {
                                              style={{ paddingHorizontal: 10 }}
                                          />
                                          </View>
-                                         <ScrollView style={{ maxHeight: windowHeight * 0.5 }}>
+                                         <ScrollView style={{ maxHeight: height * 0.5 }}>
                                          {filteredBarangays.map((item, index) => (
                                              <TouchableOpacity key={item} onPress={() => handleSelectBarangay(item)} style={{ borderBottomWidth: 1, borderBottomColor: 'rgba(0, 0, 0, 0.3)' }}>
                                                  <Text style={{ paddingVertical: 10, paddingHorizontal: 20 }}>{item}</Text>
@@ -475,24 +474,24 @@ export default function MissingInfoPage ({navigation, route, props}) {
                  </TouchableWithoutFeedback>
                 ) : null}
 
-                <View style={{ marginBottom: windowHeight * 0.01 }}>
+                <View style={{ marginBottom: height * 0.01 }}>
                     <Text style={{
-                        fontSize: windowWidth * 0.05,
+                        fontSize: width * 0.05,
                         fontWeight: '400',
-                        marginVertical: windowHeight * 0.01,
+                        marginVertical: height * 0.01,
                         color: Color.colorBlue
                     }}>Mobile Number</Text>
 
                     <View style={{
                         width: '100%',
-                        height: windowHeight * 0.06,
+                        height: height * 0.06,
                         borderColor: mobile === null || mobile.length <= 3 ? Color.colorBlue1 : mobileVerify ? Color.colorGreen : Color.colorRed,
                         borderWidth: 1,
-                        borderRadius: windowHeight * 0.015,
+                        borderRadius: height * 0.015,
                         alignItems: 'center',
                         justifyContent: 'center',
-                        paddingLeft: windowWidth * 0.05,
-                        paddingHorizontal: windowWidth * 0.13,
+                        paddingLeft: width * 0.05,
+                        paddingHorizontal: width * 0.13,
                         flexDirection: 'row'
                     }}>
                         <FontAwesome name="phone" color={mobile === null || mobile.length <= 3 ? Color.colorBlue1 : mobileVerify ? Color.colorGreen : Color.colorRed} style={{ marginRight: 5, fontSize: 24}} />
@@ -546,22 +545,22 @@ export default function MissingInfoPage ({navigation, route, props}) {
 
 const styles = StyleSheet.create({
     arrowContainer: {
-        top: windowHeight * 0.03,
-        left: windowWidth * 0.01,
+        top: height * 0.03,
+        left: width * 0.01,
         zIndex: 2,
     },
     userroleChild: {
-        top: windowHeight * 0.001,
-        left: windowWidth * 0.001,
+        top: height * 0.001,
+        left: width * 0.001,
         maxHeight: "100%",
-        width: windowWidth * 0.07,
+        width: width * 0.07,
         zIndex: 1,
     },
     datePickerContainer: {
         flexDirection: 'row',
         alignItems: 'center',
         borderWidth: 1,
-        borderRadius: windowHeight * 0.015,
-        height: windowHeight * 0.045,
+        borderRadius: height * 0.015,
+        height: height * 0.045,
     },
 })

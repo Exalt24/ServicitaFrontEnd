@@ -12,9 +12,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { sendPushNotification } from '../NotificationScreen';
 
-
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+const  { width, height } = Dimensions.get('window');
 
 export default function SeekerBookingScreen({ navigation, route }) {
 
@@ -159,7 +157,7 @@ const styles = StyleSheet.create({
     marginLeft: 25,
   },
   filterIcon: {
-    marginLeft: windowWidth * 0.87,
+    marginLeft: width * 0.87,
   },
   modalContainer: {
     flex: 1,

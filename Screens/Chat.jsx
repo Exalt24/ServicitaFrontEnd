@@ -27,8 +27,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { sendPushNotification } from './NotificationScreen'
 
 
-const windowHeight = Dimensions.get("window").height;
-const windowWidth = Dimensions.get("window").width;
+const height = Dimensions.get("window").height;
+const width = Dimensions.get("window").width;
 
 
 const Chat = ({ navigation, route }) => {
@@ -546,11 +546,11 @@ const Chat = ({ navigation, route }) => {
       height: 32,
       width: 32,
       borderRadius: 16,
-      marginRight: windowWidth * 0.08
+      marginRight: width * 0.08
     }}
   />
 ) : (
-  <View style={{ height: 32, width: 32, marginRight: windowWidth * 0.08 }} />
+  <View style={{ height: 32, width: 32, marginRight: width * 0.08 }} />
 )}
 
 
@@ -662,7 +662,7 @@ const styles = StyleSheet.create({
     height: 'auto',
     alignItems: "center",
     justifyContent: "center",
-    bottom: windowHeight * 0.02,
+    bottom: height * 0.02,
   },
   inputMessageContainer: {
     height: 54,
@@ -683,12 +683,12 @@ const styles = StyleSheet.create({
   },
   closeButton: {
     position: 'absolute',
-    top: windowHeight * 0.02,
+    top: height * 0.02,
     right: 20,
   },
   closeButtons: {
     position: 'absolute',
-    top: windowHeight * 0.02,
+    top: height * 0.02,
     right: 20,
   },
   swiperImageContainer: {
