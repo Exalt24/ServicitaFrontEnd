@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Image, FlatList, Dimensions, Pressable, TextInp
 import { COLORS } from '../../constants/theme';
 import { AntDesign, Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
-import Header_Notification from '../../components/Header_Notification';
+import Header_Category from './../../components/Header_Category';
 
 const screenWidth = Dimensions.get('screen').width;
     const screenHeight = Dimensions.get('screen').height;
@@ -76,7 +76,7 @@ const Services = ({navigation, route}) => {
     
     return (
         <SafeAreaView>
-            <Header_Notification title="Categories" />
+            <Header_Category title="Categories" />
             
             <FlatList
                 data={data}
