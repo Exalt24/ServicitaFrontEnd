@@ -13,8 +13,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import firestore from '@react-native-firebase/firestore';
 import axios from 'axios';
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+
+const  { width, height } = Dimensions.get('window');
 
 export default ServiceViewScreen = ({navigation, route}) => {
 
@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
   },
   navigator: {
     backgroundColor: Color.colorWhite,
-    width: windowWidth,
+    width: width,
     height: 40,
     overflow: "hidden",
     flexDirection: "row", // Arrange tabs horizontally

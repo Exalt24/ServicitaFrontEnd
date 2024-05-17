@@ -6,8 +6,7 @@ import { Color, FontFamily, FontSize, Border } from "./../GlobalStyles";
 import { parse, set } from 'date-fns';
 import firestore from '@react-native-firebase/firestore';
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+const  { width, height } = Dimensions.get('window');
 
 const BookingProvider= ({ navigation, filters, bookingData, userData, onActionDoneChange }) => {
 
@@ -192,7 +191,7 @@ const BookingProvider= ({ navigation, filters, bookingData, userData, onActionDo
       </Pressable>
       )}
       keyExtractor={item => item.id}
-      contentContainerStyle={{ paddingBottom: windowHeight * 0.285, paddingTop: windowHeight * 0.02 }}
+      contentContainerStyle={{ paddingBottom: height * 0.285, paddingTop: height * 0.02 }}
       // Take into account if there are no bookings
       ListEmptyComponent={() => (
         <View style={styles.container}>
@@ -232,7 +231,7 @@ const styles = StyleSheet.create({
     left: 0,
     top: 0,
     position: "absolute",
-    width: windowWidth * 0.95,
+    width: width * 0.95,
   },
   
   frameChild: {
@@ -249,8 +248,8 @@ const styles = StyleSheet.create({
   frame: {
     left: 0,
     position: "relative",
-    height: windowHeight * 0.25,
-    width: windowWidth * 0.95,
+    height: height * 0.25,
+    width: width * 0.95,
   },
 
   statusLayout: {
@@ -362,10 +361,10 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   bookingid: {
-    left: windowWidth * 0.470,
+    left: width * 0.470,
     textAlign: "right",
-    width: windowWidth * 0.4,
-    height: windowHeight * 0.02,
+    width: width * 0.4,
+    height: height * 0.02,
   },
   status1: {
     width: 135,
@@ -375,7 +374,7 @@ const styles = StyleSheet.create({
   status: {
     top: 15,
     width: 380,
-    left:  windowWidth * 0.04,
+    left:  width * 0.04,
   },
 
   buttonsContainer: {
@@ -393,22 +392,22 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     paddingHorizontal: 57,
     borderRadius: 5,
-    width: windowWidth * 0.4,
+    width: width * 0.4,
   },
   button2: {
     backgroundColor: "#7C7878",
     paddingVertical: 5,
     paddingHorizontal: 57,
     borderRadius: 5,
-    width: windowWidth * 0.4,
+    width: width * 0.4,
   },
   buttonText: {
     color: 'white',
     fontSize: 12,
     fontWeight: 'bold',
-    width: windowWidth * 0.4,
+    width: width * 0.4,
     alignContent: 'center',
-    right: windowWidth * 0.015,
+    right: width * 0.015,
   },
 });
 

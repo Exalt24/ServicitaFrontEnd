@@ -9,8 +9,7 @@ import axios from "axios";
 import Button from "../../components/Button";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+const  { width, height } = Dimensions.get('window');
 
 export default function MobileLogin({navigation}) {
     const [mobile, setMobile] = useState('+63');
@@ -91,7 +90,7 @@ export default function MobileLogin({navigation}) {
 
     return (
         <SafeAreaView style={{flex: 1, backgroundColor: Color.colorWhite}}>
-                        <View style={{ flexDirection: 'column', justifyContent: 'flex-start', marginHorizontal: windowWidth * 0.05, marginTop: windowHeight * 0.07 }}>
+                        <View style={{ flexDirection: 'column', justifyContent: 'flex-start', marginHorizontal: width * 0.05, marginTop: height * 0.07 }}>
                             <Pressable onPress={() => navigation.goBack()} style={styles.arrowContainer}>
                                             <Image
                                             style={styles.userroleChild}
@@ -112,25 +111,25 @@ export default function MobileLogin({navigation}) {
                 
                 {!confirm ? (
                     <>
-                    <View style={{marginTop: windowHeight * 0.05, width: windowWidth * 0.90 }}>
+                    <View style={{marginTop: height * 0.05, width: width * 0.90 }}>
                     <Text style={{
                         fontSize: 16,
                         fontWeight: '400',
-                        marginVertical: windowHeight * 0.01,
+                        marginVertical: height * 0.01,
                         color: Color.colorBlue
 
                     }}>Mobile Number</Text>
 
                     <View style={{
                         width: '100%',
-                        height: windowHeight * 0.06,
+                        height: height * 0.06,
                         borderColor: mobile === null || mobile.length <= 3 ? Color.colorBlue1 : mobileVerify ? Color.colorGreen : Color.colorRed,
                         borderWidth: 1,
-                        borderRadius: windowHeight * 0.015,
+                        borderRadius: height * 0.015,
                         alignItems: 'center',
                         justifyContent: 'center',
-                        paddingLeft: windowWidth * 0.05,
-                        paddingHorizontal: windowWidth * 0.13,
+                        paddingLeft: width * 0.05,
+                        paddingHorizontal: width * 0.13,
                         flexDirection: 'row'
                     }}>
                         <FontAwesome name="phone" color={mobile === null || mobile.length <= 3 ? Color.colorBlue1 : mobileVerify ? Color.colorGreen : Color.colorRed} style={{ marginRight: 5, fontSize: 24}} />
@@ -173,17 +172,17 @@ export default function MobileLogin({navigation}) {
                         <Text style={errorText}>Please enter a valid Philippine mobile number in the format +63*********.</Text>
                     )}
                 </View>
-                <View style={{ marginBottom: windowHeight * 0.01, alignItems: 'center' }}>
+                <View style={{ marginBottom: height * 0.01, alignItems: 'center' }}>
                 <Button
                     title="Send Code"
                     filled
                     Color={Color.colorWhite}
                     style={{
-                        marginTop: windowHeight * 0.07,
-                        marginBottom: windowHeight * 0.05,
-                        width: windowWidth * 0.87,
-                        height: windowHeight * 0.08,
-                        top: windowHeight * 0.1,
+                        marginTop: height * 0.07,
+                        marginBottom: height * 0.05,
+                        width: width * 0.87,
+                        height: height * 0.08,
+                        top: height * 0.1,
                     }}
                     disabled={!mobileVerify}
                     onPress={signInWithPhoneNumber}
@@ -193,7 +192,7 @@ export default function MobileLogin({navigation}) {
                 ) : (
                     <>
                     <View style={{flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-                <View style = {{ marginBottom: windowHeight * 0.03 }}>
+                <View style = {{ marginBottom: height * 0.03 }}>
                 <Text style={[styles.passwordRecovery, styles.passwordFlexBox]}>We’ve sent the code to:</Text>
                 <Text style={[styles.enterYourEmail, styles.passwordFlexBox]}>{mobile}</Text>
                 </View>
@@ -227,10 +226,10 @@ export default function MobileLogin({navigation}) {
             filled
             Color={Color.colorWhite}
             style={{
-                marginTop: windowHeight * 0.07,
-                marginBottom: windowHeight * 0.05,
-                width: windowWidth * 0.87,
-                height: windowHeight * 0.08,
+                marginTop: height * 0.07,
+                marginBottom: height * 0.05,
+                width: width * 0.87,
+                height: height * 0.08,
             }}
             onPress={confirmCode}
             disabled={code.includes('')}
@@ -239,10 +238,10 @@ export default function MobileLogin({navigation}) {
             title="Send Again"
             filledColor={Color.colorWhite}
             style={{
-                marginTop: windowHeight * 0.07,
-                marginBottom: windowHeight * 0.05,
-                width: windowWidth * 0.87,
-                height: windowHeight * 0.08,
+                marginTop: height * 0.07,
+                marginBottom: height * 0.05,
+                width: width * 0.87,
+                height: height * 0.08,
             }}
             onPress={signInWithPhoneNumber}
             />
@@ -262,20 +261,20 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         backgroundColor: Color.colorWhite,
-        marginHorizontal: windowWidth * 0.05,
+        marginHorizontal: width * 0.05,
         flexDirection: 'column',
         position: 'absolute',
-        top: windowHeight * 0.2,
+        top: height * 0.2,
     },
     arrowContainer: {
-        bottom: windowHeight * 0.02,
-        left: windowWidth * 0.01,
+        bottom: height * 0.02,
+        left: width * 0.01,
     },
     userroleChild: {
-        top: windowHeight * 0.003,
-        left: windowWidth * 0.001,
+        top: height * 0.003,
+        left: width * 0.001,
         maxHeight: "100%",
-        width: windowWidth * 0.07,
+        width: width * 0.07,
     },
     text: {
         fontFamily: FontFamily.quicksandLight,
@@ -309,7 +308,7 @@ const styles = StyleSheet.create({
         display: "flex",
         textAlign: "center",
         lineHeight: 23,
-        marginBottom: windowHeight * 0.04,
+        marginBottom: height * 0.04,
     },
     passwordRecovery: {
         fontSize: FontSize.size_5xl,
@@ -319,7 +318,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         display: "flex",
         textAlign: "center",
-        lineHeight: windowHeight * 0.1,
+        lineHeight: height * 0.1,
     },
     enterYourEmail: {
         fontSize: FontSize.size_mini,
@@ -330,7 +329,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         display: "flex",
         textAlign: "center",
-        lineHeight: windowHeight * 0.05,
-        bottom: windowHeight * 0.02,
+        lineHeight: height * 0.05,
+        bottom: height * 0.02,
     },
 });

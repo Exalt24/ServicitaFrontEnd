@@ -10,7 +10,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import { set } from 'date-fns';
 
 
-const windowWidth = Dimensions.get('window').width;
+const  { width, height } = Dimensions.get('window');
 
 export default function ProviderBookingScreen({ navigation, route }) {
 
@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
     marginLeft: 25,
   },
   filterIcon: {
-    marginLeft: windowWidth * 0.87,
+    marginLeft: width * 0.87,
   },
   modalContainer: {
     flex: 1,

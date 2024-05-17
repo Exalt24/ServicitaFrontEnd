@@ -6,8 +6,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import firestore from '@react-native-firebase/firestore';
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+const  { width, height } = Dimensions.get('window');
+
 export default ConfirmationScreen = ({ navigation, route }) => {
 
   const { bookingData, bookingId } = route.params;
@@ -86,7 +86,7 @@ async function getProviderData() {
       <View style={styles.container3}>
       <View style={{flexDirection:"row"}}>
         <Text style={{margin: 8, fontWeight:'bold'}}>Transaction ID</Text>
-        <Text style={{marginTop: 8, textAlign:'right', position: 'absolute', left: windowWidth * 0.265, fontSize: 13}}>{bookingData.paymentId}</Text>
+        <Text style={{marginTop: 8, textAlign:'right', position: 'absolute', left: width * 0.265, fontSize: 13}}>{bookingData.paymentId}</Text>
         </View>
 
         <View style={{flexDirection:"row"}}>

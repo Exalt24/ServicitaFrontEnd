@@ -5,8 +5,7 @@ import Swiper from 'react-native-swiper';
 import { Ionicons } from '@expo/vector-icons';
 import { Video } from 'expo-av';
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+const  { width, height } = Dimensions.get('window');
 
 const PostItem = ({ item }) => {
     const [modalVisible, setModalVisible] = useState(false);
@@ -178,8 +177,8 @@ const PostItem = ({ item }) => {
       textAlign: 'justify'
     },
     postImage: {
-      width: windowWidth * 0.72,
-      height: windowWidth * 0.75,
+      width: width * 0.72,
+      height: width * 0.75,
       marginRight: 8,
 
     },

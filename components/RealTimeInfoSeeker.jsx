@@ -4,8 +4,8 @@ import { Border, FontFamily, Color, FontSize } from "../GlobalStyles";
 import { AntDesign, MaterialCommunityIcons } from '@expo/vector-icons';
 import firestore from '@react-native-firebase/firestore';
 
-const windowWidth = Dimensions.get("window").width;
-const windowHeight = Dimensions.get("window").height
+const width = Dimensions.get("window").width;
+const height = Dimensions.get("window").height
 
 
 const RealTimeInfoSeeker = ({seekerName, location, seekerImage, data}) => {
@@ -81,7 +81,7 @@ const RealTimeInfoSeeker = ({seekerName, location, seekerImage, data}) => {
       </View>
       
 
-      {/* <View style={{right: windowWidth * 0.03, top: 12}}> */}
+      {/* <View style={{right: width * 0.03, top: 12}}> */}
         <TouchableOpacity onPress={messageSeeker}>
         <View style={[styles.message, styles.messageLayout]}>
           <MaterialCommunityIcons name="message-text" size={25} color="#07374d"  style={[styles.smsIcon]} />
@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
     position: "relative",
     borderRadius: Border.br_mini,
     height: 101,
-    width: windowWidth * 0.890, 
+    width: width * 0.890, 
     borderColor: "#07374d", // Add your desired border color here "#D9D9D9" "#07374d"
     borderWidth: 2,      // Add border width if needed
   },
@@ -160,7 +160,7 @@ const styles = StyleSheet.create({
   },
   
   message: {
-    right: windowWidth * 0.03,
+    right: width * 0.03,
     top: 45,
     width: 52,
   },
@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
     top: 7 ,
   },
   call: {
-    right: windowWidth * 0.16,
+    right: width * 0.16,
     top: 45,
     width: 52,
   },
@@ -201,7 +201,7 @@ const styles = StyleSheet.create({
   },
   seeker: {
     fontSize: FontSize.size_xl,
-    width: windowWidth * 0.8,
+    width: width * 0.8,
     height: 50,
     color: Color.colorBlack,
     alignItems: "center",
@@ -231,13 +231,13 @@ const styles = StyleSheet.create({
   },
   seekinfo: {
     top: 12,
-    left: windowWidth * 0.03, 
+    left: width * 0.03, 
     width: 250,
     
   },
   seekerrealtimeinfo: {
     height: 101,
-    width: windowWidth * 0.890, 
+    width: width * 0.890, 
   },
 });
 

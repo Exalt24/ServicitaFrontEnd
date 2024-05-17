@@ -5,8 +5,7 @@ import axios from 'axios';
 import Swiper from 'react-native-swiper';
 import { Video } from 'expo-av';
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+const  { width, height } = Dimensions.get('window');
 
 const ReviewsWithNonEmptyImages = ({ serviceId }) => {
   const [modalVisible, setModalVisible] = useState(false);
@@ -140,8 +139,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center', // Center the FlatList vertically
   },
   reviewImage: {
-    width: windowWidth * 0.3,
-    height: windowWidth * 0.3,
+    width: width * 0.3,
+    height: width * 0.3,
     marginHorizontal: 5,
     marginBottom: 8, // Add margin bottom for space between rows
   },
@@ -166,7 +165,7 @@ const styles = StyleSheet.create({
     right: 20,
   },
   photoContainer:{
-    marginVertical: windowHeight * 0.02,
+    marginVertical: height * 0.02,
     justifyContent: 'center', // Center vertically
     alignItems: 'center', // Center horizontally
     borderBottomWidth: 1,  // Add border to the bottom

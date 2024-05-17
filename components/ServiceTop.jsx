@@ -11,8 +11,7 @@ import firestore from '@react-native-firebase/firestore';
 
 
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+const  { width, height } = Dimensions.get('window');
 
 
 const ServiceTop= ({data, navigation, userData, messagesData}) => {
@@ -161,15 +160,15 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   bookPosition: {
-    top: windowHeight * 0.52,
-    left: windowWidth * 0.45,
+    top: height * 0.52,
+    left: width * 0.45,
     height: 30,
     position: "absolute",
     
   },
   bookPosition2: {
-    top: windowHeight * 0.52,
-    left: windowWidth * 0.42,
+    top: height * 0.52,
+    left: width * 0.42,
     height: 30,
     position: "absolute",
     
@@ -234,21 +233,21 @@ const styles = StyleSheet.create({
   },
 
   price: {
-    top: windowHeight * 0.11,
-    fontSize: windowHeight * 0.032,
+    top: height * 0.11,
+    fontSize: height * 0.032,
     letterSpacing: 1.6,
     lineHeight: 35,
     color: "#266f92",
     height: 30,
     textAlign: "left",
-    width: windowWidth * 0.6,
+    width: width * 0.6,
     alignItems: "center",
     display: "flex",
     left: 0,
     position: "absolute",
   },
   service: {
-    fontSize: windowHeight * 0.032,
+    fontSize: height * 0.032,
     letterSpacing: 1,
     lineHeight: 30,
     width: 340,
@@ -261,7 +260,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   positioncontainer: {
-    top: windowHeight * 0.52,
+    top: height * 0.52,
     left: 25,
     width: 380,
     height: 85,
@@ -314,18 +313,18 @@ const styles = StyleSheet.create({
   bookicon: {
     left: 94,
     height: 18,
-    top: windowHeight * 0.006,
+    top: height * 0.006,
   },
   bookNow: {
     top: 8,
-    left: windowWidth * 0.16,
+    left: width * 0.16,
     textAlign: "center",
     fontSize: FontSize.size_xs,
     fontFamily: FontFamily.quicksandRegular,
   },
   book: {
-    left: windowWidth * 0.52,
-    width: windowWidth * 0.424,
+    left: width * 0.52,
+    width: width * 0.424,
   },
   messageChild: {
     left: 0,
@@ -339,27 +338,27 @@ const styles = StyleSheet.create({
     shadowColor: "rgba(0, 0, 0, 0.5)",
   },
   message1: {
-    left: windowWidth * 0.075,
+    left: width * 0.075,
     width: 52,
     textAlign: "center",
     fontSize: FontSize.size_xs,
     fontFamily: FontFamily.quicksandRegular,
   },
   messageicon: {
-    left: windowWidth * 0.014,
-    width: windowWidth * 0.058, 
-    height: windowHeight * 0.018,
+    left: width * 0.014,
+    width: width * 0.058, 
+    height: height * 0.018,
   },
   message: {
-    left: windowWidth * 0.5,
-    top: windowHeight * 0.74, 
+    left: width * 0.5,
+    top: height * 0.74, 
     width: 93,
     top: 450,
   },
   addToFavorites: {
     
-    top: windowHeight * 0.53,
-    left:windowWidth * 0.123,
+    top: height * 0.53,
+    left:width * 0.123,
     fontSize: 11.5,
     letterSpacing: 0.5,
     lineHeight: 13,
@@ -374,22 +373,22 @@ const styles = StyleSheet.create({
   serviceimageIcon: {
     borderBottomRightRadius: Border.br_xl,
     borderBottomLeftRadius: Border.br_xl,
-    height: windowHeight * 0.5,
+    height: height * 0.5,
     position: "absolute",
-    width: windowWidth,
+    width: width,
     flex: 1, // Fill available space
     resizeMode: 'cover',
   },
   serviceview: {
-    height:  windowHeight * 0.70,
+    height:  height * 0.70,
     overflow: "hidden",
     backgroundColor: Color.colorWhite,
   },
   favoriteContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    top: windowHeight * 0.52,
-    left: windowWidth * 0.123,
+    top: height * 0.52,
+    left: width * 0.123,
   },
   serviceImageContainer: {
     position: "absolute",
@@ -406,15 +405,15 @@ const styles = StyleSheet.create({
     width: 15,
     height: 15,
     marginLeft: 25,
-    top: windowHeight * 0.528,
+    top: height * 0.528,
     position: 'relative',
   },
   ratingContainer: {
     flexDirection: 'row',
     alignItems: 'center',
    // marginTop: 40,
-   top: windowHeight * 0.12,
-   left: windowWidth * 0.65,
+   top: height * 0.12,
+   left: width * 0.65,
   },
 });
 
