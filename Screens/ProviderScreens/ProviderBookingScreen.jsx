@@ -12,6 +12,7 @@ import { sendPushNotification } from '../NotificationScreen';
 
 
 const  { width, height } = Dimensions.get('window');
+const  { width, height } = Dimensions.get('window');
 
 export default function ProviderBookingScreen({ navigation, route }) {
 

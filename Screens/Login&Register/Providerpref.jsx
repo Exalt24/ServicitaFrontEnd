@@ -294,6 +294,7 @@ export default function ProviderPreferencePage ({navigation, route, props}) {
     const Example = () => {
         return <Center>
               <Fab  renderInPortal={false} shadow={15} size={height * 0.073} icon={<Icon color="white" as={AntDesign} name="plus" size="sm" />} placement='center' onPress={openServiceModal}  />
+              <Fab  renderInPortal={false} shadow={15} size={height * 0.073} icon={<Icon color="white" as={AntDesign} name="plus" size="sm" />} placement='center' onPress={openServiceModal}  />
           </Center>;
       };
 

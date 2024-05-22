@@ -12,6 +12,7 @@ import Button from '../../components/Button';
 
 
 const { width: width, height: height} = Dimensions.get('window')
+const { width: width, height: height} = Dimensions.get('window')
 
 const Create = ({route}) => {
   
@@ -35,6 +36,7 @@ const Create = ({route}) => {
   const [maxPrice, setMaxPrice] = useState(1000);
   const [priceVerify, setPriceVerify] = useState(false);
   const [dynamicMinMarkerOverlapDistance, setDynamicMinMarkerOverlapDistance] = useState(0);
+  const [inputHeight, setInputHeight] = useState(height * 0.06);
   const [inputHeight, setInputHeight] = useState(height * 0.06);
   const priceGap = 300
   const filteredData = data.filter((item) => item.name.toLowerCase().includes(searchQuery.toLowerCase()) && !submittedServiceTypes.includes(item.name));
@@ -354,17 +356,23 @@ const handleValuesChange = (values) => {
                     </View>
 
       <View style={{ marginHorizontal: width * 0.05, marginBottom: height * 0.01 }}>
+      <View style={{ marginHorizontal: width * 0.05, marginBottom: height * 0.01 }}>
                                 
                         <View style={{
                             height: height * 0.06,
+                            height: height * 0.06,
                             borderColor: serviceName === null || serviceName === '' ? Color.colorBlue1 : serviceNameVerify ? Color.colorGreen : Color.colorRed,
                             borderWidth: 1,
+                            borderRadius: height * 0.015,
                             borderRadius: height * 0.015,
                             alignItems: 'center',
                             justifyContent: 'center',
                             paddingLeft: width * 0.025,
                             paddingHorizontal: width * 0.17,
+                            paddingLeft: width * 0.025,
+                            paddingHorizontal: width * 0.17,
                             flexDirection: 'row',
+                            marginTop: height * 0.01
                             marginTop: height * 0.01
                         }}>
                             <FontAwesome name="bell-o" color = {serviceName === null || serviceName === '' ? Color.colorBlue1 : serviceNameVerify ? Color.colorGreen : Color.colorRed} style={{ marginLeft: windowWidth * 0.07,fontSize: 24}}/>
@@ -393,6 +401,7 @@ const handleValuesChange = (values) => {
                         
                     </View>
                     <View style={{ marginHorizontal: width * 0.05, marginBottom: height * 0.01 }}>
+                    <View style={{ marginHorizontal: width * 0.05, marginBottom: height * 0.01 }}>
                                 
                                 <View style={{
                                    
@@ -400,8 +409,11 @@ const handleValuesChange = (values) => {
                                     borderColor: serviceDescription === null || serviceDescription === '' ? Color.colorBlue1 : serviceDescriptionVerify ? Color.colorGreen : Color.colorRed,
                                     borderWidth: 1,
                                     borderRadius: height * 0.015,
+                                    borderRadius: height * 0.015,
                                     alignItems: 'center',
                                     justifyContent: 'center',
+                                    paddingLeft: width * 0.025,
+                                    paddingHorizontal: width * 0.17,
                                     paddingLeft: width * 0.025,
                                     paddingHorizontal: width * 0.17,
                                     flexDirection: 'row',
@@ -417,10 +429,12 @@ const handleValuesChange = (values) => {
                                             width: '100%',
                                             height: inputHeight,
                                             marginLeft: width * 0.01,
+                                            marginLeft: width * 0.01,
                                         }}
                                         value={serviceDescription}
                                         onChange={(e) => validateName(e.nativeEvent.text, setServiceDescription, setServiceDescriptionVerify, 100)}
                                         onContentSizeChange={(e) => {
+                                            setInputHeight(Math.max(height * 0.06, e.nativeEvent.contentSize.height));
                                             setInputHeight(Math.max(height * 0.06, e.nativeEvent.contentSize.height));
                                         }}
                                     />
@@ -471,10 +485,13 @@ const handleValuesChange = (values) => {
                                     
                     </View>
                     <View style={{ marginHorizontal: width * 0.05 }}>
+                    <View style={{ marginHorizontal: width * 0.05 }}>
             
                         <View style={{
                                 height: height * 0.06,    
+                                height: height * 0.06,    
                                 flexDirection: 'row',
+                                marginTop: height * 0.01,
                                 marginTop: height * 0.01,
                                 alignItems: 'center', 
                                 justifyContent: 'space-between', 
@@ -625,9 +642,11 @@ const handleValuesChange = (values) => {
                                     placeholder='Search...'
                                     onChangeText={text => setSearchQuery(text)}
                                     style={{ paddingHorizontal: 10, marginBottom: width * 0.01 }}
+                                    style={{ paddingHorizontal: 10, marginBottom: width * 0.01 }}
 
                                 />
                                 </View>
+                                <ScrollView style={{ maxHeight: height * 0.5 }}>
                                 <ScrollView style={{ maxHeight: height * 0.5 }}>
                                 {filteredData.map((item, index) => (
                                     <TouchableOpacity key={item.key} onPress={() => handleSelect(item)} style={{ borderBottomWidth: 1, borderBottomColor: 'rgba(0, 0, 0, 0.3)' }}>

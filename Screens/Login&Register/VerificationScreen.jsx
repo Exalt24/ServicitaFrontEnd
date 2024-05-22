@@ -15,6 +15,7 @@ import { set } from "date-fns";
 
 
 const  { width, height } = Dimensions.get('window');
+const  { width, height } = Dimensions.get('window');
 
 export default function VerificationScreen({ navigation, route, props }) {
 

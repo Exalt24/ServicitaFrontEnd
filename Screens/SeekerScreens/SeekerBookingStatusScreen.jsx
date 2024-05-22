@@ -19,6 +19,7 @@ import { sendPushNotification } from '../NotificationScreen';
 
 
 const  { width, height } = Dimensions.get('window');
+const  { width, height } = Dimensions.get('window');
 
 function SeekerBookingStatusScreen({ navigation, route }) {
     const { data, userData, serviceData } = route.params;

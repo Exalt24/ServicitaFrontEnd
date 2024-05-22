@@ -8,6 +8,7 @@ import axios from 'axios';
 import Addition from '@expo/vector-icons/MaterialCommunityIcons';
 
 const  { width, height } = Dimensions.get('window');
+const  { width, height } = Dimensions.get('window');
 
 export default function ResetPasswordScreen({navigation, route, params}) {
     const [password, setPassword] = useState('');

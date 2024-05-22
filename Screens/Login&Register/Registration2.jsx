@@ -14,6 +14,7 @@ import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import axios from 'axios';
 
 const  { width, height } = Dimensions.get('window');
+const  { width, height } = Dimensions.get('window');
 
 export default function RegisterPage2 ({navigation, route, props}) {
     const [mobile, setMobile] = useState('+63');

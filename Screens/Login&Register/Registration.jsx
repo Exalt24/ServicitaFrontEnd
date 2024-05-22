@@ -14,6 +14,7 @@ import { useNotifications, createNotifications } from 'react-native-notificated'
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 
 const  { width, height } = Dimensions.get('window');
+const  { width, height } = Dimensions.get('window');
 
 export default function RegisterPage ({navigation, route, props}) {
     const { NotificationsProvider } = createNotifications();

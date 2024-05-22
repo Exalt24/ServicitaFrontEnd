@@ -8,6 +8,8 @@ import firestore from '@react-native-firebase/firestore';
 
 const  { width, height } = Dimensions.get('window');
 
+const  { width, height } = Dimensions.get('window');
+
 export default ConfirmationScreen = ({ navigation, route }) => {
 
   const { bookingData, bookingId } = route.params;

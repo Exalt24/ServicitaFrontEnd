@@ -13,6 +13,7 @@ import * as Notifications from 'expo-notifications';
 
 
 const  { width, height } = Dimensions.get('window');
+const  { width, height } = Dimensions.get('window');
 
 export default function MobileLogin({navigation}) {
     const [mobile, setMobile] = useState('+63');

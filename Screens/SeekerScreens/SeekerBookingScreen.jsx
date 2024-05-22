@@ -13,6 +13,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { sendPushNotification } from '../NotificationScreen';
 
 const  { width, height } = Dimensions.get('window');
+const  { width, height } = Dimensions.get('window');
 
 export default function SeekerBookingScreen({ navigation, route }) {
 

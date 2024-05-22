@@ -13,6 +13,7 @@ import axios from 'axios';
 import { set } from 'date-fns';
 
 const  { width, height } = Dimensions.get('window');
+const  { width, height } = Dimensions.get('window');
 
 export default function AddressForm ({navigation, route, props}) {
     const [streetAddress1, setStreetAddress1] = useState('');

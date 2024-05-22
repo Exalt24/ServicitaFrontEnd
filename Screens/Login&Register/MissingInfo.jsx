@@ -11,6 +11,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import axios from 'axios';
 
 const  { width, height } = Dimensions.get('window');
+const  { width, height } = Dimensions.get('window');
 
 export default function MissingInfoPage ({navigation, route, props}) {
 

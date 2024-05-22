@@ -10,6 +10,7 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const  { width, height } = Dimensions.get('window');
+const  { width, height } = Dimensions.get('window');
 
 export default HomePage = ({navigation, route}) => {
 
@@ -93,6 +94,9 @@ export default HomePage = ({navigation, route}) => {
     <SafeAreaView style={{ flex: 1, marginBottom: 70 }}>
 
 
+    <SafeAreaView style={{ flex: 1, marginBottom: 70 }}>
+
+
     <View style={styles.container}>
       <View style={styles.searchContainer}>
         
@@ -107,10 +111,25 @@ export default HomePage = ({navigation, route}) => {
               <TextInput placeholder="Search for services or more" style={styles.searchInput} editable={false} />
             </View>
           </Pressable>
+        
+        <View style={styles.searchWrapper}>
+          <Image
+            source={require('./../../assets/logo4home.png')} // Replace with your actual image path
+            style={styles.searchImage}
+          />
+          <Pressable onPress={() => navigation.navigate("Search", { userData: userData })} style={styles.searchTouchable}>
+            <View style={styles.searchBar}>
+              <AntDesign name="search1" size={24} color="#002D62" />
+              <TextInput placeholder="Search for services or more" style={styles.searchInput} editable={false} />
+            </View>
+          </Pressable>
         </View>
+        
         
       </View>
     </View>
+
+      <ScrollView  >
 
       <ScrollView  >
 
@@ -126,7 +145,29 @@ export default HomePage = ({navigation, route}) => {
             <View>
               <Text style={styles.categoriesText}>Services</Text>
             </View> 
+        {/* IMAGE SLIDER */}
+          <View style={{marginTop:15}}>
+            <ImageSlider />
+            
+          
+        {/* Categories */}
+        <View>
+          <View style={styles.container1}>
+            <View>
+              <Text style={styles.categoriesText}>Services</Text>
+            </View> 
 
+            <View>
+            <TouchableOpacity
+            onPress={()=>navigation.navigate("Services")}>
+                <Text style={styles.viewAllText}>View All</Text>
+              </TouchableOpacity>
+            </View> 
+          </View>
+        
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+
+          <View  style={{flexDirection: "row", alignItems: "center", justifyContent:"center", flexWrap:'wrap' }}>
             <View>
             <TouchableOpacity
             onPress={()=>navigation.navigate("Services")}>
@@ -154,7 +195,38 @@ export default HomePage = ({navigation, route}) => {
                 />
               </TouchableOpacity>
             </View>
+            <View>
+              <TouchableOpacity
+                onPress={()=>navigation.navigate("CategoryScreen", {serviceType: "Home Cleaner Service", userData: userData})}>
+                <Image 
+                  source={require("./../../assets/Cleaning.png")}
+                  style={{
+                    height: 100,
+                    width: 93,
+                    resizeMode:'contain',
+                    marginRight: 2,
+                    marginLeft: 2
+                  }}
+                />
+              </TouchableOpacity>
+            </View>
 
+            
+            <View>
+              <TouchableOpacity
+              onPress={()=>navigation.navigate("CategoryScreen", {serviceType: "Manicure/Pedicure Service", userData: userData})}>
+              <Image
+                source={require("./../../assets/Manicure.png")}
+                style={{
+                  height: 100,
+                  width: 93,
+                  resizeMode:'contain',
+                  marginRight: 2,
+                  marginLeft: 2
+                }}
+              />
+              </TouchableOpacity>
+            </View>
             
             <View>
               <TouchableOpacity
@@ -188,7 +260,39 @@ export default HomePage = ({navigation, route}) => {
               />
               </TouchableOpacity>
             </View>
+            
+            <View>
+              <TouchableOpacity
+              onPress={()=>navigation.navigate("CategoryScreen", {serviceType: "Electrical Service", userData: userData})}>
+              <Image
+                source={require("./../../assets/Electric.png")}
+                style={{
+                  height: 100,
+                  width: 93,
+                  resizeMode:'contain',
+                  marginRight: 2,
+                  marginLeft: 2
+                }}
+              />
+              </TouchableOpacity>
+            </View>
 
+            
+            <View>
+              <TouchableOpacity
+              onPress={()=>navigation.navigate("CategoryScreen", {serviceType: "Hair and Makeup Service", userData: userData})}>
+              <Image
+                source={require("./../../assets/Beauty.png")}
+                style={{
+                  height: 100,
+                  width: 93,
+                  resizeMode:'contain',
+                  marginRight: 2,
+                  marginLeft: 2
+                }}
+              />
+              </TouchableOpacity>
+            </View>
             
             <View>
               <TouchableOpacity
@@ -222,7 +326,39 @@ export default HomePage = ({navigation, route}) => {
               />
               </TouchableOpacity>
             </View>
+            
+            <View>
+              <TouchableOpacity
+              onPress={()=>navigation.navigate("CategoryScreen", {serviceType: "Catering Service", userData: userData})}>
+              <Image
+                source={require("./../../assets/Catering.png")}
+                style={{
+                  height: 100,
+                  width: 93,
+                  resizeMode:'contain',
+                  marginRight: 2,
+                  marginLeft: 2
+                }}
+              />
+              </TouchableOpacity>
+            </View>
 
+            
+            <View>
+              <TouchableOpacity
+              onPress={()=>navigation.navigate("CategoryScreen", {serviceType: "Septic Tank Service", userData: userData})}>
+              <Image
+                source={require("./../../assets/Septic.png")}
+                style={{
+                  height: 100,
+                  width: 93,
+                  resizeMode:'contain',
+                  marginRight: 2,
+                  marginLeft: 2
+                }}
+              />
+              </TouchableOpacity>
+            </View>
             
             <View>
               <TouchableOpacity
@@ -256,7 +392,39 @@ export default HomePage = ({navigation, route}) => {
               />
               </TouchableOpacity>
             </View>
+            
+            <View>
+              <TouchableOpacity
+              onPress={()=>navigation.navigate("CategoryScreen", {serviceType: "Massage Service", userData: userData})}>
+              <Image
+                source={require("./../../assets/Massage.png")}
+                style={{
+                  height: 100,
+                  width: 93,
+                  resizeMode:'contain',
+                  marginRight: 2,
+                  marginLeft: 2
+                }}
+              />
+              </TouchableOpacity>
+            </View>
 
+            
+            <View>
+              <TouchableOpacity
+              onPress={()=>navigation.navigate("CategoryScreen", {serviceType: "Plumbing Service", userData: userData})}>
+              <Image
+                source={require("./../../assets/Plumbing.png")}
+                style={{
+                  height: 100,
+                  width: 93,
+                  resizeMode:'contain',
+                  marginRight: 2,
+                  marginLeft: 2
+                }}
+              />
+              </TouchableOpacity>
+            </View>
             
             <View>
               <TouchableOpacity
@@ -290,7 +458,26 @@ export default HomePage = ({navigation, route}) => {
               />
               </TouchableOpacity>
             </View>
+            
+            <View>
+              <TouchableOpacity
+              onPress={()=>navigation.navigate("CategoryScreen", {serviceType: "Tutoring Service", userData: userData})}>
+              <Image
+                source={require("./../../assets/Tutoring.png")}
+                style={{
+                  height: 100,
+                  width: 93,
+                  resizeMode:'contain',
+                  marginRight: 2,
+                  marginLeft: 2
+                }}
+              />
+              </TouchableOpacity>
+            </View>
 
+          </View>
+        </ScrollView>
+        </View>
           </View>
         </ScrollView>
         </View>

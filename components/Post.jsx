@@ -6,6 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { Video } from 'expo-av';
 
 const  { width, height } = Dimensions.get('window');
+const  { width, height } = Dimensions.get('window');
 
 const PostItem = ({ item }) => {
     const [modalVisible, setModalVisible] = useState(false);

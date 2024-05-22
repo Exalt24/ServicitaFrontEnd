@@ -8,6 +8,7 @@ import Button from "../../components/Button";
 import axios from "axios";
 
 const  { width, height } = Dimensions.get('window');
+const  { width, height } = Dimensions.get('window');
 
 export default function ForgotPasswordScreen({navigation}) {
     const [email, setEmail] = useState("");

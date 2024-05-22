@@ -15,6 +15,7 @@ import { Video } from "expo-av";
 import { askForCameraPermission, askForLibraryPermission } from "./../../helper/helperFunction";
 
 const  { width, height } = Dimensions.get('window');
+const  { width, height } = Dimensions.get('window');
 
 export default ServicePage = ({ navigation, route }) => {
 
@@ -176,6 +177,7 @@ const handleValuesChange = (values) => {
 
   const numberOfSteps = ((1000 - 0) / priceGap);
   
+  const dynamicMinMarkerOverlapDistance = (width * 0.8) / numberOfSteps;
   const dynamicMinMarkerOverlapDistance = (width * 0.8) / numberOfSteps;
 
   setMinPrice(newMinPrice);

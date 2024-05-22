@@ -16,6 +16,8 @@ import axios from 'axios';
 
 const  { width, height } = Dimensions.get('window');
 
+const  { width, height } = Dimensions.get('window');
+
 export default ServiceViewScreen = ({navigation, route}) => {
 
   const { data, userData } = route.params;
