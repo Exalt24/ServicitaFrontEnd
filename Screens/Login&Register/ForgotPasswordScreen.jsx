@@ -35,7 +35,7 @@ export default function ForgotPasswordScreen({navigation}) {
 
     const handlePress = async () => {
         try {
-            const response = await axios.post("http://192.168.1.7:5000/forgot_password_otp/request", { email: email });
+            const response = await axios.post("http://192.168.1.2:5000/forgot_password_otp/request", { email: email });
             console.log(response);
             if (response.status === 202) {
                 setModalVisible(true);
@@ -79,7 +79,7 @@ export default function ForgotPasswordScreen({navigation}) {
     const fetchServerTime = async () => {
         try {
             console.log('Fetching server time...');
-            const response = await axios.get(`http://192.168.1.7:5000/forgot_password_otp/getRemainingCurrentTime/${email}`);
+            const response = await axios.get(`http://192.168.1.2:5000/forgot_password_otp/getRemainingCurrentTime/${email}`);
             const remainingTime = Math.floor(response.data.remainingTime / 1000);
             if (remainingTime <= 0) {
                 setTimer(0);
@@ -98,7 +98,7 @@ export default function ForgotPasswordScreen({navigation}) {
         const userData = {
             email: email,
           }
-        axios.post("http://192.168.1.7:5000/forgot_password_otp/request", userData).then((res) => {
+        axios.post("http://192.168.1.2:5000/forgot_password_otp/request", userData).then((res) => {
           console.log(res.data);
           if (res.data.status === 'PENDING') {
             fetchServerTime();
@@ -115,7 +115,7 @@ export default function ForgotPasswordScreen({navigation}) {
             email: email,
             otp: code.join(''),
           }
-        axios.post("http://192.168.1.7:5000/forgot_password_otp/reset", userData).then((res) => {
+        axios.post("http://192.168.1.2:5000/forgot_password_otp/reset", userData).then((res) => {
             if (res.data.status === 'SUCCESS') {
                 setModalVisible(false);
                 Alert.alert('Success', 'OTP has been verified successfully. Please change your password.', [{ text: 'OK', onPress: () => navigation.navigate('ResetPassword', { email: email}) }]);

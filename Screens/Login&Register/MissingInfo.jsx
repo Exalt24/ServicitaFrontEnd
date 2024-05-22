@@ -53,7 +53,7 @@ export default function MissingInfoPage ({navigation, route, props}) {
 
     const fetchCities = async () => {
         try {
-            const response = await axios.get('http://192.168.1.7:5000/location/getCities');
+            const response = await axios.get('http://192.168.1.2:5000/location/getCities');
             setCities(response.data.data);
         } catch (error) {
             console.error('Error fetching cities:', error);
@@ -107,7 +107,7 @@ export default function MissingInfoPage ({navigation, route, props}) {
                 };
 
 
-            axios.post("http://192.168.1.7:5000/user/addTempDetails", userData).then(async (res) => {
+            axios.post("http://192.168.1.2:5000/user/addTempDetails", userData).then(async (res) => {
                 const result = res.data;
                 const { data, message, status } = result
                 if (status === 'SUCCESS') {
