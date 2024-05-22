@@ -11,7 +11,8 @@ import firestore from '@react-native-firebase/firestore'
 import Button from '../../components/Button';
 
 
-const { width: windowWidth, height: windowHeight} = Dimensions.get('window')
+const { width: width, height: height} = Dimensions.get('window')
+const { width: width, height: height} = Dimensions.get('window')
 
 const Create = ({route}) => {
   
@@ -35,7 +36,8 @@ const Create = ({route}) => {
   const [maxPrice, setMaxPrice] = useState(1000);
   const [priceVerify, setPriceVerify] = useState(false);
   const [dynamicMinMarkerOverlapDistance, setDynamicMinMarkerOverlapDistance] = useState(0);
-  const [inputHeight, setInputHeight] = useState(windowHeight * 0.06);
+  const [inputHeight, setInputHeight] = useState(height * 0.06);
+  const [inputHeight, setInputHeight] = useState(height * 0.06);
   const priceGap = 300
   const filteredData = data.filter((item) => item.name.toLowerCase().includes(searchQuery.toLowerCase()) && !submittedServiceTypes.includes(item.name));
 
@@ -88,7 +90,7 @@ const [selectedDayIndex, setSelectedDayIndex] = useState(null);
 
   async function getUserId() {
     try {
-      const result = await axios.post("http://192.168.1.7:5000/user/getUserDetailsByEmail", { email: userEmail })
+      const result = await axios.post("http://192.168.1.2:5000/user/getUserDetailsByEmail", { email: userEmail })
       setUserId(result.data.data._id);
       
       const snapshot = await firestore().collection('providers').doc(result.data.data._id).get();
@@ -119,7 +121,7 @@ const [selectedDayIndex, setSelectedDayIndex] = useState(null);
 
   const fetchServices = async () => {
     try {
-        const response = await axios.get('http://192.168.1.7:5000/service/getServices');
+        const response = await axios.get('http://192.168.1.2:5000/service/getServices');
         setData(response.data.data);
         
     } catch (error) {
@@ -210,7 +212,7 @@ const handleValuesChange = (values) => {
 
   const numberOfSteps = ((1000 - 0) / priceGap);
   
-  const dynamicMinMarkerOverlapDistance = (windowWidth * 0.8) / numberOfSteps;
+  const dynamicMinMarkerOverlapDistance = (width * 0.8) / numberOfSteps;
 
   setMinPrice(newMinPrice);
   setMaxPrice(newMaxPrice);
@@ -315,25 +317,25 @@ const handleValuesChange = (values) => {
         <Text style={styles.title}>Create A Service</Text>
       </View>
 
-    <View style={{ flexDirection: 'column', marginTop: windowHeight * 0.03 }}>
+    <View style={{ flexDirection: 'column', marginTop: height * 0.03 }}>
 
-    <View style={{ marginHorizontal: windowWidth * 0.05, marginBottom: windowHeight * 0.01 }}>
+    <View style={{ marginHorizontal: width * 0.05, marginBottom: height * 0.01 }}>
                     
                         
                             <TouchableOpacity onPress={() => setShowSelectList(true)}>
 
                                 
                         <View style={{
-                            height: windowHeight * 0.06,
+                            height: height * 0.06,
                             borderColor: !selectedValue ? Color.colorBlue1 : Color.colorGreen,
                             borderWidth: 1,
-                            borderRadius: windowHeight * 0.015,
+                            borderRadius: height * 0.015,
                             alignItems: 'center',
                             justifyContent: 'center',
-                            paddingLeft: windowWidth * 0.025,
-                            paddingHorizontal: windowWidth * 0.14,
+                            paddingLeft: width * 0.025,
+                            paddingHorizontal: width * 0.14,
                             flexDirection: 'row',
-                            marginTop: windowHeight * 0.01,
+                            marginTop: height * 0.01,
         
                         }}>
                             <FontAwesome name="bell" color = {selectedValue === null || selectedValue === '' ? Color.colorBlue1 : Color.colorGreen} style={{marginRight: 5, fontSize: 24}}/>
@@ -353,19 +355,25 @@ const handleValuesChange = (values) => {
                     </TouchableOpacity>
                     </View>
 
-      <View style={{ marginHorizontal: windowWidth * 0.05, marginBottom: windowHeight * 0.01 }}>
+      <View style={{ marginHorizontal: width * 0.05, marginBottom: height * 0.01 }}>
+      <View style={{ marginHorizontal: width * 0.05, marginBottom: height * 0.01 }}>
                                 
                         <View style={{
-                            height: windowHeight * 0.06,
+                            height: height * 0.06,
+                            height: height * 0.06,
                             borderColor: serviceName === null || serviceName === '' ? Color.colorBlue1 : serviceNameVerify ? Color.colorGreen : Color.colorRed,
                             borderWidth: 1,
-                            borderRadius: windowHeight * 0.015,
+                            borderRadius: height * 0.015,
+                            borderRadius: height * 0.015,
                             alignItems: 'center',
                             justifyContent: 'center',
-                            paddingLeft: windowWidth * 0.025,
-                            paddingHorizontal: windowWidth * 0.17,
+                            paddingLeft: width * 0.025,
+                            paddingHorizontal: width * 0.17,
+                            paddingLeft: width * 0.025,
+                            paddingHorizontal: width * 0.17,
                             flexDirection: 'row',
-                            marginTop: windowHeight * 0.01
+                            marginTop: height * 0.01
+                            marginTop: height * 0.01
                         }}>
                             <FontAwesome name="bell-o" color = {serviceName === null || serviceName === '' ? Color.colorBlue1 : serviceNameVerify ? Color.colorGreen : Color.colorRed} style={{ marginLeft: windowWidth * 0.07,fontSize: 24}}/>
                             <TextInput
@@ -373,7 +381,7 @@ const handleValuesChange = (values) => {
                                 placeholderTextColor={Color.colorBlue}
                                 style={{
                                     width: '100%',
-                                    marginLeft: windowWidth * 0.01,
+                                    marginLeft: width * 0.01,
                                 }}
                                 value={serviceName}
                                 onChangeText={(text) => validateName(text, setServiceName, setServiceNameVerify, 25)}
@@ -392,22 +400,26 @@ const handleValuesChange = (values) => {
 
                         
                     </View>
-                    <View style={{ marginHorizontal: windowWidth * 0.05, marginBottom: windowHeight * 0.01 }}>
+                    <View style={{ marginHorizontal: width * 0.05, marginBottom: height * 0.01 }}>
+                    <View style={{ marginHorizontal: width * 0.05, marginBottom: height * 0.01 }}>
                                 
                                 <View style={{
                                    
                                     height: inputHeight,
                                     borderColor: serviceDescription === null || serviceDescription === '' ? Color.colorBlue1 : serviceDescriptionVerify ? Color.colorGreen : Color.colorRed,
                                     borderWidth: 1,
-                                    borderRadius: windowHeight * 0.015,
+                                    borderRadius: height * 0.015,
+                                    borderRadius: height * 0.015,
                                     alignItems: 'center',
                                     justifyContent: 'center',
-                                    paddingLeft: windowWidth * 0.025,
-                                    paddingHorizontal: windowWidth * 0.17,
+                                    paddingLeft: width * 0.025,
+                                    paddingHorizontal: width * 0.17,
+                                    paddingLeft: width * 0.025,
+                                    paddingHorizontal: width * 0.17,
                                     flexDirection: 'row',
-                                    marginTop: windowHeight * 0.01
+                                    marginTop: height * 0.01
                                 }}>
-                                    <Entypo name="text" color = {serviceDescription === null || serviceDescription === '' ? Color.colorBlue1 : serviceDescriptionVerify ? Color.colorGreen : Color.colorRed} style={{ marginLeft: windowWidth * 0.07,fontSize: 24}}/>
+                                    <Entypo name="text" color = {serviceDescription === null || serviceDescription === '' ? Color.colorBlue1 : serviceDescriptionVerify ? Color.colorGreen : Color.colorRed} style={{ marginLeft: width * 0.07,fontSize: 24}}/>
                                     <TextInput
                                         ref={input => { this.textInput = input }}
                                         multiline={true}
@@ -416,12 +428,14 @@ const handleValuesChange = (values) => {
                                         style={{
                                             width: '100%',
                                             height: inputHeight,
-                                            marginLeft: windowWidth * 0.01,
+                                            marginLeft: width * 0.01,
+                                            marginLeft: width * 0.01,
                                         }}
                                         value={serviceDescription}
                                         onChange={(e) => validateName(e.nativeEvent.text, setServiceDescription, setServiceDescriptionVerify, 100)}
                                         onContentSizeChange={(e) => {
-                                            setInputHeight(Math.max(windowHeight * 0.06, e.nativeEvent.contentSize.height));
+                                            setInputHeight(Math.max(height * 0.06, e.nativeEvent.contentSize.height));
+                                            setInputHeight(Math.max(height * 0.06, e.nativeEvent.contentSize.height));
                                         }}
                                     />
                                     {serviceDescription.length < 1 ? null : serviceDescriptionVerify ? (
@@ -436,18 +450,18 @@ const handleValuesChange = (values) => {
         
                             </View>
 
-                            <View style={{ marginHorizontal: windowWidth * 0.05, marginBottom: windowHeight * 0.01 }}>
+                            <View style={{ marginHorizontal: width * 0.05, marginBottom: height * 0.01 }}>
                             <View style={{
-                            height: windowHeight * 0.06,
+                            height: height * 0.06,
                             borderColor: minPrice === 0 ? Color.colorBlue1 : priceVerify ? Color.colorGreen : Color.colorRed,
                             borderWidth: 1,
-                            borderRadius: windowHeight * 0.015,
+                            borderRadius: height * 0.015,
                             alignItems: 'center',
                             justifyContent: 'center',
-                            paddingLeft: windowWidth * 0.025,
-                            paddingHorizontal: windowWidth * 0.14,
+                            paddingLeft: width * 0.025,
+                            paddingHorizontal: width * 0.14,
                             flexDirection: 'row',
-                            marginTop: windowHeight * 0.01
+                            marginTop: height * 0.01
                         }}>
                             <FontAwesome name="money" color = {minPrice === 0 ? Color.colorBlue1 : priceVerify ? Color.colorGreen : Color.colorRed} style={{marginRight: 5, fontSize: 24}}/>
                             <TextInput
@@ -470,12 +484,15 @@ const handleValuesChange = (values) => {
                                     
                                     
                     </View>
-                    <View style={{ marginHorizontal: windowWidth * 0.05 }}>
+                    <View style={{ marginHorizontal: width * 0.05 }}>
+                    <View style={{ marginHorizontal: width * 0.05 }}>
             
                         <View style={{
-                                height: windowHeight * 0.06,    
+                                height: height * 0.06,    
+                                height: height * 0.06,    
                                 flexDirection: 'row',
-                                marginTop: windowHeight * 0.01,
+                                marginTop: height * 0.01,
+                                marginTop: height * 0.01,
                                 alignItems: 'center', 
                                 justifyContent: 'space-between', 
                                 width: '100%', 
@@ -486,9 +503,9 @@ const handleValuesChange = (values) => {
 
                                         style={{
                                             width: '30%',
-                                            height: windowHeight * 0.06,
+                                            height: height * 0.06,
                                             borderWidth: 1,
-                                            borderRadius: windowHeight * 0.015,
+                                            borderRadius: height * 0.015,
                                             paddingHorizontal: 10,
                                             borderColor: minPrice === 0 ? Color.colorBlue1 : priceVerify ? Color.colorGreen : Color.colorRed,
                                         }}
@@ -516,9 +533,9 @@ const handleValuesChange = (values) => {
                                     <TextInput
                                         style={{
                                             width: '30%',
-                                            height: windowHeight * 0.06,
+                                            height: height * 0.06,
                                             borderWidth: 1,
-                                            borderRadius: windowHeight * 0.015,
+                                            borderRadius: height * 0.015,
                                             paddingHorizontal: 10,
                                             borderColor: minPrice === 0 ? Color.colorBlue1 : priceVerify ? Color.colorGreen : Color.colorRed,
                                         }}
@@ -543,14 +560,14 @@ const handleValuesChange = (values) => {
                                     />
                                     
                             </View>
-                            <View style={{ marginHorizontal: windowWidth * 0.05  }}>
+                            <View style={{ marginHorizontal: width * 0.05  }}>
                             <MultiSlider
       
                             values={[minPrice, maxPrice]}
                             min={0}
                             max={1000}
                             step={1}
-                            sliderLength={windowWidth * 0.8}
+                            sliderLength={width * 0.8}
                             onValuesChange={handleValuesChange}
                             allowOverlap={false}
                             minMarkerOverlapDistance={dynamicMinMarkerOverlapDistance}
@@ -560,20 +577,20 @@ const handleValuesChange = (values) => {
 
                            
                         </View>
-                        <View style={{ marginHorizontal: windowWidth * 0.05, marginBottom: windowHeight * 0.01 }}>
+                        <View style={{ marginHorizontal: width * 0.05, marginBottom: height * 0.01 }}>
                           <TouchableOpacity onPress={() => setShowAvailabilityModal(true)}>
                         <View style={{
-                            height: windowHeight * 0.06,
+                            height: height * 0.06,
                             
                             borderColor: areArraysEqual(serviceAvailability, defaultServiceAvailability) ? Color.colorBlue1 : validateAvailabilityValues() ? Color.colorGreen : Color.colorRed,
                             borderWidth: 1,
-                            borderRadius: windowHeight * 0.015,
+                            borderRadius: height * 0.015,
                             alignItems: 'center',
                             justifyContent: 'center',
-                            paddingLeft: windowWidth * 0.025,
-                            paddingHorizontal: windowWidth * 0.14,
+                            paddingLeft: width * 0.025,
+                            paddingHorizontal: width * 0.14,
                             flexDirection: 'row',
-                            marginTop: windowHeight * 0.01
+                            marginTop: height * 0.01
                         }}>
                             <FontAwesome name="clock-o" color = {areArraysEqual(serviceAvailability, defaultServiceAvailability) ? Color.colorBlue1 : validateAvailabilityValues() ? Color.colorGreen : Color.colorRed} style={{marginRight: 5, fontSize: 24}}/>
                             <TextInput
@@ -608,27 +625,29 @@ const handleValuesChange = (values) => {
 
                         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
                             <View style={{ backgroundColor: 'white', width: '80%', maxHeight: '80%', borderRadius: 10 }}>
-                            <View flexDirection='row' style={{ borderBottomColor: Color.colorBlue, borderBottomWidth: 1, alignItems: 'center', justifyContent: 'space-between', marginVertical: windowHeight * 0.01 }}>
+                            <View flexDirection='row' style={{ borderBottomColor: Color.colorBlue, borderBottomWidth: 1, alignItems: 'center', justifyContent: 'space-between', marginVertical: height * 0.01 }}>
                             <Text style={{
-                                    fontSize: windowWidth * 0.06,
+                                    fontSize: width * 0.06,
                                     fontWeight: '400',
-                                    marginVertical: windowHeight * 0.01,
+                                    marginVertical: height * 0.01,
                                     color: Color.colorBlue,
-                                    marginLeft: windowWidth * 0.05 
+                                    marginLeft: width * 0.05 
                                 }}>Service Type</Text>
-                            <AntDesign style = {{ marginRight: windowWidth * 0.05 }} name="close" size= {windowWidth * 0.06} color={Color.colorBlue} onPress={() => setShowSelectList(false)} />
+                            <AntDesign style = {{ marginRight: width * 0.05 }} name="close" size= {width * 0.06} color={Color.colorBlue} onPress={() => setShowSelectList(false)} />
                             </View>
                             <View style={{ flexDirection: 'row', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: 'rgba(0, 0, 0, 0.5)'  }}>
                                 
-                                <FontAwesome name="search" color={Color.colorBlue} style={{ marginLeft: 10, fontSize: 20, marginBottom: windowWidth * 0.02 }} />
+                                <FontAwesome name="search" color={Color.colorBlue} style={{ marginLeft: 10, fontSize: 20, marginBottom: width * 0.02 }} />
                                 <TextInput
                                     placeholder='Search...'
                                     onChangeText={text => setSearchQuery(text)}
-                                    style={{ paddingHorizontal: 10, marginBottom: windowWidth * 0.01 }}
+                                    style={{ paddingHorizontal: 10, marginBottom: width * 0.01 }}
+                                    style={{ paddingHorizontal: 10, marginBottom: width * 0.01 }}
 
                                 />
                                 </View>
-                                <ScrollView style={{ maxHeight: windowHeight * 0.5 }}>
+                                <ScrollView style={{ maxHeight: height * 0.5 }}>
+                                <ScrollView style={{ maxHeight: height * 0.5 }}>
                                 {filteredData.map((item, index) => (
                                     <TouchableOpacity key={item.key} onPress={() => handleSelect(item)} style={{ borderBottomWidth: 1, borderBottomColor: 'rgba(0, 0, 0, 0.3)' }}>
                                         <Text style={{ paddingVertical: 10, paddingHorizontal: 20 }}>{item.name}</Text>
@@ -641,25 +660,25 @@ const handleValuesChange = (values) => {
                 <Modal animationType="slide" transparent={true} visible={showAvailabilityModal} onRequestClose={() => setShowAvailabilityModal(false)}>
                         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
                             <View style={{ backgroundColor: 'white', width: '90%', maxHeight: '80%', borderRadius: 10, }}>
-                            <View flexDirection='row' style={{ borderBottomColor: Color.colorBlue, borderBottomWidth: 1, alignItems: 'center', justifyContent: 'space-between', marginTop: windowHeight * 0.01 }}>
+                            <View flexDirection='row' style={{ borderBottomColor: Color.colorBlue, borderBottomWidth: 1, alignItems: 'center', justifyContent: 'space-between', marginTop: height * 0.01 }}>
                             <Text style={{
-                                    fontSize: windowWidth * 0.06,
+                                    fontSize: width * 0.06,
                                     fontWeight: '400',
-                                    marginVertical: windowHeight * 0.01,
+                                    marginVertical: height * 0.01,
                                     color: Color.colorBlue,
-                                    marginLeft: windowWidth * 0.05 
+                                    marginLeft: width * 0.05 
                                 }}>Service Availability</Text>
-                            <AntDesign style = {{ marginRight: windowWidth * 0.05 }} name="close" size= {windowWidth * 0.06} color={Color.colorBlue} onPress={() => setShowAvailabilityModal(false)} />
+                            <AntDesign style = {{ marginRight: width * 0.05 }} name="close" size= {width * 0.06} color={Color.colorBlue} onPress={() => setShowAvailabilityModal(false)} />
                             </View>
                             <ScrollView contentContainerStyle={{ flexGrow: 1 }} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps={"always"}>
                            
-                            <View style={{ marginBottom: windowHeight * 0.01 }}>
+                            <View style={{ marginBottom: height * 0.01 }}>
                                 
                             
                             {serviceAvailability.map((day, index) => (
                                 <View key={index} style={{flexDirection: 'row', padding: 10, alignItems: 'center', borderBottomWidth: index === serviceAvailability.length - 1 ? 0 : 0.5, borderBottomColor: Color.colorBlue, paddingBottom: 30}}>
                                     
-                                    <Text style={{marginLeft: windowWidth * 0.02, color: day.flagAvailable ? Color.colorBlue : Color.colorGray}}>{day.day}</Text>
+                                    <Text style={{marginLeft: width * 0.02, color: day.flagAvailable ? Color.colorBlue : Color.colorGray}}>{day.day}</Text>
                                         
                                     <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', flex: 1}}> 
                                     
@@ -678,11 +697,11 @@ const handleValuesChange = (values) => {
                                                 placeholder='Start Time'
                                                 value={day.startTime}
                                                 style={{
-                                                    width: windowWidth * 0.22,
-                                                    height: windowHeight * 0.055,
+                                                    width: width * 0.22,
+                                                    height: height * 0.055,
                                                     borderWidth: 1,
-                                                    borderRadius: windowHeight * 0.015,
-                                                    paddingHorizontal: windowWidth * 0.02,
+                                                    borderRadius: height * 0.015,
+                                                    paddingHorizontal: width * 0.02,
                                                     borderColor: day.startTime === '' && day.endTime === '' ? Color.colorBlue1 : renderErrorPerDay(day) ? Color.colorRed : Color.colorGreen,
                                                 }}
                                                 editable={false}
@@ -693,15 +712,15 @@ const handleValuesChange = (values) => {
                                             <Modal animationType="slide" transparent={true} visible={showPickerStart} onRequestClose={() => setShowPickerStart(false)}>
                                                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
                                                     <View style={{ backgroundColor: 'white', width: '90%', maxHeight: '80%', borderRadius: 10, }}>
-                                                        <View flexDirection='row' style={{ borderBottomColor: Color.colorBlue, borderBottomWidth: 1, alignItems: 'center', justifyContent: 'space-between', marginVertical: windowHeight * 0.01 }}>
+                                                        <View flexDirection='row' style={{ borderBottomColor: Color.colorBlue, borderBottomWidth: 1, alignItems: 'center', justifyContent: 'space-between', marginVertical: height * 0.01 }}>
                                                             <Text style={{
-                                                                    fontSize: windowWidth * 0.06,
+                                                                    fontSize: width * 0.06,
                                                                     fontWeight: '400',
-                                                                    marginVertical: windowHeight * 0.01,
+                                                                    marginVertical: height * 0.01,
                                                                     color: Color.colorBlue,
-                                                                    marginLeft: windowWidth * 0.05 
+                                                                    marginLeft: width * 0.05 
                                                                 }}>Start Time</Text>
-                                                            <AntDesign style = {{ marginRight: windowWidth * 0.05 }} name="close" size= {windowWidth * 0.06} color={Color.colorBlue} onPress={() => setShowPickerStart(false)} />
+                                                            <AntDesign style = {{ marginRight: width * 0.05 }} name="close" size= {width * 0.06} color={Color.colorBlue} onPress={() => setShowPickerStart(false)} />
                                                         </View>
 
                                                         <FlatList
@@ -732,11 +751,11 @@ const handleValuesChange = (values) => {
                     placeholder='End Time'
                     value={day.endTime}
                     style={{
-                        width: windowWidth * 0.22,
-                        height: windowHeight * 0.055,
+                        width: width * 0.22,
+                        height: height * 0.055,
                         borderWidth: 1,
-                        borderRadius: windowHeight * 0.015,
-                        paddingHorizontal: windowWidth * 0.02,
+                        borderRadius: height * 0.015,
+                        paddingHorizontal: width * 0.02,
                         borderColor: day.startTime === '' && day.endTime === '' ? Color.colorBlue1 : renderErrorPerDay(day) ? Color.colorRed : Color.colorGreen ? Color.colorGreen : Color.colorRed,
                     }}
                     editable={false}
@@ -747,15 +766,15 @@ const handleValuesChange = (values) => {
                     <Modal animationType="slide" transparent={true} visible={showPickerEnd} onRequestClose={() => setShowPickerEnd(false)}>
                         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
                             <View style={{ backgroundColor: 'white', width: '90%', maxHeight: '80%', borderRadius: 10, }}>
-                                <View flexDirection='row' style={{ borderBottomColor: Color.colorBlue, borderBottomWidth: 1, alignItems: 'center', justifyContent: 'space-between', marginVertical: windowHeight * 0.02 }}>
+                                <View flexDirection='row' style={{ borderBottomColor: Color.colorBlue, borderBottomWidth: 1, alignItems: 'center', justifyContent: 'space-between', marginVertical: height * 0.02 }}>
                                     <Text style={{
-                                            fontSize: windowWidth * 0.06,
+                                            fontSize: width * 0.06,
                                             fontWeight: '400',
-                                            marginVertical: windowHeight * 0.01,
+                                            marginVertical: height * 0.01,
                                             color: Color.colorBlue,
-                                            marginLeft: windowWidth * 0.05 
+                                            marginLeft: width * 0.05 
                                         }}>End Time</Text>
-                                    <AntDesign style = {{ marginRight: windowWidth * 0.05 }} name="close" size= {windowWidth * 0.06} color={Color.colorBlue} onPress={() => setShowPickerEnd(false)} />
+                                    <AntDesign style = {{ marginRight: width * 0.05 }} name="close" size= {width * 0.06} color={Color.colorBlue} onPress={() => setShowPickerEnd(false)} />
                                 </View>
 
                                 <FlatList
@@ -789,9 +808,9 @@ const handleValuesChange = (values) => {
                                         setServiceAvailability(updatedAvailability);
                                         
                                     }}>
-                                        <FontAwesome name={day.flagAvailable ? 'check-square' : 'square-o'} size={24} color={day.flagAvailable ? 'green' : Color.colorBlue} style={{ marginLeft: 10, marginRight: windowWidth * 0.03 }}/>
+                                        <FontAwesome name={day.flagAvailable ? 'check-square' : 'square-o'} size={24} color={day.flagAvailable ? 'green' : Color.colorBlue} style={{ marginLeft: 10, marginRight: width * 0.03 }}/>
                                     </Pressable>
-                                    <View style={{ position:'absolute', top: windowHeight * 0.06, right: windowWidth * 0.145 }}>
+                                    <View style={{ position:'absolute', top: height * 0.06, right: width * 0.145 }}>
                                         {renderErrorTextPerDay(day)}
                                     </View>
                                     </View>
@@ -813,7 +832,7 @@ const handleValuesChange = (values) => {
             filled
             Color={Color.colorWhite}
             onPress={handleSubmit}
-            style={{ marginHorizontal: windowWidth * 0.05, marginTop: windowHeight * 0.05 }}
+            style={{ marginHorizontal: width * 0.05, marginTop: height * 0.05 }}
             disabled={serviceName === '' || serviceDescription === '' || !serviceNameVerify || !serviceDescriptionVerify || !priceVerify || !validateAvailabilityValues() || selectedValue === null}
         />
 
@@ -824,7 +843,7 @@ const handleValuesChange = (values) => {
 const styles = StyleSheet.create({
   header: {
     backgroundColor: Color.colorPrimary,
-    height: windowHeight * 0.1,
+    height: height * 0.1,
     justifyContent: 'center',
     alignItems: 'center'
   },
@@ -845,7 +864,7 @@ const styles = StyleSheet.create({
     marginBottom: 0,
     fontWeight: "bold",
     textAlign: "left",
-    width: windowWidth * 0.7, 
+    width: width * 0.7, 
     left: 25,
     color: Color.colorBlack,
     fontFamily: FontFamily.quicksandSemiBold,
@@ -860,16 +879,16 @@ const styles = StyleSheet.create({
   locationIcon: {
     marginLeft: 5,
   },input: {
-    height: windowHeight * 0.045, 
-    width: windowWidth * 0.77,
+    height: height * 0.045, 
+    width: width * 0.77,
     borderColor: Color.colorDarkgray,
     borderRadius: 5,
     borderWidth: 1,
-    marginVertical: windowHeight * 0.008, 
-    paddingHorizontal: windowWidth * 0.025, 
+    marginVertical: height * 0.008, 
+    paddingHorizontal: width * 0.025, 
     fontSize: 14,
     color: 'black',
-    left: windowWidth * 0.070,
+    left: width * 0.070,
   },
 })
 

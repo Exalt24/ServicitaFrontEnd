@@ -2,8 +2,7 @@ import React from "react";
 import { StyleSheet, View, Dimensions, Image, FlatList } from "react-native";
 import SwiperFlatList from 'react-native-swiper-flatlist';
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+const  { width, height } = Dimensions.get('window');
 
 
 
@@ -41,21 +40,21 @@ const ServiceImage = ({imageData}) => {
 
 const styles = StyleSheet.create({
   slide: {
-    width: windowWidth,
-    height: windowHeight * 0.5,
+    width: width,
+    height: height * 0.5,
     justifyContent: 'center',
     alignItems: 'center',
   },
   serviceimageIcon: {
     flex: 1,
-    width: windowWidth,
-    height: windowHeight * 0.5,
+    width: width,
+    height: height * 0.5,
     
   
   },
   paginationStyle: {
 
-    bottom:windowHeight * 0.05, 
+    bottom:height * 0.05, 
     width: '100%', 
     justifyContent: 'center', 
     alignItems: 'center', 

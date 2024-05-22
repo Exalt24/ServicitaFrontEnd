@@ -7,8 +7,8 @@ import Error from '@expo/vector-icons/MaterialIcons';
 import Button from "../../components/Button";
 import axios from "axios";
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+const  { width, height } = Dimensions.get('window');
+const  { width, height } = Dimensions.get('window');
 
 export default function ForgotPasswordScreen({navigation}) {
     const [email, setEmail] = useState("");
@@ -36,7 +36,7 @@ export default function ForgotPasswordScreen({navigation}) {
 
     const handlePress = async () => {
         try {
-            const response = await axios.post("http://192.168.1.7:5000/forgot_password_otp/request", { email: email });
+            const response = await axios.post("http://192.168.1.2:5000/forgot_password_otp/request", { email: email });
             console.log(response);
             if (response.status === 202) {
                 setModalVisible(true);
@@ -80,7 +80,7 @@ export default function ForgotPasswordScreen({navigation}) {
     const fetchServerTime = async () => {
         try {
             console.log('Fetching server time...');
-            const response = await axios.get(`http://192.168.1.7:5000/forgot_password_otp/getRemainingCurrentTime/${email}`);
+            const response = await axios.get(`http://192.168.1.2:5000/forgot_password_otp/getRemainingCurrentTime/${email}`);
             const remainingTime = Math.floor(response.data.remainingTime / 1000);
             if (remainingTime <= 0) {
                 setTimer(0);
@@ -99,7 +99,7 @@ export default function ForgotPasswordScreen({navigation}) {
         const userData = {
             email: email,
           }
-        axios.post("http://192.168.1.7:5000/forgot_password_otp/request", userData).then((res) => {
+        axios.post("http://192.168.1.2:5000/forgot_password_otp/request", userData).then((res) => {
           console.log(res.data);
           if (res.data.status === 'PENDING') {
             fetchServerTime();
@@ -116,7 +116,7 @@ export default function ForgotPasswordScreen({navigation}) {
             email: email,
             otp: code.join(''),
           }
-        axios.post("http://192.168.1.7:5000/forgot_password_otp/reset", userData).then((res) => {
+        axios.post("http://192.168.1.2:5000/forgot_password_otp/reset", userData).then((res) => {
             if (res.data.status === 'SUCCESS') {
                 setModalVisible(false);
                 Alert.alert('Success', 'OTP has been verified successfully. Please change your password.', [{ text: 'OK', onPress: () => navigation.navigate('ResetPassword', { email: email}) }]);
@@ -136,7 +136,7 @@ export default function ForgotPasswordScreen({navigation}) {
         
         <SafeAreaView style={{ flex: 1, backgroundColor: Color.colorWhite }}>
             <ScrollView contentContainerStyle={{ flexGrow: 1 }} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps={"always"}>
-        <View style={{ flexDirection: 'column', justifyContent: 'flex-start', marginHorizontal: windowWidth * 0.05, marginTop: windowHeight * 0.07 }}>
+        <View style={{ flexDirection: 'column', justifyContent: 'flex-start', marginHorizontal: width * 0.05, marginTop: height * 0.07 }}>
                             <Pressable onPress={() => navigation.goBack()} style={styles.arrowContainer}>
                                             <Image
                                             style={styles.userroleChild}
@@ -154,25 +154,25 @@ export default function ForgotPasswordScreen({navigation}) {
                 Enter your email to change your password
             </Text>
 
-            <View style={{ marginTop: windowHeight * 0.05, width: windowWidth * 0.90 }}>
+            <View style={{ marginTop: height * 0.05, width: width * 0.90 }}>
                     <Text style={{
                         fontSize: 16,
                         fontWeight: '400',
-                        marginVertical: windowHeight * 0.01,
+                        marginVertical: height * 0.01,
                         color: Color.colorBlue,
                         
                     }}>Email address</Text>
 
                     <View style={{
                         width: '100%',
-                        height: windowHeight * 0.06,
+                        height: height * 0.06,
                         borderColor: email === null || email === '' ? Color.colorBlue1 : emailVerify ? Color.colorGreen : Color.colorRed,
                         borderWidth: 1,
-                        borderRadius: windowHeight * 0.015,
+                        borderRadius: height * 0.015,
                         alignItems: 'center',
                         justifyContent: 'center',
-                        paddingLeft: windowWidth * 0.05,
-                        paddingHorizontal: windowWidth * 0.14,
+                        paddingLeft: width * 0.05,
+                        paddingHorizontal: width * 0.14,
                         flexDirection: 'row'                   
                     }}>
                         <FontAwesome name="envelope" color = {email === null || email === '' ? Color.colorBlue1 : emailVerify ? Color.colorGreen : Color.colorRed} style={{marginRight: 5, fontSize: 24}} />
@@ -213,7 +213,7 @@ export default function ForgotPasswordScreen({navigation}) {
             <View style={styles.centeredView}>
             
               <View style={styles.modalView}>
-                <FontAwesome name="close" size={24} color={Color.colorBlue} style={{alignSelf: 'flex-start', marginLeft: -windowWidth * 0.05, marginBottom: windowHeight * 0.001, bottom: windowHeight * 0.02}} onPress={() => hideModal()} />
+                <FontAwesome name="close" size={24} color={Color.colorBlue} style={{alignSelf: 'flex-start', marginLeft: -width * 0.05, marginBottom: height * 0.001, bottom: height * 0.02}} onPress={() => hideModal()} />
               <View style={{flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
                 <Text style={[styles.passwordRecoverys, styles.passwordFlexBoxs]}>We’ve sent the code to:</Text>
                 <Text style={[styles.enterYourEmails, styles.passwordFlexBoxs]}>{email}</Text>
@@ -269,11 +269,11 @@ export default function ForgotPasswordScreen({navigation}) {
             filled
             Color={Color.colorWhite}
             style={{
-                marginTop: windowHeight * 0.07,
-                marginBottom: windowHeight * 0.05,
-                width: windowWidth * 0.87,
-                height: windowHeight * 0.08,
-                top: windowHeight * 0.1,
+                marginTop: height * 0.07,
+                marginBottom: height * 0.05,
+                width: width * 0.87,
+                height: height * 0.08,
+                top: height * 0.1,
             }}
             onPress={handlePress}
             disabled={!emailVerify}
@@ -295,7 +295,7 @@ const styles = StyleSheet.create({
         display: "flex",
         textAlign: "center",
         lineHeight: 23,
-        marginBottom: windowHeight * 0.04,
+        marginBottom: height * 0.04,
     },
     passwordRecovery: {
         fontSize: FontSize.size_5xl,
@@ -305,7 +305,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         display: "flex",
         textAlign: "center",
-        lineHeight: windowHeight * 0.1,
+        lineHeight: height * 0.1,
     },
     enterYourEmail: {
         fontSize: FontSize.size_mini,
@@ -316,28 +316,28 @@ const styles = StyleSheet.create({
         alignItems: "center",
         display: "flex",
         textAlign: "center",
-        lineHeight: windowHeight * 0.05,
-        bottom: windowHeight * 0.02,
+        lineHeight: height * 0.05,
+        bottom: height * 0.02,
     },
     container: {
         flex: 1,
         justifyContent: 'center',
         backgroundColor: Color.colorWhite,
-        marginHorizontal: windowWidth * 0.05,
+        marginHorizontal: width * 0.05,
         flexDirection: 'column',
         alignItems: 'center',
         position: 'absolute',
-        top: windowHeight * 0.2,
+        top: height * 0.2,
     },
     arrowContainer: {
-        bottom: windowHeight * 0.02,
-        left: windowWidth * 0.01,
+        bottom: height * 0.02,
+        left: width * 0.01,
     },
     userroleChild: {
-        top: windowHeight * 0.003,
-        left: windowWidth * 0.001,
+        top: height * 0.003,
+        left: width * 0.001,
         maxHeight: "100%",
-        width: windowWidth * 0.07,
+        width: width * 0.07,
     },
     centeredView: {
         flex: 1,
@@ -379,27 +379,27 @@ const styles = StyleSheet.create({
         borderRadius: Border.br_3xs,
     },
     button: {
-        marginTop: windowHeight * 0.02,
-        width: windowWidth * 0.5,
-        height: windowHeight * 0.08,
+        marginTop: height * 0.02,
+        width: width * 0.5,
+        height: height * 0.08,
     },
     passwordFlexBoxs: {
-        marginVertical: windowHeight * 0.001,
+        marginVertical: height * 0.001,
     },
     passwordRecoverys: {
-        fontSize: windowHeight * 0.025,
+        fontSize: height * 0.025,
         fontWeight: 'bold',
     },
     enterYourEmails: {
-        fontSize: windowHeight * 0.018,
+        fontSize: height * 0.018,
     },
     timerContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginVertical: windowHeight * 0.02,
+        marginVertical: height * 0.02,
     },
     text: {
-        fontSize: windowHeight * 0.018,
+        fontSize: height * 0.018,
     },
    
 });

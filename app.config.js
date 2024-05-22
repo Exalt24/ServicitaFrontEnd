@@ -10,7 +10,7 @@ export default {
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#000000"
+      "backgroundColor": "#07374d"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -20,8 +20,8 @@ export default {
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#000000"
+        "foregroundImage": "./assets/icon.png",
+        // "backgroundColor": "#000000"
       },
       "package": "com.xdhunter6.FrontEnd",
       "googleServicesFile": "./google-services.json",

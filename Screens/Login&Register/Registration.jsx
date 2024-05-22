@@ -13,8 +13,8 @@ import axios from 'axios';
 import { useNotifications, createNotifications } from 'react-native-notificated';
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+const  { width, height } = Dimensions.get('window');
+const  { width, height } = Dimensions.get('window');
 
 export default function RegisterPage ({navigation, route, props}) {
     const { NotificationsProvider } = createNotifications();
@@ -191,7 +191,7 @@ export default function RegisterPage ({navigation, route, props}) {
             const userData = {
                 email: email,
             }
-            const res = await axios.post("http://192.168.1.7:5000/user/getUserDetailsByEmail", userData);
+            const res = await axios.post("http://192.168.1.2:5000/user/getUserDetailsByEmail", userData);
             if (res.data.status === 'SUCCESS') {
                 return true;
             }
@@ -219,7 +219,7 @@ export default function RegisterPage ({navigation, route, props}) {
             email: email,
             name: `${firstName} ${lastName}`,
           }
-        axios.post("http://192.168.1.7:5000/email_verification_otp/sendEmail", userData).then((res) => {
+        axios.post("http://192.168.1.2:5000/email_verification_otp/sendEmail", userData).then((res) => {
           console.log(res.data);
           if (res.data.status === 'PENDING') {
             setModalVisible(true);
@@ -254,7 +254,7 @@ export default function RegisterPage ({navigation, route, props}) {
             email: email,
             otp: code.join(''),
         }
-          axios.post("http://192.168.1.7:5000/email_verification_otp/verifyOTP", userData).then((res) => {
+          axios.post("http://192.168.1.2:5000/email_verification_otp/verifyOTP", userData).then((res) => {
           console.log(res.data);
           if (res.data.status === 'SUCCESS') {
             setModalVisible(false);
@@ -277,7 +277,7 @@ export default function RegisterPage ({navigation, route, props}) {
             email: email,
             name: `${firstName} ${lastName}`,
           }
-        axios.post("http://192.168.1.7:5000/email_verification_otp/sendEmail", userData).then((res) => {
+        axios.post("http://192.168.1.2:5000/email_verification_otp/sendEmail", userData).then((res) => {
           console.log(res.data);
           if (res.data.status === 'PENDING') {
             fetchServerTime();
@@ -293,7 +293,7 @@ export default function RegisterPage ({navigation, route, props}) {
     const fetchServerTime = async () => {
         try {
             console.log('Fetching server time...');
-            const response = await axios.get(`http://192.168.1.7:5000/email_verification_otp/getRemainingCurrentTime/${email}`);
+            const response = await axios.get(`http://192.168.1.2:5000/email_verification_otp/getRemainingCurrentTime/${email}`);
             const remainingTime = Math.floor(response.data.remainingTime / 1000);
             if (remainingTime <= 0) {
                 setTimer(0);
@@ -313,7 +313,7 @@ export default function RegisterPage ({navigation, route, props}) {
         <NotificationsProvider />
         </View>
         <ScrollView contentContainerStyle={{ flexGrow: 1 }} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps={"always"}>
-            <View style={{ flex: 1, marginHorizontal: windowWidth * 0.05, justifyContent: "center", flexDirection: "column"}}>
+            <View style={{ flex: 1, marginHorizontal: width * 0.05, justifyContent: "center", flexDirection: "column"}}>
                 
                 <Pressable onPress={() => navigation.goBack()} style={styles.arrowContainer}>
                     <Image
@@ -323,12 +323,12 @@ export default function RegisterPage ({navigation, route, props}) {
                     />
                 </Pressable>
 
-                <View style={{ marginVertical: windowHeight * 0.04 }}>
+                <View style={{ marginVertical: height * 0.04 }}>
                     
                     <Text style={{
-                        fontSize: windowWidth * 0.1,
+                        fontSize: width * 0.1,
                         fontWeight: 'bold',
-                        marginVertical: windowHeight * 0.02,
+                        marginVertical: height * 0.02,
                         color: Color.colorBlue
                         
                     }}>
@@ -338,24 +338,24 @@ export default function RegisterPage ({navigation, route, props}) {
                     </Text>
                 </View>
 
-                <View style={{ marginBottom: windowHeight * 0.01 }}>
+                <View style={{ marginBottom: height * 0.01 }}>
                     <Text style={{
-                        fontSize: windowWidth * 0.05,
+                        fontSize: width * 0.05,
                         fontWeight: '400',
-                        marginVertical: windowHeight * 0.01,
+                        marginVertical: height * 0.01,
                         color: Color.colorBlue
                     }}>First Name</Text>
                     
                     <View style={{
                         width: '100%',
-                        height: windowHeight * 0.06,
+                        height: height * 0.06,
                         borderColor: firstName === null || firstName === '' ? Color.colorBlue1 : firstNameVerify ? Color.colorGreen : Color.colorRed,
                         borderWidth: 1,
-                        borderRadius: windowHeight * 0.015,
+                        borderRadius: height * 0.015,
                         alignItems: 'center',
                         justifyContent: 'center',
-                        paddingLeft: windowWidth * 0.05,
-                        paddingHorizontal: windowWidth * 0.13,
+                        paddingLeft: width * 0.05,
+                        paddingHorizontal: width * 0.13,
                         flexDirection: 'row'
                     }}>
                         <FontAwesome name="user" color = {firstName === null || firstName === '' ? Color.colorBlue1 : firstNameVerify ? Color.colorGreen : Color.colorRed} style={{marginRight: 5, fontSize: 24}} />
@@ -382,24 +382,24 @@ export default function RegisterPage ({navigation, route, props}) {
                     )}
                 </View>
 
-                <View style={{ marginBottom: windowHeight * 0.01 }}>
+                <View style={{ marginBottom: height * 0.01 }}>
                     <Text style={{
-                        fontSize: windowWidth * 0.05,
+                        fontSize: width * 0.05,
                         fontWeight: '400',
-                        marginVertical: windowHeight * 0.01,
+                        marginVertical: height * 0.01,
                         color: Color.colorBlue
                     }}>Last Name</Text>
 
                     <View style={{
                         width: '100%',
-                        height: windowHeight * 0.06,
+                        height: height * 0.06,
                         borderColor: lastName === null || lastName === '' ? Color.colorBlue1 : lastNameVerify ? Color.colorGreen : Color.colorRed,
                         borderWidth: 1,
-                        borderRadius: windowHeight * 0.015,
+                        borderRadius: height * 0.015,
                         alignItems: 'center',
                         justifyContent: 'center',
-                        paddingLeft: windowWidth * 0.05,
-                        paddingHorizontal: windowWidth * 0.14,
+                        paddingLeft: width * 0.05,
+                        paddingHorizontal: width * 0.14,
                         flexDirection: 'row'
                     }}>
                         <FontAwesome name="users" color = {lastName === null || lastName === '' ? Color.colorBlue1 : lastNameVerify ? Color.colorGreen : Color.colorRed} style={{marginRight: 5, fontSize: 24}} />
@@ -426,11 +426,11 @@ export default function RegisterPage ({navigation, route, props}) {
                     )}
                 </View>
                 
-                <View style={{ marginBottom: windowHeight * 0.01 }}>
+                <View style={{ marginBottom: height * 0.01 }}>
                     <Text style={{
-                        fontSize: windowWidth * 0.05,
+                        fontSize: width * 0.05,
                         fontWeight: '400',
-                        marginVertical: windowHeight * 0.01,
+                        marginVertical: height * 0.01,
                         color: Color.colorBlue
                     }}>Birthdate</Text>
                     <TouchableOpacity onPress={() => {
@@ -442,14 +442,14 @@ export default function RegisterPage ({navigation, route, props}) {
                     }}>
                        <View style={{
                         width: '100%',
-                        height: windowHeight * 0.06,
+                        height: height * 0.06,
                         borderColor: birthday === null || birthday === '' ? Color.colorBlue1 : birthdayVerify ? Color.colorGreen : Color.colorRed,
                         borderWidth: 1,
-                        borderRadius: windowHeight * 0.015,
+                        borderRadius: height * 0.015,
                         alignItems: 'center',
                         justifyContent: 'center',
-                        paddingLeft: windowWidth * 0.05,
-                        paddingHorizontal: windowWidth * 0.14,
+                        paddingLeft: width * 0.05,
+                        paddingHorizontal: width * 0.14,
                         flexDirection: 'row'                   
                     }}>
                         <FontAwesome name="calendar" color = {birthday === null || birthday === '' ? Color.colorBlue1 : birthdayVerify ? Color.colorGreen : Color.colorRed} style={{marginRight: 5, fontSize: 24}} />
@@ -463,7 +463,7 @@ export default function RegisterPage ({navigation, route, props}) {
                             value={birthday ? formattedBirthday: ''}
                             editable={false}
                             color={birthday === null || birthday === '' ? Color.colorBlack : birthdayVerify ? Color.colorBlack : Color.colorRed}
-                            fontSize={windowWidth * 0.034}
+                            fontSize={width * 0.034}
                         />
                         {birthday < 1 ? null : birthdayVerify ? (
                             <Feather name="check-circle" color="green" size={24} style={{ position: "absolute", right: 12 }}/>
@@ -487,24 +487,24 @@ export default function RegisterPage ({navigation, route, props}) {
                         <Text style={errorText}>You must be at least 18 years old to register.</Text>
                     )}
 
-                <View style={{ marginBottom: windowHeight * 0.01 }}>
+                <View style={{ marginBottom: height * 0.01 }}>
                     <Text style={{
-                        fontSize: windowWidth * 0.05,
+                        fontSize: width * 0.05,
                         fontWeight: '400',
-                        marginVertical: windowHeight * 0.01,
+                        marginVertical: height * 0.01,
                         color: Color.colorBlue
                     }}>Email Address</Text>
 
                     <View style={{
                         width: '100%',
-                        height: windowHeight * 0.06,
+                        height: height * 0.06,
                         borderColor: email === null || email === '' ? Color.colorBlue1 : emailVerify ? Color.colorGreen : Color.colorRed,
                         borderWidth: 1,
-                        borderRadius: windowHeight * 0.015,
+                        borderRadius: height * 0.015,
                         alignItems: 'center',
                         justifyContent: 'center',
-                        paddingLeft: windowWidth * 0.05,
-                        paddingHorizontal: windowWidth * 0.14,
+                        paddingLeft: width * 0.05,
+                        paddingHorizontal: width * 0.14,
                         flexDirection: 'row'                   
                     }}>
                         <FontAwesome name="envelope" color = {email === null || email === '' ? Color.colorBlue1 : emailVerify ? Color.colorGreen : Color.colorRed} style={{marginRight: 5, fontSize: 24}} />
@@ -544,15 +544,15 @@ export default function RegisterPage ({navigation, route, props}) {
             <View style={styles.centeredView}>
             
               <View style={styles.modalView}>
-              <View flexDirection='row' style={{ borderBottomColor: Color.colorBlue, borderBottomWidth: 1, alignItems: 'center', justifyContent: 'space-between', marginVertical: windowHeight * 0.01 }}>
+              <View flexDirection='row' style={{ borderBottomColor: Color.colorBlue, borderBottomWidth: 1, alignItems: 'center', justifyContent: 'space-between', marginVertical: height * 0.01 }}>
                             <Text style={{
-                                    fontSize: windowWidth * 0.06,
+                                    fontSize: width * 0.06,
                                     fontWeight: '400',
-                                    marginVertical: windowHeight * 0.01,
+                                    marginVertical: height * 0.01,
                                     color: Color.colorBlue,
-                                    marginLeft: windowWidth * 0.05 
+                                    marginLeft: width * 0.05 
                                 }}>Verify Code</Text>
-                            <AntDesignIcon style = {{ marginRight: windowWidth * 0.05 }} name="close" size= {windowWidth * 0.06} color={Color.colorBlue} onPress={() => hideModal()} />
+                            <AntDesignIcon style = {{ marginRight: width * 0.05 }} name="close" size= {width * 0.06} color={Color.colorBlue} onPress={() => hideModal()} />
                             </View>
               <View style={{flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
                 <Text style={[styles.passwordRecovery, styles.passwordFlexBox]}>We’ve sent the code to:</Text>
@@ -610,30 +610,30 @@ export default function RegisterPage ({navigation, route, props}) {
                 filled
                 Color={Color.colorWhite}
                 style={{
-                    marginTop: windowHeight * 0.02,
-                    marginBottom: windowHeight * 0.05,
+                    marginTop: height * 0.02,
+                    marginBottom: height * 0.05,
                 }}
                 disabled={!validateFields()}
             />
 
 
 
-                <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: windowHeight * 0.025 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', marginVertical: height * 0.025 }}>
                     <View
                         style={{
                             flex: 1,
                             height: 1,
                             backgroundColor: Color.colorGrey,
-                            marginHorizontal: windowWidth * 0.01
+                            marginHorizontal: width * 0.01
                         }}
                     />
-                    <Text style={{ fontSize: windowWidth * 0.035 }}>Or Sign up with</Text>
+                    <Text style={{ fontSize: width * 0.035 }}>Or Sign up with</Text>
                     <View
                         style={{
                             flex: 1,
                             height: 1,
                             backgroundColor: Color.colorGrey,
-                            marginHorizontal: windowWidth * 0.01
+                            marginHorizontal: width * 0.01
                         }}
                     />
                 </View>
@@ -650,19 +650,19 @@ export default function RegisterPage ({navigation, route, props}) {
                             alignItems: 'center',
                             justifyContent: 'center',
                             flexDirection: 'row',
-                            height: windowHeight * 0.08,
+                            height: height * 0.08,
                             borderWidth: 0,
                             borderColor: Color.colorWhite,
-                            marginRight: windowWidth * 0.02,
-                            borderRadius: windowHeight * 0.02
+                            marginRight: width * 0.02,
+                            borderRadius: height * 0.02
                         }}
                     >
                         <Image
                             source={require("./../../assets/facebook.png")}
                             style={{
-                                height: windowHeight * 0.05,
-                                width: windowHeight * 0.05,
-                                marginRight: -windowWidth * 0.1
+                                height: height * 0.05,
+                                width: height * 0.05,
+                                marginRight: -width * 0.1
                             }}
                         />
                     </TouchableOpacity>
@@ -674,19 +674,19 @@ export default function RegisterPage ({navigation, route, props}) {
                             alignItems: 'center',
                             justifyContent: 'center',
                             flexDirection: 'row',
-                            height: windowHeight * 0.08,
+                            height: height * 0.08,
                             borderWidth: 1,
                             borderColor: Color.colorWhite,
-                            marginRight: windowWidth * 0.02,
-                            borderRadius: windowHeight * 0.02
+                            marginRight: width * 0.02,
+                            borderRadius: height * 0.02
                         }}
                     >
                         <Image
                             source={require("./../../assets/google.png")}
                             style={{
-                                height: windowHeight * 0.07,
-                                width: windowHeight * 0.07,
-                                marginRight: windowWidth * 0.1
+                                height: height * 0.07,
+                                width: height * 0.07,
+                                marginRight: width * 0.1
                             }}
                         />
                     </TouchableOpacity>
@@ -695,17 +695,17 @@ export default function RegisterPage ({navigation, route, props}) {
                 <View style={{
                     flexDirection: "row",
                     justifyContent: "center",
-                    marginVertical: windowHeight * 0.025
+                    marginVertical: height * 0.025
                 }}>
-                    <Text style={{ fontSize: windowWidth * 0.05, color: Color.black }}>Already have an account?</Text>
+                    <Text style={{ fontSize: width * 0.05, color: Color.black }}>Already have an account?</Text>
                     <Pressable
                         onPress={() => navigation.navigate("Login")}
                     >
                         <Text style={{
-                            fontSize: windowWidth * 0.05,
+                            fontSize: width * 0.05,
                             color: Color.colorPrimary,
                             fontWeight: 'bold',
-                            marginLeft: windowWidth * 0.015
+                            marginLeft: width * 0.015
                         }}>Login</Text>
                     </Pressable>
                 </View>
@@ -717,23 +717,23 @@ export default function RegisterPage ({navigation, route, props}) {
 
 const styles = StyleSheet.create({
     arrowContainer: {
-        top: windowHeight * 0.03,
-        left: windowWidth * 0.01,
+        top: height * 0.03,
+        left: width * 0.01,
         zIndex: 2,
     },
     userroleChild: {
-        top: windowHeight * 0.001,
-        left: windowWidth * 0.001,
+        top: height * 0.001,
+        left: width * 0.001,
         maxHeight: "100%",
-        width: windowWidth * 0.07,
+        width: width * 0.07,
         zIndex: 1,
     },
     datePickerContainer: {
         flexDirection: 'row',
         alignItems: 'center',
         borderWidth: 1,
-        borderRadius: windowHeight * 0.015,
-        height: windowHeight * 0.045,
+        borderRadius: height * 0.015,
+        height: height * 0.045,
     },
     centeredView: {
         flex: 1,
@@ -766,34 +766,34 @@ const styles = StyleSheet.create({
         borderRadius: Border.br_3xs,
     },
     button: {
-        marginTop: windowHeight * 0.02,
-        width: windowWidth * 0.65,
-        height: windowHeight * 0.08,
+        marginTop: height * 0.02,
+        width: width * 0.65,
+        height: height * 0.08,
         alignSelf: 'center',    
     },
     buttons: {
-        marginVertical: windowHeight * 0.02,
-        width: windowWidth * 0.65,
-        height: windowHeight * 0.08,
+        marginVertical: height * 0.02,
+        width: width * 0.65,
+        height: height * 0.08,
         alignSelf: 'center',    
     },
     passwordFlexBox: {
-        marginTop: windowHeight * 0.02,
-        marginVertical: windowHeight * 0.001,
+        marginTop: height * 0.02,
+        marginVertical: height * 0.001,
     },
     passwordRecovery: {
-        fontSize: windowHeight * 0.023,
+        fontSize: height * 0.023,
         fontWeight: 'bold',
     },
     enterYourEmail: {
-        fontSize: windowHeight * 0.018,
+        fontSize: height * 0.018,
     },
     timerContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginVertical: windowHeight * 0.02,
+        marginVertical: height * 0.02,
     },
     text: {
-        fontSize: windowHeight * 0.018,
+        fontSize: height * 0.018,
     },
 })

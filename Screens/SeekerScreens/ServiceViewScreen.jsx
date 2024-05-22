@@ -13,8 +13,10 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import firestore from '@react-native-firebase/firestore';
 import axios from 'axios';
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+
+const  { width, height } = Dimensions.get('window');
+
+const  { width, height } = Dimensions.get('window');
 
 export default ServiceViewScreen = ({navigation, route}) => {
 
@@ -24,10 +26,10 @@ export default ServiceViewScreen = ({navigation, route}) => {
   const [ messagesData , setmessagesData ] = useState(null);
 
   async function getMessageNeededData () {
-    const resultSeeker = await axios.post("http://192.168.1.7:5000/user/getUserDetailsById", { id: userData._id });
+    const resultSeeker = await axios.post("http://192.168.1.2:5000/user/getUserDetailsById", { id: userData._id });
     const seekerSnapshot = await firestore().collection('seekers').doc(userData._id).get();
     const seekerData = { id: seekerSnapshot.id, ...seekerSnapshot.data(), image: resultSeeker.data.data.profileImage, mobile: resultSeeker.data.data.mobile };
-    const resultProvider = await axios.post("http://192.168.1.7:5000/user/getUserDetailsById", { id: data.providerId });
+    const resultProvider = await axios.post("http://192.168.1.2:5000/user/getUserDetailsById", { id: data.providerId });
     const providerSnapshot = await firestore().collection('providers').doc(data.providerId).get();
     const providerData = { id: providerSnapshot.id, ...providerSnapshot.data(), image: resultProvider.data.data.profileImage, mobile: resultProvider.data.data.mobile };
     setmessagesData({seekerData, providerData});
@@ -143,7 +145,7 @@ const styles = StyleSheet.create({
   },
   navigator: {
     backgroundColor: Color.colorWhite,
-    width: windowWidth,
+    width: width,
     height: 40,
     overflow: "hidden",
     flexDirection: "row", // Arrange tabs horizontally

@@ -11,7 +11,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { sendPushNotification } from '../NotificationScreen';
 
 
-const windowWidth = Dimensions.get('window').width;
+const  { width, height } = Dimensions.get('window');
+const  { width, height } = Dimensions.get('window');
 
 export default function ProviderBookingScreen({ navigation, route }) {
 
@@ -27,7 +28,7 @@ export default function ProviderBookingScreen({ navigation, route }) {
 
   const getUserIdAndImage = async () => {
     try {
-      const result = await axios.post("http://192.168.1.7:5000/user/getUserDetailsByEmail", { email: userEmail })
+      const result = await axios.post("http://192.168.1.2:5000/user/getUserDetailsByEmail", { email: userEmail })
       setUserData(result.data.data);
       return { id: result.data.data._id, image: result.data.data.profileImage, mobile: result.data.data.mobile };
     } catch (error) {
@@ -50,7 +51,7 @@ export default function ProviderBookingScreen({ navigation, route }) {
             const serviceData = { id: serviceSnapshot.id, data: serviceSnapshot.data()}
             const providerSnapshot = await firestore().collection('providers').doc(doc.data().providerId).get();
             const providerData = providerSnapshot.data();
-            const result = await axios.post("http://192.168.1.7:5000/user/getUserDetailsById", { id: seekerSnapshot.id })
+            const result = await axios.post("http://192.168.1.2:5000/user/getUserDetailsById", { id: seekerSnapshot.id })
             const expiresAt = doc.data().expiresAt.toDate();
             console.log(doc.data().status)
 
@@ -168,7 +169,7 @@ const styles = StyleSheet.create({
     marginLeft: 25,
   },
   filterIcon: {
-    marginLeft: windowWidth * 0.87,
+    marginLeft: width * 0.87,
   },
   modalContainer: {
     flex: 1,

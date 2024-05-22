@@ -8,8 +8,7 @@ import firestore from '@react-native-firebase/firestore';
 import CategoryFilter from './CategoryFilter';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+const  { width, height } = Dimensions.get('window');
 
 
 const CategoryScreen = ({ navigation, route }) => {
@@ -106,7 +105,7 @@ const styles = StyleSheet.create({
     left: 35.8, // Adjust position as needed
     paddingHorizontal: 9,
     marginHorizontal: 10, // Adjust horizontal margin
-    bottom: windowHeight * 0.08, // Adjust position as needed
+    bottom: height * 0.08, // Adjust position as needed
    transform: [{ translateY: -12 }], // Adjust to center the icon vertically
 
    

@@ -9,8 +9,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const windowHeight = Dimensions.get('window').height;
-const windowWidth = Dimensions.get('window').width;
+const  { width, height } = Dimensions.get('window');
+const  { width, height } = Dimensions.get('window');
 
 export default HomePage = ({navigation, route}) => {
 
@@ -23,7 +23,7 @@ export default HomePage = ({navigation, route}) => {
 
   async function getUserData() {
     try {
-      await axios.post("http://192.168.1.7:5000/user/getUserDetailsByEmail", { email: userEmail }).then((response) => {
+      await axios.post("http://192.168.1.2:5000/user/getUserDetailsByEmail", { email: userEmail }).then((response) => {
         setUserData(response.data.data);
       }
       );
@@ -89,219 +89,423 @@ export default HomePage = ({navigation, route}) => {
       null
     );
   }
-
+  // style={{ paddingBottom: 10 }}
   return (
-    <SafeAreaView style={{ flex: 1}}>
-    <ScrollView  >
+    <SafeAreaView style={{ flex: 1, marginBottom: 70 }}>
+
+
+    <SafeAreaView style={{ flex: 1, marginBottom: 70 }}>
+
+
     <View style={styles.container}>
-      
       <View style={styles.searchContainer}>
-        <TouchableOpacity onPress={()=>navigation.navigate("Search", {userData: userData})} style={styles.searchTouchable}>
-        <View style={styles.searchBar}>
-       
-          <AntDesign name="search1" size={24} color="#002D62" />
-          
-          <TextInput placeholder="Search for services or more" style={styles.searchInput} editable={false} />
-          
+        
+        <View style={styles.searchWrapper}>
+          <Image
+            source={require('./../../assets/logo4home.png')} // Replace with your actual image path
+            style={styles.searchImage}
+          />
+          <Pressable onPress={() => navigation.navigate("Search", { userData: userData })} style={styles.searchTouchable}>
+            <View style={styles.searchBar}>
+              <AntDesign name="search1" size={24} color="#002D62" />
+              <TextInput placeholder="Search for services or more" style={styles.searchInput} editable={false} />
+            </View>
+          </Pressable>
+        
+        <View style={styles.searchWrapper}>
+          <Image
+            source={require('./../../assets/logo4home.png')} // Replace with your actual image path
+            style={styles.searchImage}
+          />
+          <Pressable onPress={() => navigation.navigate("Search", { userData: userData })} style={styles.searchTouchable}>
+            <View style={styles.searchBar}>
+              <AntDesign name="search1" size={24} color="#002D62" />
+              <TextInput placeholder="Search for services or more" style={styles.searchInput} editable={false} />
+            </View>
+          </Pressable>
         </View>
-       </TouchableOpacity>
+        
+        
       </View>
     </View>
 
+      <ScrollView  >
 
-    {/* IMAGE SLIDER */}
-      <View style={{marginTop:15}}>
-        <ImageSlider />
+      <ScrollView  >
+
+
+        {/* IMAGE SLIDER */}
+          <View style={{marginTop:15}}>
+            <ImageSlider />
+            
+          
+        {/* Categories */}
+        <View>
+          <View style={styles.container1}>
+            <View>
+              <Text style={styles.categoriesText}>Services</Text>
+            </View> 
+        {/* IMAGE SLIDER */}
+          <View style={{marginTop:15}}>
+            <ImageSlider />
+            
+          
+        {/* Categories */}
+        <View>
+          <View style={styles.container1}>
+            <View>
+              <Text style={styles.categoriesText}>Services</Text>
+            </View> 
+
+            <View>
+            <TouchableOpacity
+            onPress={()=>navigation.navigate("Services")}>
+                <Text style={styles.viewAllText}>View All</Text>
+              </TouchableOpacity>
+            </View> 
+          </View>
         
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+
+          <View  style={{flexDirection: "row", alignItems: "center", justifyContent:"center", flexWrap:'wrap' }}>
+            <View>
+            <TouchableOpacity
+            onPress={()=>navigation.navigate("Services")}>
+                <Text style={styles.viewAllText}>View All</Text>
+              </TouchableOpacity>
+            </View> 
+          </View>
+        
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+
+          <View  style={{flexDirection: "row", alignItems: "center", justifyContent:"center", flexWrap:'wrap' }}>
+
+            <View>
+              <TouchableOpacity
+                onPress={()=>navigation.navigate("CategoryScreen", {serviceType: "Home Cleaner Service", userData: userData})}>
+                <Image 
+                  source={require("./../../assets/Cleaning.png")}
+                  style={{
+                    height: 100,
+                    width: 93,
+                    resizeMode:'contain',
+                    marginRight: 2,
+                    marginLeft: 2
+                  }}
+                />
+              </TouchableOpacity>
+            </View>
+            <View>
+              <TouchableOpacity
+                onPress={()=>navigation.navigate("CategoryScreen", {serviceType: "Home Cleaner Service", userData: userData})}>
+                <Image 
+                  source={require("./../../assets/Cleaning.png")}
+                  style={{
+                    height: 100,
+                    width: 93,
+                    resizeMode:'contain',
+                    marginRight: 2,
+                    marginLeft: 2
+                  }}
+                />
+              </TouchableOpacity>
+            </View>
+
+            
+            <View>
+              <TouchableOpacity
+              onPress={()=>navigation.navigate("CategoryScreen", {serviceType: "Manicure/Pedicure Service", userData: userData})}>
+              <Image
+                source={require("./../../assets/Manicure.png")}
+                style={{
+                  height: 100,
+                  width: 93,
+                  resizeMode:'contain',
+                  marginRight: 2,
+                  marginLeft: 2
+                }}
+              />
+              </TouchableOpacity>
+            </View>
+            
+            <View>
+              <TouchableOpacity
+              onPress={()=>navigation.navigate("CategoryScreen", {serviceType: "Manicure/Pedicure Service", userData: userData})}>
+              <Image
+                source={require("./../../assets/Manicure.png")}
+                style={{
+                  height: 100,
+                  width: 93,
+                  resizeMode:'contain',
+                  marginRight: 2,
+                  marginLeft: 2
+                }}
+              />
+              </TouchableOpacity>
+            </View>
+
+            
+            <View>
+              <TouchableOpacity
+              onPress={()=>navigation.navigate("CategoryScreen", {serviceType: "Electrical Service", userData: userData})}>
+              <Image
+                source={require("./../../assets/Electric.png")}
+                style={{
+                  height: 100,
+                  width: 93,
+                  resizeMode:'contain',
+                  marginRight: 2,
+                  marginLeft: 2
+                }}
+              />
+              </TouchableOpacity>
+            </View>
+            
+            <View>
+              <TouchableOpacity
+              onPress={()=>navigation.navigate("CategoryScreen", {serviceType: "Electrical Service", userData: userData})}>
+              <Image
+                source={require("./../../assets/Electric.png")}
+                style={{
+                  height: 100,
+                  width: 93,
+                  resizeMode:'contain',
+                  marginRight: 2,
+                  marginLeft: 2
+                }}
+              />
+              </TouchableOpacity>
+            </View>
+
+            
+            <View>
+              <TouchableOpacity
+              onPress={()=>navigation.navigate("CategoryScreen", {serviceType: "Hair and Makeup Service", userData: userData})}>
+              <Image
+                source={require("./../../assets/Beauty.png")}
+                style={{
+                  height: 100,
+                  width: 93,
+                  resizeMode:'contain',
+                  marginRight: 2,
+                  marginLeft: 2
+                }}
+              />
+              </TouchableOpacity>
+            </View>
+            
+            <View>
+              <TouchableOpacity
+              onPress={()=>navigation.navigate("CategoryScreen", {serviceType: "Hair and Makeup Service", userData: userData})}>
+              <Image
+                source={require("./../../assets/Beauty.png")}
+                style={{
+                  height: 100,
+                  width: 93,
+                  resizeMode:'contain',
+                  marginRight: 2,
+                  marginLeft: 2
+                }}
+              />
+              </TouchableOpacity>
+            </View>
+
+            
+            <View>
+              <TouchableOpacity
+              onPress={()=>navigation.navigate("CategoryScreen", {serviceType: "Catering Service", userData: userData})}>
+              <Image
+                source={require("./../../assets/Catering.png")}
+                style={{
+                  height: 100,
+                  width: 93,
+                  resizeMode:'contain',
+                  marginRight: 2,
+                  marginLeft: 2
+                }}
+              />
+              </TouchableOpacity>
+            </View>
+            
+            <View>
+              <TouchableOpacity
+              onPress={()=>navigation.navigate("CategoryScreen", {serviceType: "Catering Service", userData: userData})}>
+              <Image
+                source={require("./../../assets/Catering.png")}
+                style={{
+                  height: 100,
+                  width: 93,
+                  resizeMode:'contain',
+                  marginRight: 2,
+                  marginLeft: 2
+                }}
+              />
+              </TouchableOpacity>
+            </View>
+
+            
+            <View>
+              <TouchableOpacity
+              onPress={()=>navigation.navigate("CategoryScreen", {serviceType: "Septic Tank Service", userData: userData})}>
+              <Image
+                source={require("./../../assets/Septic.png")}
+                style={{
+                  height: 100,
+                  width: 93,
+                  resizeMode:'contain',
+                  marginRight: 2,
+                  marginLeft: 2
+                }}
+              />
+              </TouchableOpacity>
+            </View>
+            
+            <View>
+              <TouchableOpacity
+              onPress={()=>navigation.navigate("CategoryScreen", {serviceType: "Septic Tank Service", userData: userData})}>
+              <Image
+                source={require("./../../assets/Septic.png")}
+                style={{
+                  height: 100,
+                  width: 93,
+                  resizeMode:'contain',
+                  marginRight: 2,
+                  marginLeft: 2
+                }}
+              />
+              </TouchableOpacity>
+            </View>
+
+            
+            <View>
+              <TouchableOpacity
+              onPress={()=>navigation.navigate("CategoryScreen", {serviceType: "Massage Service", userData: userData})}>
+              <Image
+                source={require("./../../assets/Massage.png")}
+                style={{
+                  height: 100,
+                  width: 93,
+                  resizeMode:'contain',
+                  marginRight: 2,
+                  marginLeft: 2
+                }}
+              />
+              </TouchableOpacity>
+            </View>
+            
+            <View>
+              <TouchableOpacity
+              onPress={()=>navigation.navigate("CategoryScreen", {serviceType: "Massage Service", userData: userData})}>
+              <Image
+                source={require("./../../assets/Massage.png")}
+                style={{
+                  height: 100,
+                  width: 93,
+                  resizeMode:'contain',
+                  marginRight: 2,
+                  marginLeft: 2
+                }}
+              />
+              </TouchableOpacity>
+            </View>
+
+            
+            <View>
+              <TouchableOpacity
+              onPress={()=>navigation.navigate("CategoryScreen", {serviceType: "Plumbing Service", userData: userData})}>
+              <Image
+                source={require("./../../assets/Plumbing.png")}
+                style={{
+                  height: 100,
+                  width: 93,
+                  resizeMode:'contain',
+                  marginRight: 2,
+                  marginLeft: 2
+                }}
+              />
+              </TouchableOpacity>
+            </View>
+            
+            <View>
+              <TouchableOpacity
+              onPress={()=>navigation.navigate("CategoryScreen", {serviceType: "Plumbing Service", userData: userData})}>
+              <Image
+                source={require("./../../assets/Plumbing.png")}
+                style={{
+                  height: 100,
+                  width: 93,
+                  resizeMode:'contain',
+                  marginRight: 2,
+                  marginLeft: 2
+                }}
+              />
+              </TouchableOpacity>
+            </View>
+
+            
+            <View>
+              <TouchableOpacity
+              onPress={()=>navigation.navigate("CategoryScreen", {serviceType: "Tutoring Service", userData: userData})}>
+              <Image
+                source={require("./../../assets/Tutoring.png")}
+                style={{
+                  height: 100,
+                  width: 93,
+                  resizeMode:'contain',
+                  marginRight: 2,
+                  marginLeft: 2
+                }}
+              />
+              </TouchableOpacity>
+            </View>
+            
+            <View>
+              <TouchableOpacity
+              onPress={()=>navigation.navigate("CategoryScreen", {serviceType: "Tutoring Service", userData: userData})}>
+              <Image
+                source={require("./../../assets/Tutoring.png")}
+                style={{
+                  height: 100,
+                  width: 93,
+                  resizeMode:'contain',
+                  marginRight: 2,
+                  marginLeft: 2
+                }}
+              />
+              </TouchableOpacity>
+            </View>
+
+          </View>
+        </ScrollView>
+        </View>
+          </View>
+        </ScrollView>
+        </View>
+
+          <View>
+            <View style={{
+              marginLeft: 20,
+              }}>
+              <Text style={{color: 'black',
+              fontSize: 15,
+              fontWeight:'bold',
+              paddingTop:10
+              }}>Popular Services</Text>
+            </View> 
+          </View>
+
+          <PopularServices serviceData={serviceData} navigation={navigation} userData={userData} />
+
+        </View>
+
+        
+
+
+        
+       
       
-    {/* Categories */}
-<View>
-<View style={styles.container1}>
-  <View>
-    <Text style={styles.categoriesText}>Services</Text>
-  </View> 
-
-  <View>
-  <TouchableOpacity
-  onPress={()=>navigation.navigate("Services")}>
-      <Text style={styles.viewAllText}>View All</Text>
-    </TouchableOpacity>
-  </View> 
-</View>
-<ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-<View  style={{flexDirection: "row", alignItems: "center", justifyContent:"center", flexWrap:'wrap' }}>
-
-<View>
-<TouchableOpacity
-  onPress={()=>navigation.navigate("CategoryScreen", {serviceType: "Home Cleaner Service", userData: userData})}>
-  <Image 
-    source={require("./../../assets/Cleaning.png")}
-    style={{
-      height: 100,
-      width: 93,
-      resizeMode:'contain',
-      marginRight: 2,
-      marginLeft: 2
-    }}
-  />
-</TouchableOpacity>
-</View>
-
-{/* Second Image */}
-<View>
-  <TouchableOpacity
-  onPress={()=>navigation.navigate("CategoryScreen", {serviceType: "Manicure/Pedicure Service", userData: userData})}>
-  <Image
-    source={require("./../../assets/Manicure.png")}
-    style={{
-      height: 100,
-      width: 93,
-      resizeMode:'contain',
-      marginRight: 2,
-      marginLeft: 2
-    }}
-  />
-  </TouchableOpacity>
-</View>
-
-{/* Third Image */}
-<View>
-  <TouchableOpacity
-  onPress={()=>navigation.navigate("CategoryScreen", {serviceType: "Electrical Service", userData: userData})}>
-  <Image
-    source={require("./../../assets/Electric.png")}
-    style={{
-      height: 100,
-      width: 93,
-      resizeMode:'contain',
-      marginRight: 2,
-      marginLeft: 2
-    }}
-  />
-  </TouchableOpacity>
-</View>
-
-{/* Fourth Image */}
-<View>
-  <TouchableOpacity
-  onPress={()=>navigation.navigate("CategoryScreen", {serviceType: "Hair and Makeup Service", userData: userData})}>
-  <Image
-    source={require("./../../assets/Beauty.png")}
-    style={{
-      height: 100,
-      width: 93,
-      resizeMode:'contain',
-      marginRight: 2,
-      marginLeft: 2
-    }}
-  />
-  </TouchableOpacity>
-</View>
-
-{/* Fifth Image */}
-<View>
-  <TouchableOpacity
-  onPress={()=>navigation.navigate("CategoryScreen", {serviceType: "Catering Service", userData: userData})}>
-  <Image
-    source={require("./../../assets/Catering.png")}
-    style={{
-      height: 100,
-      width: 93,
-      resizeMode:'contain',
-      marginRight: 2,
-      marginLeft: 2
-    }}
-  />
-  </TouchableOpacity>
-</View>
-
-{/* Sixth Image */}
-<View>
-  <TouchableOpacity
-  onPress={()=>navigation.navigate("CategoryScreen", {serviceType: "Septic Tank Service", userData: userData})}>
-  <Image
-    source={require("./../../assets/Septic.png")}
-    style={{
-      height: 100,
-      width: 93,
-      resizeMode:'contain',
-      marginRight: 2,
-      marginLeft: 2
-    }}
-  />
-  </TouchableOpacity>
-</View>
-
-{/* Seventh Image */}
-<View>
-  <TouchableOpacity
-  onPress={()=>navigation.navigate("CategoryScreen", {serviceType: "Massage Service", userData: userData})}>
-  <Image
-    source={require("./../../assets/Massage.png")}
-    style={{
-      height: 100,
-      width: 93,
-      resizeMode:'contain',
-      marginRight: 2,
-      marginLeft: 2
-    }}
-  />
-  </TouchableOpacity>
-</View>
-
-{/* Eight Image */}
-<View>
-  <TouchableOpacity
-  onPress={()=>navigation.navigate("CategoryScreen", {serviceType: "Plumbing Service", userData: userData})}>
-  <Image
-    source={require("./../../assets/Plumbing.png")}
-    style={{
-      height: 100,
-      width: 93,
-      resizeMode:'contain',
-      marginRight: 2,
-      marginLeft: 2
-    }}
-  />
-  </TouchableOpacity>
-</View>
-
-{/* Ninth Image */}
-<View>
-  <TouchableOpacity
-  onPress={()=>navigation.navigate("CategoryScreen", {serviceType: "Tutoring Service", userData: userData})}>
-  <Image
-    source={require("./../../assets/Tutoring.png")}
-    style={{
-      height: 100,
-      width: 93,
-      resizeMode:'contain',
-      marginRight: 2,
-      marginLeft: 2
-    }}
-  />
-  </TouchableOpacity>
-</View>
-
-</View>
-</ScrollView>
-</View>
-
-    <View>
-      <View style={{
-    marginLeft: 20,
-    marginBottom: 10}}>
-    <Text style={{color: 'black',
-    fontSize: 15,
-    fontWeight:'bold'
-    }}>Popular Services</Text>
-    </View> 
-    </View>
-    </View>
-    <PopularServices serviceData={serviceData} navigation={navigation} userData={userData} />
-    </ScrollView>
-    {/* Button for navigation to Notification screen */}
-
+      </ScrollView>
+      {/* Button for navigation to Notification screen */}
     </SafeAreaView>
 
   )
@@ -311,8 +515,7 @@ export default HomePage = ({navigation, route}) => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingLeft: 10,
-    paddingRight: 10,
+    paddingHorizontal:5,
     borderBottomLeftRadius: 0,
     borderBottomRightRadius: 0,
     backgroundColor: '#07364B',
@@ -323,24 +526,19 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     margin: 10,
-
-    marginRight: 20,
   },
   searchBar: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent:"center",
     borderWidth: 1,
     paddingVertical: 8, // Adjust vertical padding to change height
-    paddingHorizontal: 5,
+    paddingHorizontal: 12,
     borderColor: '#002147',
     borderRadius: 20,
     backgroundColor: '#F0F0F0',
-    marginLeft: 15
+    width: width * 0.85
 
-  },
-  searchInput: {
-    flex: 1, // Take remaining space within the searchBar
-    marginLeft: 8, // Adjust left margin to create space between icon and input
   },
 
   filter: {
@@ -373,7 +571,27 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
 
-  }
+  },
+
+
+  searchWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    // additional styles if needed
+  },
+  // searchBar: {
+  //   flexDirection: 'row',
+  //   alignItems: 'center',
+  //   // your search bar styles
+  // },
+  searchImage: {
+    width: 35, // adjust the size as needed
+    height: 30, // adjust the size as needed
+    // marginHorizotal: 18, // adjust the spacing as needed
+    marginRight:8,
+  },
+  searchInput: {
+    flex: 1,
+    // your search input styles
+  },
 });
- 
-  
