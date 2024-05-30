@@ -105,6 +105,7 @@ export default HomePage = ({navigation, route}) => {
             <View style={styles.searchBar}>
               <AntDesign name="search1" size={24} color="#002D62" />
               <TextInput placeholder="Search for Services" style={styles.searchInput} editable={false} />
+              <TextInput placeholder="Search for Services" style={styles.searchInput} editable={false} />
             </View>
           </Pressable>
           {/* <View style={styles.notificationButton}> */}
@@ -357,7 +358,7 @@ const styles = StyleSheet.create({
     borderColor: '#002147',
     borderRadius: 20,
     backgroundColor: '#F0F0F0',
-    width: windowWidth * 0.7
+    width: windowWidth * 0.8
 
   },
 
@@ -413,8 +414,7 @@ const styles = StyleSheet.create({
     width: 30, // adjust the size as needed
     height: 25, // adjust the size as needed
     // marginHorizotal: 18, // adjust the spacing as needed
-    marginRight:15,
-    marginLeft: 5,
+    // marginRight:8,
   },
   searchInput: {
     flex: 1,
@@ -423,8 +423,8 @@ const styles = StyleSheet.create({
   notificationButton: {
     position: "absolute",
     top: -10,
-    // right: 1,
-    marginLeft:16,
+    // right: 20,
+    // marginLeft:8,
     zIndex: 1,
     
     
