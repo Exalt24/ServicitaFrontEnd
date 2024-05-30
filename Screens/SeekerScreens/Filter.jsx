@@ -111,7 +111,7 @@ export default function Filter({navigation, route}) {
 
     const fetchCities = async () => {
         try {
-            const response = await axios.get('http://192.168.1.7:5000/location/getCities');
+            const response = await axios.get('http://192.168.254.111:5000/location/getCities');
             setCities(response.data.data);
         } catch (error) {
             console.error('Error fetching cities:', error);

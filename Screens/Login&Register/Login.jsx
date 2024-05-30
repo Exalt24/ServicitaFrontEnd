@@ -62,7 +62,7 @@ export default function LoginPage ({ navigation }) {
                               if (res.data.type === 'SUSPENDED') {
                                 const remainingTime = res.data.remainingTime;
                                 if (remainingTime <= 0) {
-                                  axios.patch(`http://192.168.1.7:5000/admin/unsuspendUser`, { email: userData.email }).then((res) => {
+                                  axios.patch(`http://192.168.254.111:5000/admin/unsuspendUser`, { email: userData.email }).then((res) => {
                                     if (res.data.status === 'SUCCESS') {
                                       axios.post("http://192.168.254.111:5000/user/loginOther", {email: userData.email }).then(async (res) => {
                                         console.log(res.data)
