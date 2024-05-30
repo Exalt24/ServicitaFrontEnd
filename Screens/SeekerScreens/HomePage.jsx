@@ -105,7 +105,6 @@ export default HomePage = ({navigation, route}) => {
             <View style={styles.searchBar}>
               <AntDesign name="search1" size={24} color="#002D62" />
               <TextInput placeholder="Search for Services" style={styles.searchInput} editable={false} />
-              <TextInput placeholder="Search for Services" style={styles.searchInput} editable={false} />
             </View>
           </Pressable>
           {/* <View style={styles.notificationButton}> */}
