@@ -148,7 +148,7 @@ function SeekerBookingStatusScreen({ navigation, route }) {
         otherUserId: data.seekerId,
       };
     
-      await axios.post("http://192.168.254.111:5000/notifications/create", notification)
+      await axios.post("http://192.168.1.7:5000/notifications/create", notification)
       setModalVisible(false);
       navigation.goBack();
   };

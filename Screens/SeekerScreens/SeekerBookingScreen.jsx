@@ -29,7 +29,7 @@ export default function SeekerBookingScreen({ navigation, route }) {
 
   const getUserIdAndImage = async () => {
     try {
-      const result = await axios.post("http://192.168.1.7:5000/user/getUserDetailsByEmail", { email: userEmail })
+      const result = await axios.post("http://172.16.1.176:5000/user/getUserDetailsByEmail", { email: userEmail })
       setUserData(result.data.data);
       return { id: result.data.data._id, image: result.data.data.profileImage, mobile: result.data.data.mobile };
     } catch (error) {
