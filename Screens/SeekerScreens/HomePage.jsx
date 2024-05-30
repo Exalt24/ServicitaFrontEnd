@@ -358,7 +358,7 @@ const styles = StyleSheet.create({
     borderColor: '#002147',
     borderRadius: 20,
     backgroundColor: '#F0F0F0',
-    width: windowWidth * 0.8
+    width: windowWidth * 0.7
 
   },
 
@@ -414,7 +414,8 @@ const styles = StyleSheet.create({
     width: 30, // adjust the size as needed
     height: 25, // adjust the size as needed
     // marginHorizotal: 18, // adjust the spacing as needed
-    // marginRight:8,
+    marginRight:15,
+    marginLeft: 5,
   },
   searchInput: {
     flex: 1,
@@ -423,8 +424,8 @@ const styles = StyleSheet.create({
   notificationButton: {
     position: "absolute",
     top: -10,
-    // right: 20,
-    // marginLeft:8,
+    // right: 1,
+    marginLeft:16,
     zIndex: 1,
     
     
