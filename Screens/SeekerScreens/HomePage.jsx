@@ -129,7 +129,7 @@ export default HomePage = ({navigation, route}) => {
             
           
         {/* Categories */}
-        <View>
+        <View style={styles.containercategories}>
           <View style={styles.container1}>
             <View>
               <Text style={styles.categoriesText}>Services</Text>
@@ -153,8 +153,8 @@ export default HomePage = ({navigation, route}) => {
                 <Image 
                   source={require("./../../assets/Cleaning.png")}
                   style={{
-                    height: 100,
-                    width: 93,
+                    height: 80,
+                    width: 73,
                     resizeMode:'contain',
                     marginRight: 2,
                     marginLeft: 2
@@ -170,8 +170,8 @@ export default HomePage = ({navigation, route}) => {
               <Image
                 source={require("./../../assets/Manicure.png")}
                 style={{
-                  height: 100,
-                  width: 93,
+                  height: 80,
+                  width: 73,
                   resizeMode:'contain',
                   marginRight: 2,
                   marginLeft: 2
@@ -187,8 +187,8 @@ export default HomePage = ({navigation, route}) => {
               <Image
                 source={require("./../../assets/Electric.png")}
                 style={{
-                  height: 100,
-                  width: 93,
+                  height: 80,
+                  width: 73,
                   resizeMode:'contain',
                   marginRight: 2,
                   marginLeft: 2
@@ -204,8 +204,8 @@ export default HomePage = ({navigation, route}) => {
               <Image
                 source={require("./../../assets/Beauty.png")}
                 style={{
-                  height: 100,
-                  width: 93,
+                  height: 80,
+                  width: 73,
                   resizeMode:'contain',
                   marginRight: 2,
                   marginLeft: 2
@@ -221,8 +221,8 @@ export default HomePage = ({navigation, route}) => {
               <Image
                 source={require("./../../assets/Catering.png")}
                 style={{
-                  height: 100,
-                  width: 93,
+                  height: 80,
+                  width: 73,
                   resizeMode:'contain',
                   marginRight: 2,
                   marginLeft: 2
@@ -238,8 +238,8 @@ export default HomePage = ({navigation, route}) => {
               <Image
                 source={require("./../../assets/Septic.png")}
                 style={{
-                  height: 100,
-                  width: 93,
+                  height: 80,
+                  width: 73,
                   resizeMode:'contain',
                   marginRight: 2,
                   marginLeft: 2
@@ -255,8 +255,8 @@ export default HomePage = ({navigation, route}) => {
               <Image
                 source={require("./../../assets/Massage.png")}
                 style={{
-                  height: 100,
-                  width: 93,
+                  height: 80,
+                  width: 73,
                   resizeMode:'contain',
                   marginRight: 2,
                   marginLeft: 2
@@ -272,8 +272,8 @@ export default HomePage = ({navigation, route}) => {
               <Image
                 source={require("./../../assets/Plumbing.png")}
                 style={{
-                  height: 100,
-                  width: 93,
+                  height: 80,
+                  width: 73,
                   resizeMode:'contain',
                   marginRight: 2,
                   marginLeft: 2
@@ -289,8 +289,8 @@ export default HomePage = ({navigation, route}) => {
               <Image
                 source={require("./../../assets/Tutoring.png")}
                 style={{
-                  height: 100,
-                  width: 93,
+                  height: 80,
+                  width: 73,
                   resizeMode:'contain',
                   marginRight: 2,
                   marginLeft: 2
@@ -308,7 +308,8 @@ export default HomePage = ({navigation, route}) => {
               marginLeft: 20,
               }}>
               <Text style={{color: 'black',
-              fontSize: 15,
+              marginTop: 10,
+              fontSize: 18,
               fontWeight:'bold',
               paddingTop:10
               }}>Popular Services</Text>
@@ -337,6 +338,7 @@ export default HomePage = ({navigation, route}) => {
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal:5,
+    marginBottom: 8,
     borderBottomLeftRadius: 0,
     borderBottomRightRadius: 0,
     backgroundColor: '#07364B',
@@ -358,12 +360,17 @@ const styles = StyleSheet.create({
     borderColor: '#002147',
     borderRadius: 20,
     backgroundColor: '#F0F0F0',
-    width: windowWidth * 0.5
+    width: windowWidth * 0.7
 
   },
 
   filter: {
     marginLeft:15
+  },
+
+  containercategories: {
+    // backgroundColor: 'white',
+    // height: 150
   },
 
   container1: {
@@ -385,7 +392,7 @@ const styles = StyleSheet.create({
 
   categoriesText: {
     color: 'black',
-    fontSize: 15,
+    fontSize: 18,
     fontWeight:"bold"
   },
   searchTouchable: {
@@ -409,7 +416,8 @@ const styles = StyleSheet.create({
     width: 30, // adjust the size as needed
     height: 25, // adjust the size as needed
     // marginHorizotal: 18, // adjust the spacing as needed
-    marginRight:10,
+    marginRight:15,
+    marginLeft: 5,
   },
   searchInput: {
     flex: 1,
@@ -419,7 +427,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: -10,
     // right: 1,
-    marginLeft:95,
+    marginLeft:16,
     zIndex: 1,
     
     
