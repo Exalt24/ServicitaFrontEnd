@@ -91,7 +91,7 @@ const AIScreen = ({ navigation, role }) => {
       setMessages((previousMessages) => [message, ...previousMessages]);
       setInputMessage("");
 
-      const response = role === "Seeker" ? await axios.post("http://192.168.1.7:5000/ai/generateSeekerContent", { inputText: inputMessage }) : await axios.post("http://192.168.1.7:5000/ai/generateProviderContent", { inputText: inputMessage })
+      const response = role === "Seeker" ? await axios.post("http://172.16.1.176:5000/ai/generateSeekerContent", { inputText: inputMessage }) : await axios.post("http://172.16.1.176:5000/ai/generateProviderContent", { inputText: inputMessage })
       console.log(response);
       const botMessage = {
         _id: Math.random().toString(36).toString(7),
