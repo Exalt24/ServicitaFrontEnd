@@ -101,7 +101,7 @@ export default function Filter({navigation, route}) {
 
     const fetchServices = async () => {
         try {
-            const response = await axios.get('http://172.16.1.176:5000/service/getServices');
+            const response = await axios.get('http://192.168.254.111:5000/service/getServices');
             setServices(response.data.data);
             
         } catch (error) {
