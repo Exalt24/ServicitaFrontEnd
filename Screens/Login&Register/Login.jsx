@@ -455,7 +455,7 @@ export default function LoginPage ({ navigation }) {
                           <Image
                               source={require("./../../assets/ServicitaLogo2.png")}
                               style={{
-                                  height: height * 0.1,
+                                  height: height * 0.12,
                                   width: width * 0.32,
                                   borderRadius: 20,
                                   alignSelf: 'center',
