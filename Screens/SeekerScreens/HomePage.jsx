@@ -375,7 +375,7 @@ const styles = StyleSheet.create({
     display:'flex',
     alignItems: 'center',
     justifyContent: 'space-between', // Align items with space between them
-    marginTop: 10,
+     marginTop: 10,
     marginRight:20,
     marginLeft: 20,
     marginBottom: 10
