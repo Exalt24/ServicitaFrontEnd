@@ -241,7 +241,7 @@ const Chat = ({ navigation, route }) => {
         otherUserId: userId,
       };
     
-      await axios.post("http://172.16.15.247:5000/notifications/create", notification)
+      await axios.post("http://192.168.254.111:5000/notifications/create", notification)
     }
 
     } catch (error) {
@@ -569,6 +569,7 @@ const Chat = ({ navigation, route }) => {
         // isLoadingEarlier={true}
         // infiniteScroll={true}
       />
+      
       <Modal animationType="slide" transparent={true} visible={modalVisible}>
         <View
           style={{
