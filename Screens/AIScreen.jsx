@@ -99,8 +99,8 @@ const AIScreen = ({ route }) => {
 
       const response =
         userRole === "Seeker"
-          ? await axios.post("http://192.168.1.9:5000/ai/generateSeekerContent", { inputText: inputMessage })
-          : await axios.post("http://192.168.1.9:5000/ai/generateProviderContent", { inputText: inputMessage });
+          ? await axios.post("http://192.168.1.7:5000/ai/generateSeekerContent", { inputText: inputMessage })
+          : await axios.post("http://192.168.1.7:5000/ai/generateProviderContent", { inputText: inputMessage });
       console.log(response);
       const botMessage = {
         _id: Math.random().toString(36).substring(7),

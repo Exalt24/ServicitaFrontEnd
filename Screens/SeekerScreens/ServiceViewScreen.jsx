@@ -1,4 +1,3 @@
-
 import { View, StyleSheet, ScrollView,TouchableOpacity, Dimensions, Text, Image } from 'react-native';
 import { Color, FontSize, FontFamily } from "./../../GlobalStyles";
 import ServiceTop from './../../components/ServiceTop';
@@ -24,10 +23,10 @@ export default ServiceViewScreen = ({navigation, route}) => {
   const [ messagesData , setmessagesData ] = useState(null);
 
   async function getMessageNeededData () {
-    const resultSeeker = await axios.post("http://192.168.1.9:5000/user/getUserDetailsById", { id: userData._id });
+    const resultSeeker = await axios.post("http://192.168.1.7:5000/user/getUserDetailsById", { id: userData._id });
     const seekerSnapshot = await firestore().collection('seekers').doc(userData._id).get();
     const seekerData = { id: seekerSnapshot.id, ...seekerSnapshot.data(), image: resultSeeker.data.data.profileImage, mobile: resultSeeker.data.data.mobile };
-    const resultProvider = await axios.post("http://192.168.1.9:5000/user/getUserDetailsById", { id: data.providerId });
+    const resultProvider = await axios.post("http://192.168.1.7:5000/user/getUserDetailsById", { id: data.providerId });
     const providerSnapshot = await firestore().collection('providers').doc(data.providerId).get();
     const providerData = { id: providerSnapshot.id, ...providerSnapshot.data(), image: resultProvider.data.data.profileImage, mobile: resultProvider.data.data.mobile };
     setmessagesData({seekerData, providerData});
@@ -52,65 +51,60 @@ export default ServiceViewScreen = ({navigation, route}) => {
     );
   }
 
-  return (
-    <SafeAreaView>
+  
 
-      <ScrollView>
+  return (
+    <SafeAreaView style={styles.container}>
       <TouchableOpacity
-            onPress={() => navigation.goBack()}
-            style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                marginTop: 20,
-                marginLeft: 20,
-                position: 'absolute',
-                zIndex: 1
-            }}
-        >
-            <MaterialIcons name="arrow-back-ios" size={20} color={COLORS.white} />
-            </TouchableOpacity>
+        onPress={() => navigation.goBack()}
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          marginTop: windowHeight * 0.03,
+          marginLeft: 20,
+          position: 'absolute',
+          zIndex: 1
+        }}
+      >
+        <MaterialIcons name="arrow-back-ios" size={20} color={COLORS.white} />
+      </TouchableOpacity>
+
+      <ScrollView contentContainerStyle={{ paddingBottom: 100 }}>
         <View>
           <ServiceTop data={data} navigation={navigation} userData={userData} messagesData={messagesData} />
         </View>
 
         <View style={[styles.navigator, styles.navigatorContainer]}>
+          <TouchableOpacity onPress={() => handleTabPress("Description")}>
+            <Text style={[styles.tabText, activeTab === "Description" && styles.activeTab]}>Description</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => handleTabPress("Post")}>
+            <Text style={[styles.tabText, activeTab === "Post" && styles.activeTab]}>Post</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => handleTabPress("Reviews")}>
+            <Text style={[styles.tabText, activeTab === "Reviews" && styles.activeTab]}>Reviews</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => handleTabPress("Photos")}>
+            <Text style={[styles.tabText, activeTab === "Photos" && styles.activeTab]}>Photos</Text>
+          </TouchableOpacity>
+        </View>
 
-        <TouchableOpacity onPress={() => handleTabPress("Description")}>
-          <Text style={[styles.tabText, activeTab === "Description" && styles.activeTab]}>Description</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => handleTabPress("Post")}>
-          <Text style={[styles.tabText, activeTab === "Post" && styles.activeTab]}>Post</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => handleTabPress("Reviews")}>
-          <Text style={[styles.tabText, activeTab === "Reviews" && styles.activeTab]}>Reviews</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => handleTabPress("Photos")}>
-          <Text style={[styles.tabText, activeTab === "Photos" && styles.activeTab]}>Photos</Text>
-        </TouchableOpacity>
-      </View>
+        <View>
+          {activeTab === "Photos" && <Photos1 serviceId={data.id} />}
+        </View>
 
-      <View>
-      {activeTab === "Photos" && <Photos1 serviceId = {data.id} />}
-      </View>
+        <View>
+          {activeTab === "Reviews" && <Review serviceId={data.id} />}
+        </View>
+        <View>
+          {activeTab === "Post" && <Post serviceName={data.service} coverImage={data.providerImage} serviceId={data.id} />}
+        </View>
 
-      <View>
-        {activeTab === "Reviews" && <Review serviceId = {data.id} />}
-      </View>  
-      <View>
-        {activeTab === "Post" && <Post serviceName = {data.service} coverImage = {data.providerImage} serviceId = {data.id} />}
-      </View>
-     
-      <View>
-        {activeTab === "Description" && <Description description = {data.description} />}
-      </View>
-      
-
-      
-      
-
-      
-
+        <View>
+          {activeTab === "Description" && <Description description={data.description} />}
+        </View>
       </ScrollView>
+
     </SafeAreaView>
   );
 };
@@ -121,8 +115,8 @@ const styles = StyleSheet.create({
     backgroundColor: Color.colorWhite,
   },
   navigatorContainer: {
-    borderTopWidth: 2,  // Add border to the top
-    borderBottomWidth: 2,  // Add border to the bottom
+    borderTopWidth: 2,
+    borderBottomWidth: 2,
     borderColor: '#CCCCCC',
     paddingHorizontal: 10,
   },
@@ -137,7 +131,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 25,
   },
   activeTab: {
-    fontWeight: "bold", // You can customize the styling for active tab
+    fontWeight: "bold",
     textDecorationLine: "underline",
     color: "#07374d",
   },
@@ -146,9 +140,9 @@ const styles = StyleSheet.create({
     width: windowWidth,
     height: 40,
     overflow: "hidden",
-    flexDirection: "row", // Arrange tabs horizontally
-    alignItems: "center", // Align items vertically at the center
-    justifyContent: "center", // Horizontally center the tabs
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
 
