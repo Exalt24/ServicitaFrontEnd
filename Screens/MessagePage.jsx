@@ -154,17 +154,6 @@ const MessagePage = ({ navigation, route }) => {
     <View>
       <View style={{ flexDirection: "row", justifyContent: "space-between", alignItems: "center" }}>
   <Text style={{ fontSize: 30, fontWeight: "bold", color: "#07364B" }}>Message...</Text>
-  <TouchableOpacity>
-    
-    <Image 
-      source={require("../assets/ailogo.png")}
-      resizeMode="contain"
-      style={{
-        height: 48,
-        width: 70,
-      }}
-    />
-  </TouchableOpacity>
 </View>
 
       <View style={styles.searchBar}>
@@ -173,7 +162,7 @@ const MessagePage = ({ navigation, route }) => {
         </TouchableOpacity>
         <TextInput
           style={styles.searchInput}
-          placeholder='Search....'
+          placeholder='Search...'
           value={searchQuery}
           onChangeText={text => setSearchQuery(text)}
         />
@@ -227,10 +216,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "white",
     width: width * 0.91,
-    height: height * 0.07,
+    height: height * 0.06,
     marginVertical: 22,
     paddingHorizontal: 12,
-    borderRadius: 12,
+    borderRadius: 30,
     borderWidth: 1
   },
   searchInput: {
@@ -242,7 +231,8 @@ const styles = StyleSheet.create({
   userContainer: {
     flexDirection: "row",
     alignItems: "center",
-    paddingVertical: 10,
+    paddingVertical: 8,
+    paddingHorizontal: 1
   },
   
   userImageContainer: {
@@ -255,13 +245,13 @@ const styles = StyleSheet.create({
     position: "absolute",
     borderWidth:3,
     borderColor: "white", 
-    top: 50,
+    top: 40,
     zIndex: 999,
     right: 0,
   },
   userImage: {
-    width: 70,
-    height: 70,
+    width: 60,
+    height: 60,
     borderRadius: 40,
   },
   userInfoContainer: {
@@ -275,6 +265,7 @@ const styles = StyleSheet.create({
   },
   lastMessageTime: {
     color: '#999',
+    fontSize: 10
   }
 });
 
