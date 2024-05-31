@@ -244,7 +244,7 @@ const handleArrivedPress = async () => {
 
 useEffect(() => {
   const checkForReport = async () => {
-    const response = await axios.post("http://192.168.1.7:5000/report/getReportByBookingId", { bookingId: data.bookingId, reporterId: data.providerId });
+    const response = await axios.post("http://192.168.254.111:5000/report/getReportByBookingId", { bookingId: data.bookingId, reporterId: data.providerId });
     setHasReported(response.data);
 }
 checkForReport();
