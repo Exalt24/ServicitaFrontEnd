@@ -131,7 +131,15 @@ const AIScreen = ({ navigation, route }) => {
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         keyboardVerticalOffset={Platform.OS === "ios" ? 50 : 0} // Adjust this value as needed
       >
+
+            <Image
+              source={require("../assets/ailogo (5).png")}
+              style={{ width: 200, height: 90, marginTop:10, alignSelf: 'center' }}
+            />
+
         <View style={{ flex: 1, flexDirection: "row" }}>
+          
+          
           <GiftedChat
             messages={messages}
             renderInputToolbar={(props) => {}}
@@ -141,12 +149,14 @@ const AIScreen = ({ navigation, route }) => {
             disabled={loadingMessage}
           />
         </View>
+
+
   
         {loadingMessage ? (
           <View style={styles.loadingContainer}>
             <Image
               source={require("../assets/loading.gif")}
-              style={{ width: 100, height: 100 }}
+              style={{ width: 120, height: 120 }}
             />
           </View>
         ) : (
