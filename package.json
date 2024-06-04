@@ -101,7 +101,8 @@
     "react-native-swiper-flatlist": "^3.2.3",
     "react-native-tab-view": "^3.5.2",
     "react-native-webview": "13.8.6",
-    "react-navigation-stack": "^2.10.4"
+    "react-navigation-stack": "^2.10.4",
+    "expo-build-properties": "~0.12.1"
   },
   "devDependencies": {
     "@babel/core": "^7.24.0",

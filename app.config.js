@@ -70,6 +70,16 @@ export default {
       {
         "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone."
       }
+    ], [
+      "expo-build-properties",
+      {
+        "android": {
+          "compileSdkVersion": 31,
+          "buildToolsVersion": "31",
+          "targetSdkVersion": 31,
+          "usesCleartextTraffic": true
+        },
+      }
     ]
     ],
     "extra": {
