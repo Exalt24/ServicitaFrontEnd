@@ -2,7 +2,7 @@ export default {
   "expo": {
     "scheme": "servicita",
     "name": "Servicita",
-    "slug": "FrontEnd",
+    "slug": "Servicita",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
