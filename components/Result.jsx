@@ -1,3 +1,4 @@
+// Result
 import React from "react";
 import { StyleSheet, View, Text, Image, FlatList, Dimensions, Pressable } from "react-native";
 import { FontFamily, Color, FontSize } from "../GlobalStyles";
