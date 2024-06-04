@@ -7,6 +7,7 @@ import firestore from '@react-native-firebase/firestore';
 import { COLORS } from "./../../constants/theme";
 
 const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
 export default ConfirmationScreen = ({ navigation, route }) => {
 
   const { bookingData, bookingId } = route.params;
