@@ -249,26 +249,27 @@ const checkForReport = async () => {
 
       <View
             style={{
-              flexDirection:"row",
+             flexDirection:"row",
               marginVertical: 22,
-              marginLeft: 50,
-              marginTop: 50,
+              marginLeft: 20,
+              marginTop: 20,
             }}
           >
               <Image
                 source={{ uri: userData.profileImage ? userData.profileImage : DEFAULT_IMAGE_URL_PROVIDER }}
                 style={{
-                  height: 100,
-                  width: 100,
+                  height: 80,
+                  width: 80,
+                  borderRadius: 100,
                   borderColor: COLORS.primary,
                 }}
               />
             <View>
             <Text style ={{
               color: COLORS.primary,
-              marginTop:20,
-              marginLeft: 30,
-              fontSize: 16,
+              marginTop: 10,
+              marginLeft: 20,
+              fontSize: windowWidth * 0.05,
               fontWeight:"bold"
             }}
             
@@ -276,9 +277,9 @@ const checkForReport = async () => {
                 {storeData.name.firstName} {storeData.name.lastName}
             </Text>
             <Text style ={{
-              color: COLORS.primary,
-              marginLeft: 33,
-              fontSize: 12
+             color: COLORS.primary,
+             marginLeft: 20,
+             fontSize: 12
             }}
             
             >

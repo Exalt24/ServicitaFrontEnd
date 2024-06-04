@@ -288,7 +288,7 @@ export default Profile = ({ navigation, route }) => {
               color: COLORS.primary,
               marginTop: 10,
               marginLeft: 20,
-              fontSize: width * 0.07,
+              fontSize: width * 0.05,
               fontWeight:"bold"
             }}
             
