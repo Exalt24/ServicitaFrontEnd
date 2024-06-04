@@ -215,7 +215,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   dateTypo: {
-    width: 169,
+    width: 220,
     fontFamily: FontFamily.quicksandMedium,
     fontWeight: "500",
     letterSpacing: 0.5,

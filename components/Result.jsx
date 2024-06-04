@@ -1,3 +1,4 @@
+// Result
 import React from "react";
 import { StyleSheet, View, Text, Image, FlatList, Dimensions, Pressable } from "react-native";
 import { FontFamily, Color, FontSize } from "../GlobalStyles";
@@ -175,6 +176,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center", 
     flexGrow: 1, 
+    paddingBottom: screenHeight * 0.35, 
   },
   location: {
     alignItems: "center",

@@ -387,7 +387,7 @@ Contact
 Location (Tap to View)
 Date`}</Text>
         
-        <Text style={[styles.booking, styles.bookingPosition]}>
+      <Text style={[styles.booking, styles.bookingPosition]}>
     {`${data.bookingId}
 ${data.seekerName}
 ${data.seekerMobile}`}
@@ -395,13 +395,13 @@ ${data.seekerMobile}`}
 
     <TouchableOpacity style={[styles.bookings, styles.bookingPositions]} onPress={() => navigation.navigate('ProviderBookingPage', { locationData: { latitude: data.location.latitude, longitude: data.location.longitude } })}>
       <Text style={styles.bookings}>{data.location.address}</Text>
-      </TouchableOpacity>
+    </TouchableOpacity>
 
   <Text style={[styles.booking, styles.bookingPosition]}>
     {`
     
     
-    
+
     ${data.date}, ${data.time}`}
   </Text>
       </View>
@@ -818,8 +818,13 @@ ${data.paymentMethod === 'gcash' ? 'GCash' : data.paymentMethod === 'grab_pay' ?
     textAlign: "right",
     fontFamily: FontFamily.quicksandMedium,
     fontWeight: "500",
-  },  bookings: {
-    // left: 158,
+  },  
+  bookings: {
+    // bottom: 1,
+    // top: windowHeight * 0.01,
+    // top: windowHeight > 732 ? windowHeight * - 0.017 : windowHeight * 0.01, 
+    // marginBottom: -10,
+    justifyContent:"center",
     right: windowWidth * 0.026,
     width: windowWidth * 0.890,
     height: 142,
@@ -827,7 +832,7 @@ ${data.paymentMethod === 'gcash' ? 'GCash' : data.paymentMethod === 'grab_pay' ?
     fontFamily: FontFamily.quicksandMedium,
     fontWeight: "500",
     fontSize: FontSize.size_xs,
-    position: "absolute",
+    position: "relative",
     textDecorationLine: 'underline'
   },
   bookingdets: {

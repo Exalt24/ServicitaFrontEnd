@@ -59,6 +59,7 @@ export const Color = {
   colorCoralShade: "#FF7C7C",
   colorGray_100: "#7c7878",
   colorGray_200: "rgba(0, 0, 0, 0)",
+  colorGainsboro_100: "#dbdbdb"
 
 };
 /* border radiuses */
@@ -66,6 +67,7 @@ export const Border = {
   br_8xs: 5,
   br_7xs: 6,
   br_5xs: 8,
+  br_9xs: 4,
   br_3xs: 10,
   br_mini: 15,
   br_xl: 20,

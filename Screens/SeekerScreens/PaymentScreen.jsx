@@ -1,3 +1,5 @@
+//Payment Screen
+
 import { Button, NativeBaseProvider } from "native-base";
 import React, { useEffect, useState } from "react";
 import { View, StyleSheet, Dimensions, Text, Image, ScrollView } from "react-native";
@@ -16,7 +18,6 @@ export default PaymentScreen = ({navigation, route}) => {
   const [gcashClicked, setGcashClicked] = useState(false);
   const [grabpayClicked, setGrabPayClicked] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState("");
-  const [loading, setLoading] = useState(false);
 
   const handleGcashClick = () => {
     setGcashClicked(!gcashClicked);
@@ -41,12 +42,12 @@ export default PaymentScreen = ({navigation, route}) => {
   }, [gcashClicked, grabpayClicked]);
 
     const handleContinue = async () => {
-      setLoading(true);
+    
       const paymentData = {
         type: paymentMethod,
         amount: bookingData.price,
         redirect: {
-          success: "http://3.26.59.191:5001/payment/success",
+          success: "http://c:5001/payment/success",
           failed: "http://3.26.59.191:5001/payment/failed",
         }
       }
@@ -58,7 +59,6 @@ export default PaymentScreen = ({navigation, route}) => {
           setTimeout(() => {
             navigation.navigate('SplashScreen', {bookingData: bookingData, paymentMethod: paymentMethod, paymentId: paymentId});
           }, 1000);
-          setLoading(false);
         }
 
   
@@ -66,8 +66,6 @@ export default PaymentScreen = ({navigation, route}) => {
         console.error("Payment initiation failed:", error);
 
         alert("Payment initiation failed. Please try again later.");
-      } finally {
-        setLoading(false);
       }
   }
 
@@ -139,8 +137,8 @@ export default PaymentScreen = ({navigation, route}) => {
         <Button 
         onPress={()=>handleContinue()}
         style={styles.button}
-        opacity={!(gcashClicked ^ grabpayClicked)  || loading ? 0.5 : 1}
-        disabled={!(gcashClicked ^ grabpayClicked) || loading}
+        opacity={!(gcashClicked ^ grabpayClicked) ? 0.5 : 1}
+        disabled={!(gcashClicked ^ grabpayClicked)}
         >
           <Text style={styles.buttonText}>Confirm Booking</Text>
         </Button>
@@ -187,7 +185,7 @@ const styles = StyleSheet.create({
     height: height * 0.43,
     position: "absolute",
     top: 190,
-    borderRadius: 5,
+    // borderRadius: 5,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -201,20 +199,22 @@ const styles = StyleSheet.create({
 
   buttonContainer: {
     alignItems: "center",
-    
+    // marginTop: height * 0.4
   },
+
   buttonContainer2: {
     alignItems: "center",
+    justifyContent: "center",
     position: "absolute",
-    marginTop: 20,
+    margin: height* 0.09,
   },
   
   button: {
     backgroundColor: "#07374D",
     width: 330,
     height: 50,
-    borderRadius: 5,
-    marginTop: height * 0.25,
+    borderRadius: 12,
+    marginTop: height * 0.275,
   },
   buttonClicked: {
     backgroundColor: "white",

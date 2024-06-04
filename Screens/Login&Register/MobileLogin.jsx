@@ -142,7 +142,7 @@ export default function MobileLogin({navigation}) {
                         fontSize: 16,
                         fontWeight: '400',
                         marginVertical: windowHeight * 0.01,
-                        color: Color.colorBlue
+                        color:Color.colorPrimary
 
                     }}>Mobile Number</Text>
 
@@ -206,7 +206,7 @@ export default function MobileLogin({navigation}) {
                     style={{
                         marginTop: windowHeight * 0.07,
                         marginBottom: windowHeight * 0.05,
-                        width: windowWidth * 0.87,
+                        width: windowWidth * 0.890, 
                         height: windowHeight * 0.08,
                         top: windowHeight * 0.1,
                     }}

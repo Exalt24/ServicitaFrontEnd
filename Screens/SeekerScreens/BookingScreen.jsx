@@ -1,3 +1,4 @@
+//BookingScreen
 import React, { useState, useEffect } from 'react';
 import { useFocusEffect } from '@react-navigation/native'
 import { StyleSheet, View, Text, Dimensions, TextInput, TouchableOpacity, Image } from "react-native";
@@ -447,7 +448,7 @@ if ( !bookingDataFetched || !bookingData || !unavailableDatesFetched || !unavail
         <Button title="Continue" filled Color={Color.colorWhite} 
         style={{ height: 53,
             width: windowWidth * 0.9,
-            top: 850,
+            top: 875,
             position: "absolute", 
             opacity: date === '' || startTime === '' || endTime === '' || location === '' ? 0.5 : 1
              }} 
@@ -471,9 +472,10 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   groupChildLayout: {
-    height: 650,
+    height: 670,
     width: windowWidth * 0.9,
     position: "absolute",
+    paddingTop: 20
 
     
   },
@@ -493,7 +495,7 @@ const styles = StyleSheet.create({
   bookingscreen2Child: {
     top: -19,
     width: windowWidth,
-    height: 378,
+    height: windowHeight * 0.5,
   },
   groupChild: {
     shadowColor: "rgba(0, 0, 0, 1s)",
@@ -512,6 +514,7 @@ const styles = StyleSheet.create({
  
   rectangleParent: {
     justifyContent: 'center',
+    marginTop: 15,
     top:170,
     // marginTop:10,
     //alignItems: 'center',
@@ -527,12 +530,13 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     lineHeight: windowHeight * 0.075,
     position: "absolute", 
+    
 
   },
   bookingscreen2: {
     flex: 1,
     width: "100%",
-    height: 925,
+    height: 950,
     overflow: "hidden",
     backgroundColor: Color.colorWhite,
     justifyContent: 'center', // Center vertically
