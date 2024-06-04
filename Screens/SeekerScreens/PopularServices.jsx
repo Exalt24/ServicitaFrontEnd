@@ -1,8 +1,10 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, FlatList, TouchableOpacity, Dimensions } from 'react-native';
-import { Color } from "./../../GlobalStyles";
+import { Border, FontSize, FontFamily, Color } from "./../../GlobalStyles";
 
 const windowHeight = Dimensions.get('window').height;
+const windowWidth = Dimensions.get('window').width;
+
 
 export default function PopularServices({ navigation, serviceData, userData }) {
   const data = serviceData.map((item) => ({
@@ -42,7 +44,7 @@ export default function PopularServices({ navigation, serviceData, userData }) {
       <Text style={styles.Text}>{item.service}</Text>
       <Text style={styles.Text2}>{item.description}</Text>
       <TouchableOpacity style={styles.button} onPress={() => handlePress(item)}>
-        <Text style={styles.buttonText}>Book Now!</Text>
+        <Text style={styles.buttonText}>Book Now</Text>
       </TouchableOpacity>
     </View>
   );
@@ -66,42 +68,41 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     marginVertical: windowHeight * 0.01,
     marginHorizontal: 16,
-    paddingBottom: 15,
-    // borderRadius: 5,
+    paddingBottom: 20,
+    borderRadius: 10,
     borderColor: Color.colorGray_100,
-    // borderWidth: 0.5
-    borderBottomWidth: 1,
-    paddingTop: 15,
+    borderWidth: 0.25
   },
   Text: {
-    fontSize: 20,
+    fontSize: 24,
     fontWeight: "bold",
-    paddingTop: 5,
-    paddingBottom: 10
+    paddingTop: 6,
+    paddingHorizontal: 15
   },
   Text2: {
-    fontSize: 13,
+    fontSize: 15,
+    paddingHorizontal: 15
   },
   button: {
     backgroundColor: '#07364B', // Set button background color
-    paddingVertical: 10, // Adjust button height
-    paddingHorizontal: 20, // Adjust button width
-    borderRadius: 5,
-    marginTop: 20,
+    paddingVertical: 12, // Adjust button height
+    paddingHorizontal: 24, // Adjust button width
+    borderRadius: 12,
+    marginTop: 10,
     alignSelf: 'flex-end',
-    marginRight: 10,
+    marginRight: 15,
   },
   buttonText: {
     color: 'white', // Set button text color
     textAlign: 'justify',
     fontWeight: 'bold',
-    fontSize: 15
   },
   image: {
     width: "100%",
-    height: windowHeight * 0.3,
-    borderTopLeftRadius: 8, 
-    borderTopRightRadius: 8, 
+    height: windowHeight * 0.25,
+    // borderRadius: 15,
+    borderTopLeftRadius: 10, 
+    borderTopRightRadius: 10, 
     marginBottom: windowHeight * 0.01,
   },
 });
