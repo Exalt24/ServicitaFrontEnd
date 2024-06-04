@@ -354,6 +354,7 @@ export default function LoginPage ({ navigation }) {
                       axios.post("http://3.26.59.191:5001/user/loginOther", {email: userData.email }).then(async (res) => {
                         console.log(res.data)
                         if (res.data.status === 'SUCCESS') {
+                            setLoading(false);
                             Alert.alert('Success', 'You have successfully logged in.', [{ text: 'OK' }]);
                             await AsyncStorage.setItem('token', res.data.data);
                             await AsyncStorage.setItem('isLoggedIn', JSON.stringify(true));
@@ -379,6 +380,7 @@ export default function LoginPage ({ navigation }) {
                                                     console.log('ExpoToken added');
                                                 }
                                             }
+                            setLoading(false);
                             navigation.navigate('App', { email: userData.email });
                         }
                     }
