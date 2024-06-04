@@ -1,4 +1,3 @@
-//BookingScreen
 import React, { useState, useEffect } from 'react';
 import { useFocusEffect } from '@react-navigation/native'
 import { StyleSheet, View, Text, Dimensions, TextInput, TouchableOpacity, Image } from "react-native";
