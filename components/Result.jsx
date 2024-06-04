@@ -200,7 +200,7 @@ const styles = StyleSheet.create({
     right: 10,
     color: "#0e638a",
     letterSpacing: 0.9,
-    fontSize: FontSize.size_sm,
+    fontSize: screenWidth * 0.032,
     textAlign: "right",
     fontFamily: FontFamily.quicksandSemiBold,
     fontWeight: "600",
