@@ -64,7 +64,6 @@ export default function ProviderBookingScreen({ navigation, route }) {
         setBookingData(bookings);
         setUserDataFetched(true);
         setLoading(false);
-        setActionDone(false);
     } catch (error) {
         console.error('Error getting user data from Firestore:', error);
     }
@@ -98,6 +97,7 @@ export default function ProviderBookingScreen({ navigation, route }) {
 
   const handleActionDoneChange = (value) => {
     setActionDone(value);
+    console.log('Action done:', value);
   };
   
   
