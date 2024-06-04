@@ -1,4 +1,4 @@
-
+// I wanna center the "Accept" and "Decline" button to their respective buttons
 
 import React, { useState, useEffect } from "react";
 import { StyleSheet, View, Text, Image, Dimensions, FlatList, TouchableOpacity, Alert, Pressable } from "react-native";
@@ -152,11 +152,11 @@ const BookingProvider= ({ navigation, filters, bookingData, userData, onActionDo
 
         {item.status === 'Pending' && (
           <View style={styles.buttonsContainer}>
-            <TouchableOpacity style={styles.button1} onPress={() => handleAccept(item, userData)}>
-              <Text style={styles.buttonText}>Accept</Text>
+            <TouchableOpacity style={[styles.button1,]}  onPress={() => handleAccept(item, userData)}>
+              <Text style={[styles.buttonText, { textAlign: 'center' }]}>Accept</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.button2} onPress={() => handleDecline(item, userData)}>
-              <Text style={styles.buttonText}>Decline</Text>
+              <Text style={[styles.buttonText, { textAlign: 'center' }]}>Decline</Text>
             </TouchableOpacity>
           </View>
         )}
@@ -271,7 +271,7 @@ const styles = StyleSheet.create({
     position: "absolute",
   },
   dateTypo: {
-    width: 169,
+    width: 220,
     fontFamily: FontFamily.quicksandMedium,
     fontWeight: "500",
     letterSpacing: 0.5,
@@ -404,16 +404,18 @@ const styles = StyleSheet.create({
   button1: {
     backgroundColor: "#07374d",
     paddingVertical: 5,
-    paddingHorizontal: 57,
+    // paddingHorizontal: 60,
     borderRadius: 5,
     width: windowWidth * 0.4,
+    justifyContent: 'center'
   },
   button2: {
     backgroundColor: "#7C7878",
     paddingVertical: 5,
-    paddingHorizontal: 57,
+    // paddingHorizontal: 57,
     borderRadius: 5,
     width: windowWidth * 0.4,
+    justifyContent: 'center'
   },
   buttonText: {
     color: 'white',

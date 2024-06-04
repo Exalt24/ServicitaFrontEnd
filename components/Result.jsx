@@ -175,6 +175,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center", 
     flexGrow: 1, 
+    paddingBottom: screenHeight * 0.35, 
   },
   location: {
     alignItems: "center",

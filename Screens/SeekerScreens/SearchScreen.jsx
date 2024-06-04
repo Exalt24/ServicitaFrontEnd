@@ -119,12 +119,12 @@ const SearchScreen = ({navigation, route}) => {
               
 
         <Text style={styles.results}>Results</Text>
-        <Result navigation={navigation} searchQuery={searchQuery} filterQuery={route.params} serviceData={serviceData} userData={userData} />
-          
+        <Result navigation={navigation} searchQuery={searchQuery} filterQuery={route.params} serviceData={serviceData} userData={userData}  />
+         
         </View>
 
 
-
+     
     </SafeAreaView>
    
   )
